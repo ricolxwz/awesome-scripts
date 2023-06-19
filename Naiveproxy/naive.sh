@@ -1,4 +1,3 @@
-sudo -i && cd /root
 wget "https://go.dev/dl/$(curl https://go.dev/VERSION?m=text).linux-amd64.tar.gz"
 tar -xf go*.linux-amd64.tar.gz -C /usr/local/
 echo 'export GOROOT=/usr/local/go' >> /etc/profile
