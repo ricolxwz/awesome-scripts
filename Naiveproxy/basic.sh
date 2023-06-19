@@ -1,5 +1,5 @@
 apt update -y
-apt install wget curl sudo -y
+apt install curl sudo -y
 cd /root
 wget https://raw.githubusercontent.com/Ricolxwz/BGFW-sh/master/Naiveproxy/network.sh
 wget https://raw.githubusercontent.com/Ricolxwz/BGFW-sh/master/Naiveproxy/naive.sh
