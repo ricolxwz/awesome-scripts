@@ -5,4 +5,5 @@ rm naive.sh
 rm bbr.sh
 rm jarm.sh
 rm jarm.py
+rm clean.sh
 reboot
