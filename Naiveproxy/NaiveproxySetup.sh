@@ -1,7 +1,7 @@
 apt update -y
 apt install wget sudo curl -y
 cd /root
-wget https://github.com/Ricolxwz/BGFW-sh/blob/master/Naiveproxy/1.sh
+wget https://raw.githubusercontent.com/Ricolxwz/BGFW-sh/master/Naiveproxy/1.sh
 chmod 777 1.sh
 echo "#!/bin/sh -e
 #
