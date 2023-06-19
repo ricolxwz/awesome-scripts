@@ -1,0 +1,9 @@
+# Naiveproxy
+```
+wget https://raw.githubusercontent.com/Ricolxwz/BGFW-sh/master/Naiveproxy/basic.sh
+chmod 777 basic.sh
+./network.sh
+./naive.sh
+./bbr.sh
+./jarm.sh
+```
