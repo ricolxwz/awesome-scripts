@@ -17,7 +17,7 @@ echo -e "{
         \x22settings\x22: {
           \x22clients\x22: [
             {
-              \x22id\x22: \x22$uuid\x22
+              \x22id\x22: \x22$uuid\x22,
               \x22email\x22: \x22$email\x22
             }
           ]
