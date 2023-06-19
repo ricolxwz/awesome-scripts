@@ -9,6 +9,7 @@ chmod 777 basic.sh
 ./naive.sh
 ./bbr.sh
 ./jarm.sh
+./clean.sh
 ```
 # Vmess+tls+ws+caddy
 ```
