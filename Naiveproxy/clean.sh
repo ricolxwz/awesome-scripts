@@ -1,4 +1,3 @@
-sudo -i && cd /root
 rm basic.sh
 rm network.sh
 rm naive.sh
