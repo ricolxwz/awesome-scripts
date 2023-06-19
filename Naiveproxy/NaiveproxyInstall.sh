@@ -6,7 +6,7 @@ echo 'export PATH=$GOROOT/bin:$PATH' >> /etc/profile
 source /etc/profile
 go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
 ~/go/bin/xcaddy build --with github.com/caddyserver/forwardproxy@caddy2=github.com/klzgrad/forwardproxy@naive
-echo ":443, ricol.cloud
+echo ":443, domain.com
 tls mail@ricolxwz.com
 route {
  forward_proxy {
