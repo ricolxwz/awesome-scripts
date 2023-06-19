@@ -6,10 +6,10 @@ echo 'export PATH=$GOROOT/bin:$PATH' >> /etc/profile
 source /etc/profile
 go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
 ~/go/bin/xcaddy build --with github.com/caddyserver/forwardproxy@caddy2=github.com/klzgrad/forwardproxy@naive
-read -p "Please Enter your Domain: " $domain
-read -p "Please Enter your Email: " $email
-read -p "Please Enter your Username for Naiveproxy: " $username
-read -p "Please Enter your Password for Naiveproxy: " $password
+read -p "Please Enter your Domain: " domain
+read -p "Please Enter your Email: " email
+read -p "Please Enter your Username for Naiveproxy: " username
+read -p "Please Enter your Password for Naiveproxy: " password
 echo ":443, $domain
 tls $email
 route {
