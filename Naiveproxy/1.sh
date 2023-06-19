@@ -1,4 +1,4 @@
-apt install curl -y
+cd /root
 wget "https://go.dev/dl/$(curl https://go.dev/VERSION?m=text).linux-amd64.tar.gz"
 tar -xf go*.linux-amd64.tar.gz -C /usr/local/
 echo 'export GOROOT=/usr/local/go' >> /etc/profile
@@ -6,11 +6,15 @@ echo 'export PATH=$GOROOT/bin:$PATH' >> /etc/profile
 source /etc/profile
 go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
 ~/go/bin/xcaddy build --with github.com/caddyserver/forwardproxy@caddy2=github.com/klzgrad/forwardproxy@naive
-echo ":443, domain.com
-tls mail@ricolxwz.com
+read -p "Please Enter your Domain: " $domain
+read -p "Please Enter your Email: " $email
+read -p "Please Enter your Username for Naiveproxy: " $username
+read -p "Please Enter your Password for Naiveproxy: " $password
+echo ":443, $domain
+tls $email
 route {
  forward_proxy {
-   basic_auth ricol password
+   basic_auth $username $password
    hide_ip
    hide_via
    probe_resistance
