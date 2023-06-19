@@ -30,7 +30,5 @@ npm install pm2 -g
 pm2 start ./caddy -n caddy -- run --config Caddyfile
 pm2 save
 pm2 startup
-rm /etc/rc.local
-systemctl disable rc.local
 wget https://raw.githubusercontent.com/salesforce/jarm/master/jarm.py
 python3 jarm.py $domain
