@@ -1,4 +1,3 @@
-sudo -i && cd /root
 wget https://raw.githubusercontent.com/Ricolxwz/BGFW-sh/master/Naiveproxy/network.sh
 wget https://raw.githubusercontent.com/Ricolxwz/BGFW-sh/master/Naiveproxy/naive.sh
 wget https://raw.githubusercontent.com/Ricolxwz/BGFW-sh/master/Naiveproxy/bbr.sh
