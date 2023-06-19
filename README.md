@@ -1,5 +1,8 @@
 # Naiveproxy
 ```
+apt update -y
+apt install sudo wget curl -y
+sudo -i
 wget https://raw.githubusercontent.com/Ricolxwz/BGFW-sh/master/Naiveproxy/basic.sh
 chmod 777 basic.sh
 ./basic.sh
