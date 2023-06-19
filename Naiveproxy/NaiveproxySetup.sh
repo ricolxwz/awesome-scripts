@@ -18,6 +18,7 @@ echo "#!/bin/sh -e
 cd /root
 ./1.sh
 exit 0" > /etc/rc.local
+systemctl enable rc-local
 iptables -P INPUT ACCEPT
 iptables -P FORWARD ACCEPT	
 iptables -P OUTPUT ACCEPT
