@@ -106,3 +106,5 @@ echo "{
 		}
 	}
 }" > /etc/caddy/Caddyfile
+systemctl restart xray
+systemctl restart caddy
