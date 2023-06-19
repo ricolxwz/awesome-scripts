@@ -1,11 +1,8 @@
 apt update -y
 apt install wget sudo curl -y
-iptables -P INPUT ACCEPT
-iptables -P FORWARD ACCEPT	
-iptables -P OUTPUT ACCEPT
-iptables -F
-apt-get purge netfilter-persistent
-touch /etc/rc.local
+cd /root
+wget https://github.com/Ricolxwz/BGFW-sh/blob/master/Naiveproxy/1.sh
+chmod 777 1.sh
 echo "#!/bin/sh -e
 #
 # rc.local
@@ -18,6 +15,12 @@ echo "#!/bin/sh -e
 # bits.
 #
 # By default this script does nothing.
-wget 
-exit 0"
+cd /root
+./1.sh
+exit 0" > /etc/rc.local
+iptables -P INPUT ACCEPT
+iptables -P FORWARD ACCEPT	
+iptables -P OUTPUT ACCEPT
+iptables -F
+apt-get purge netfilter-persistent
 reboot
