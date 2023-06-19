@@ -96,7 +96,7 @@ echo "{
 	}
 	route @host {
 		header {
-			Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+			Strict-Transport-Security "max-age=31536000\; includeSubDomains\; preload"
 		}
 		file_server {
 			root /var/www/html
