@@ -5,3 +5,4 @@ python3 jarm.py $domain
 read -p "Please Enter your Hide Domain: " hide
 sed -i "/reverse_proxy/d" Caddyfile
 sed -i "/upstream_hostport/i  reverse_proxy $hide {" Caddyfile
+reboot
