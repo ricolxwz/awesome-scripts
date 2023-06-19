@@ -8,6 +8,8 @@ chmod 777 basic.sh
 ./network.sh
 ./naive.sh
 ./bbr.sh
+./bbr.sh
+./bbr.sh
 ./jarm.sh
 ./clean.sh
 ```
@@ -21,6 +23,8 @@ chmod 777 basic.sh
 ./network.sh
 ./web.sh
 ./xray.sh
+./bbr.sh
+./bbr.sh
 ./bbr.sh
 ./clean.sh
 ```
