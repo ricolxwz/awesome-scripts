@@ -4,7 +4,7 @@ read -p "Enter domain: " domain
 read -p "Enter port: " port
 read -p "Enter xuiport: " xuiport
 read -p "Enter wspath: " path
-read -p "ENter xuipath: " xuipath
+read -p "Enter xuipath: " xuipath
 ~/.acme.sh/acme.sh --register-account -m $email
 ~/.acme.sh/acme.sh --issue -d $domain --standalone
 ~/.acme.sh/acme.sh --installcert -d $domain --key-file /root/private.key --fullchain-file /root/cert.crt
