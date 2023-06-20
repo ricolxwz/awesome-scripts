@@ -40,11 +40,5 @@ apt update -y && apt install sudo wget curl iptables unzip -y && https://raw.git
 ./bbr.sh
 ```
 ```
-./bbr.sh
-```
-```
-./bbr.sh
-```
-```
 ./clean.sh
 ```
