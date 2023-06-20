@@ -4,7 +4,7 @@ read -p "Enter uuid(xray uuid): " uuid
 read -p "Enter lowest xray version(x.x.x): " xray
 read -p "Enter privatekey(xray x25519): " privatekey
 read -p "Enter shortid(https://suijimimashengcheng.bmcx.com): " shortid
-read -p "Enter target website:(do not contain https://) " website
+read -p "Enter target website: " website
 echo -e "{
   \x22log\x22: {
     \x22loglevel\x22: \x22warning\x22
