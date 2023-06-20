@@ -9,7 +9,8 @@ read -p "Please Enter your Domain: " domain
 read -p "Please Enter your Email: " email
 read -p "Please Enter your Username for Naiveproxy: " username
 read -p "Please Enter your Password for Naiveproxy: " password
-echo ":443, $domain
+read -p "Please Enter port for Naiveproxy: " port
+echo ":$port, $domain
 tls $email
 route {
  forward_proxy {
