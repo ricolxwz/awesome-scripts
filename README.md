@@ -49,7 +49,7 @@ apt update -y && apt install sudo wget curl iptables unzip -y && wget https://ra
 apt update -y && apt install sudo wget curl iptables socat -y && wget https://raw.githubusercontent.com/Ricolxwz/integrated-scripts/master/Xui%2Bnginx/basic.sh && chmod 777 basic.sh && ./basic.sh && ./network.sh
 ```
 ```
-./xray+nginx.sh
+./xui+nginx.sh
 ```
 ```
 ./bbr.sh
