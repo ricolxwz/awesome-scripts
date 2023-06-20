@@ -43,3 +43,20 @@ apt update -y && apt install sudo wget curl iptables unzip -y && wget https://ra
 ```
 ./clean.sh
 ```
+# Xui+nginx
+所有指令都在root下/root文件夹内执行
+```
+apt update -y && apt install sudo wget curl iptables unzip -y && wget https://raw.githubusercontent.com/Ricolxwz/integrated-scripts/master/Xui%2Bnginx/basic.sh && chmod 777 basic.sh && ./basic.sh && ./network.sh
+```
+```
+./xray+nginx.sh
+```
+```
+./bbr.sh
+```
+```
+./jarm.sh
+```
+```
+./clean.sh
+```
