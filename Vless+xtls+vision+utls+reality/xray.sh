@@ -1,7 +1,7 @@
 bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install --beta
 read -p "Enter port(443): " port
 read -p "Enter uuid(xray uuid): " uuid
-read -p "Enter xray version(x.x.x): " xray
+read -p "Enter lowest xray version(x.x.x): " xray
 read -p "Enter privatekey(xray x25519): " privatekey
 read -p "Enter shortid(https://suijimimashengcheng.bmcx.com): " shortid
 read -p "Enter target website: " website
