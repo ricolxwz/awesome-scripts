@@ -18,7 +18,7 @@ apt update -y && apt install sudo wget curl iptables -y && wget https://raw.gith
 # Vmess+tls+ws+caddy
 所有指令都在root下/root文件夹内执行
 ```
-apt update -y && apt install sudo wget curl iptables unzip -y && wget https://raw.githubusercontent.com/Ricolxwz/integrated-scripts/master/Vmess%2Btls%2Bws%2Bcaddy/basic.sh && chmod 777 basic.sh && ./basic.sh && ./network.sh
+apt update -y && apt install sudo wget curl iptables socat -y && wget https://raw.githubusercontent.com/Ricolxwz/integrated-scripts/master/Vmess%2Btls%2Bws%2Bcaddy/basic.sh && chmod 777 basic.sh && ./basic.sh && ./network.sh
 ```
 ```
 ./web.sh && ./xray.sh
