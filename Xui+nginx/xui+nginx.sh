@@ -52,7 +52,7 @@ server {
                 proxy_http_version 1.1;
                 proxy_set_header Upgrade \x24http_upgrade;
                 proxy_set_header Connection \x22upgrade\x22;
-                proxy_set_header Host $host;
+                proxy_set_header Host \x24host;
                 proxy_set_header X-Real-IP \x24remote_addr;
                 proxy_set_header X-Forwarded-For \x24proxy_add_x_forwarded_for;
         }
