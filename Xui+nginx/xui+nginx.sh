@@ -1,4 +1,3 @@
-apt install -y curl socat
 curl https://get.acme.sh | sh
 read -p "Enter email: " email
 read -p "Enter domain: " domain
