@@ -1,0 +1,9 @@
+[Interface]
+PrivateKey =  #此处为client1的私钥
+Address = 10.0.8.10, fd86::2/128
+MTU = 1420
+DNS = 223.5.5.5, 2400:3200::1
+[Peer]
+PublicKey =  #此处为server的公钥
+AllowedIPs = 0.0.0.0/0
+Endpoint =  #服务器对端IP+端口
