@@ -16,7 +16,7 @@ read -p "Please enter the name of main interface: " interface
 echo "
 [Interface]
 PrivateKey = $(cat server.key)
-Address = 10.0.8.1, fd86::1/48
+Address = 10.0.8.1, fd86::1/128
 PostUp   = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o $interface -j MASQUERADE
 PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -D FORWARD -o wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o $interface -j MASQUERADE
 ListenPort = 996
