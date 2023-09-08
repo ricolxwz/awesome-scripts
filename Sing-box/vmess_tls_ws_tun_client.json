@@ -1,0 +1,147 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "info",
+    "output": "box.log",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "google-v4",
+        "address": "8.8.8.8",
+        "strategy": "ipv4_only",
+        "detour": "vmess-out"
+      },
+      {
+        "tag": "google-v6",
+        "address": "2001:4860:4860::8888",
+        "strategy": "ipv6_only",
+        "detour": "vmess-out"
+      },
+      {
+        "tag": "alibaba-v4",
+        "address": "223.5.5.5",
+        "strategy": "ipv4_only",
+        "detour": "direct"
+      },
+      {
+        "tag": "alibaba-v6",
+        "address": "2400:3200::1",
+        "strategy": "ipv6_only",
+        "detour": "direct"
+      }
+    ],
+    "rules": [
+      {
+        "geosite": "cn",
+        "ip_version": 4,
+        "server": "alibaba-v4"
+      },
+      {
+        "geosite": "cn",
+        "ip_version": 6,
+        "server": "alibaba-v6"
+      },
+      {
+        "geosite": "geolocation-!cn",
+        "ip_version": 4,
+        "server": "google-v4"
+      },
+      {
+        "geosite": "geolocation-!cn",
+        "ip_version": 6,
+        "server": "google-v6"
+      }
+    ],
+    "final": "google-v4"
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "interface_name": "tun0",
+      "inet4_address": "172.20.0.1/30",
+      "inet6_address": "fdfe:dcba:9876::1/126",
+      "auto_route": true,
+      "strict_route": true,
+      "stack": "system",
+      "sniff": true
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "vmess",
+      "tag": "vmess-out",
+      "server": "<server ip>",
+      "server_port": <server port>,
+      "uuid": "<uuid>",
+      "security": "auto",
+      "alter_id": 0,
+      "global_padding": false,
+      "authenticated_length": true,
+      "network": "tcp",
+      "tls": {
+        "enabled": true,
+        "disable_sni": false,
+        "server_name": "<server domain>",
+        "insecure": false,
+        "alpn": [
+          "h2",
+          "http/1.1"
+        ]
+      },
+      "transport": {
+        "type": "ws",
+        "path": "<path>",
+        "headers": {}
+      },
+      "connect_timeout": "5s",
+      "tcp_fast_open": true,
+      "udp_fragment": true
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    },
+    {
+      "type": "dns",
+      "tag": "dns"
+    }
+  ],
+  "route": {
+    "geosite": {
+      "path": "geosite.db",
+      "download_url": "https://github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db",
+      "download_detour": "vmess-out"
+    },
+    "geoip": {
+      "path": "geoip.db",
+      "download_url": "https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db",
+      "download_detour": "vmess-out"
+    },
+    "rules": [
+      {
+        "protocol": "dns",
+        "outbound": "dns"
+      },
+      {
+        "geosite": "cn",
+        "outbound": "direct"
+      },
+      {
+        "geosite": "category-ads-all",
+        "outbound": "block"
+      },
+      {
+        "geosite": "geolocation-!cn",
+        "outbound": "vmess-out"
+      }
+    ],
+    "final": "vmess-out",
+    "auto_detect_interface": true
+  }
+}
