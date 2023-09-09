@@ -89,7 +89,7 @@ echo -e "{
 }" > /usr/local/etc/sing-box/config.json
 set -e -o pipefail
 systemctl enable sing-box
-systemctl start sing-box"
+systemctl start sing-box
 echo "---------- Nginx Configuration ----------"
 cd /root
 apt install nginx -y
