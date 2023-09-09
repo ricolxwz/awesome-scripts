@@ -139,6 +139,6 @@ echo -e "{
   \x22purgeUnknownRecords\x22: false,
   \x22ttl\x22: 300
 }" > config.json
-apt install python3
+apt install python3 -y
 python3 -m venv venv
 cd venv/bin
