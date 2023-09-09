@@ -87,6 +87,9 @@ echo -e "{
         }
     ]
 }" > /usr/local/etc/sing-box/config.json
+set -e -o pipefail
+systemctl enable sing-box
+systemctl start sing-box"
 echo "---------- Nginx Configuration ----------"
 cd /root
 apt install nginx -y
@@ -144,8 +147,7 @@ server {
 }
 }" > /etc/nginx/nginx.conf
 systemctl restart nginx
-./release/local/enable.sh
-systemctl enable sing-box
+
 echo "---------- DNS Configuration ----------"
 cd /root
 apt install resolvconf -y
