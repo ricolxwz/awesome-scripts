@@ -1,3 +1,4 @@
+echo "---------- ACME Configuration ----------"
 curl https://get.acme.sh | sh
 read -p "Enter email: " email
 read -p "Enter domain: " domain
@@ -6,6 +7,7 @@ read -p "Enter wspath: " path
 ~/.acme.sh/acme.sh --register-account -m $email
 ~/.acme.sh/acme.sh --issue -d $domain --standalone
 ~/.acme.sh/acme.sh --installcert -d $domain --key-file /root/private.key --fullchain-file /root/cert.crt
+echo "---------- Sing-box Configuration ----------"
 git clone -b main https://github.com/SagerNet/sing-box
 cd sing-box
 ./release/local/install_go.sh
@@ -39,6 +41,7 @@ echo -e "{
         }
     ]
 }" > /usr/local/etc/sing-box/config.json
+echo "---------- Nginx Configuration ----------"
 apt install nginx -y
 echo -e "user www-data;
 worker_processes auto;
@@ -97,10 +100,12 @@ systemctl restart nginx
 ./release/local/enable.sh
 systemctl start sing-box
 systemctl enable sing-box
+echo "---------- IPv6 Configuration ----------"
 echo "net.ipv6.conf.default.disable_ipv6 = 0
 net.ipv6.conf.all.disable_ipv6 = 0
 net.ipv6.conf.lo.disable_ipv6 = 0" >> /etc/sysctl.conf
 sysctl -p
+echo "---------- DNS Configuration ----------"
 apt install resolvconf -y
 > /etc/resolvconf/resolv.conf.d/head
 echo -e "nameserver 2001:4860:4860::8888
@@ -112,15 +117,15 @@ wget https://github.com/timothymiller/cloudflare-ddns/archive/refs/tags/latest.z
 unzip latest.zip
 cd cloudflare-ddns-latest
 touch config.json
-read -p "Enter api_token: " $api_token
-read -p "Enter zone_id: " $zone_id
+read -p "Enter api_token: " api
+read -p "Enter zone_id: " zone
 echo -e "{
   \x22cloudflare\x22: [
     {
       \x22authentication\x22: {
-        \x22api_token\x22: \x22$api_token\x22
+        \x22api_token\x22: \x22$api\x22
       },
-      \x22zone_id\x22: \x22$zone_id\x22,
+      \x22zone_id\x22: \x22$zone\x22,
       \x22subdomains\x22: [
         {
           \x22name\x22: \x22\x22,
