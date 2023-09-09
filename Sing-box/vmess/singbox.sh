@@ -110,12 +110,12 @@ apt install resolvconf -y
 > /etc/resolvconf/resolv.conf.d/head
 echo -e "nameserver 2001:4860:4860::8888
 nameserver 8.8.8.8" >> /etc/resolvconf/resolv.conf.d/head
+echo "---------- git Configuration ----------"
+apt install git -y
 echo "---------- DDNS Configuration ----------"
 cd /root
-apt install unzip -y
-wget https://github.com/timothymiller/cloudflare-ddns/archive/refs/tags/latest.zip
-unzip latest.zip
-cd cloudflare-ddns-latest
+git clone https://github.com/timothymiller/cloudflare-ddns.git
+cd cloudflare-ddns
 touch config.json
 read -p "Enter api_token: " api
 read -p "Enter zone_id: " zone
@@ -141,4 +141,10 @@ echo -e "{
 }" > config.json
 apt install python3 -y
 python3 -m venv venv
-cd venv/bin
+./start-sync.sh
+echo "---------- Crontab Configuration ----------"
+cd /var/spool/cron/crontabs
+touch root
+echo "*/15 * * * * /root/cloudflare-ddns/start-sync.sh" >> root
+systemctl restart cron
+reboot
