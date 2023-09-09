@@ -1,9 +1,11 @@
 echo "---------- IPv6 Configuration ----------"
+cd /root
 echo "net.ipv6.conf.default.disable_ipv6 = 0
 net.ipv6.conf.all.disable_ipv6 = 0
 net.ipv6.conf.lo.disable_ipv6 = 0" >> /etc/sysctl.conf
 sysctl -p
 echo "---------- git Configuration ----------"
+cd /root
 apt install git -y
 echo "---------- DDNS Configuration ----------"
 cd /root
@@ -41,6 +43,7 @@ touch root
 echo "*/15 * * * * /root/cloudflare-ddns/start-sync.sh" >> root
 systemctl restart cron
 echo "---------- ACME Configuration ----------"
+cd /root
 curl https://get.acme.sh | sh
 read -p "Enter email: " email
 read -p "Enter domain: " domain
@@ -50,6 +53,7 @@ read -p "Enter wspath: " path
 ~/.acme.sh/acme.sh --issue -d $domain --standalone
 ~/.acme.sh/acme.sh --installcert -d $domain --key-file /root/private.key --fullchain-file /root/cert.crt
 echo "---------- Sing-box Configuration ----------"
+cd /root
 git clone -b main https://github.com/SagerNet/sing-box
 cd sing-box
 ./release/local/install_go.sh
@@ -84,6 +88,7 @@ echo -e "{
     ]
 }" > /usr/local/etc/sing-box/config.json
 echo "---------- Nginx Configuration ----------"
+cd /root
 apt install nginx -y
 echo -e "user www-data;
 worker_processes auto;
@@ -142,6 +147,7 @@ systemctl restart nginx
 ./release/local/enable.sh
 systemctl enable sing-box
 echo "---------- DNS Configuration ----------"
+cd /root
 apt install resolvconf -y
 > /etc/resolvconf/resolv.conf.d/head
 echo -e "nameserver 2001:4860:4860::8888
