@@ -140,7 +140,6 @@ server {
 }" > /etc/nginx/nginx.conf
 systemctl restart nginx
 ./release/local/enable.sh
-systemctl start sing-box
 systemctl enable sing-box
 echo "---------- DNS Configuration ----------"
 apt install resolvconf -y
