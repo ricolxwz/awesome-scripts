@@ -41,6 +41,7 @@ echo "---------- Crontab Configuration ----------"
 cd /var/spool/cron/crontabs
 touch root
 echo "*/15 * * * * /root/cloudflare-ddns/start-sync.sh" >> root
+echo "@reboot /root/cloudflare-ddns/start-sync.sh" >> root
 systemctl restart cron
 echo "---------- ACME Configuration ----------"
 cd /root
