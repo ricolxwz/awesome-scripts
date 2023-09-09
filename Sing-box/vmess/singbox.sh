@@ -3,11 +3,6 @@ echo "net.ipv6.conf.default.disable_ipv6 = 0
 net.ipv6.conf.all.disable_ipv6 = 0
 net.ipv6.conf.lo.disable_ipv6 = 0" >> /etc/sysctl.conf
 sysctl -p
-echo "---------- DNS Configuration ----------"
-apt install resolvconf -y
-> /etc/resolvconf/resolv.conf.d/head
-echo -e "nameserver 2001:4860:4860::8888
-nameserver 8.8.8.8" >> /etc/resolvconf/resolv.conf.d/head
 echo "---------- git Configuration ----------"
 apt install git -y
 echo "---------- DDNS Configuration ----------"
@@ -147,4 +142,9 @@ systemctl restart nginx
 ./release/local/enable.sh
 systemctl start sing-box
 systemctl enable sing-box
+echo "---------- DNS Configuration ----------"
+apt install resolvconf -y
+> /etc/resolvconf/resolv.conf.d/head
+echo -e "nameserver 2001:4860:4860::8888
+nameserver 8.8.8.8" >> /etc/resolvconf/resolv.conf.d/head
 reboot
