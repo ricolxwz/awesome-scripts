@@ -32,7 +32,7 @@ echo -e "{
   \x22purgeUnknownRecords\x22: false,
   \x22ttl\x22: 300
 }" > config.json
-apt install python3 -y
+apt install python3 python3-venv -y
 python3 -m venv venv
 ./start-sync.sh
 echo "---------- Crontab Configuration ----------"
