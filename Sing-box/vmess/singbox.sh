@@ -147,4 +147,8 @@ apt install resolvconf -y
 > /etc/resolvconf/resolv.conf.d/head
 echo -e "nameserver 2001:4860:4860::8888
 nameserver 8.8.8.8" >> /etc/resolvconf/resolv.conf.d/head
-reboot
+echo "---------- UUID ----------"
+cd /usr/local/etc/sing-box
+cat config.json | sed 's/,/\n/g' | grep "uuid" | sed 's/:/\n/g' | sed '1d' | sed 's/}//g'
+echo "---------- Reboot ----------"
+echo "Enter reboot to reboot!"
