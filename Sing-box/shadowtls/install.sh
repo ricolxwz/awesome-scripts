@@ -88,7 +88,11 @@ echo -e "{
             \x22tag\x22: \x22shadowsocks-in\x22,
             \x22listen\x22: \x22127.0.0.1\x22,
             \x22method\x22: \x22aes-128-gcm\x22,
-            \x22password\x22: \x22$password2\x22
+            \x22password\x22: \x22$password2\x22,
+            \x22tls\x22: {
+                \x22enabled\x22: true,
+                \x22server_name\x22: \x22$domain\x22
+            }
         }
     ],
     \x22outbounds\x22: [
