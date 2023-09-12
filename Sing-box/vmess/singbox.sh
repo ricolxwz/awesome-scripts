@@ -148,13 +148,12 @@ server {
 }
 }" > /etc/nginx/nginx.conf
 systemctl restart nginx
-
 echo "---------- DNS Configuration ----------"
 cd /root
 apt install resolvconf -y
 > /etc/resolvconf/resolv.conf.d/head
-echo -e "nameserver 2001:4860:4860::8888
-nameserver 8.8.8.8" >> /etc/resolvconf/resolv.conf.d/head
+echo -e "nameserver 8.8.8.8
+nameserver 2001:4860:4860::8888" >> /etc/resolvconf/resolv.conf.d/head
 echo "---------- UUID ----------"
 cd /usr/local/etc/sing-box
 cat config.json | sed 's/,/\n/g' | grep "uuid" | sed 's/:/\n/g' | sed '1d' | sed 's/}//g'
