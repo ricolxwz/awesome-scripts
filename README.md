@@ -73,3 +73,9 @@ apt update -y && apt install sudo wget curl iptables socat cron -y && wget https
 ```
 apt update -y && apt install sudo wget curl iptables socat cron openssh-client -y && wget https://raw.githubusercontent.com/ricolxwz/integrated-scripts/master/Sing-box/tuic/install.sh && chmod 777 install.sh && ./install.sh
 ```
+
+## reality
+所有指令都在root下/root文件夹内执行
+```
+apt update -y && apt install sudo wget curl iptables socat cron openssh-client -y && wget https://raw.githubusercontent.com/ricolxwz/integrated-scripts/master/Sing-box/vless-xtls-utls-reality-vision/install.sh && chmod 777 install.sh && ./install.sh
+```
