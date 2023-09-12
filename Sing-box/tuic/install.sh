@@ -101,9 +101,9 @@ echo -e "nameserver 8.8.8.8
 nameserver 2001:4860:4860::8888" >> /etc/resolvconf/resolv.conf.d/head
 echo "---------- UUID ----------"
 cd /usr/local/etc/sing-box
-cat config.json | sed 's/,/\n/g' | grep "uuid" | sed 's/:/\n/g' | sed '1d' | sed 's/}//g'
+cat config.json | sed 's/,/\n/g' | grep "uuid" | sed 's/:/\n/g' | sed '1d' | sed 's/}//g' | sed 's/"//g' | tr -d ' '
 echo "---------- Password ----------"
 cd /usr/local/etc/sing-box
-cat config.json | sed 's/,/\n/g' | grep "password" | sed 's/:/\n/g' | sed '1d' | sed 's/}//g'
+cat config.json | sed 's/,/\n/g' | grep "password" | sed 's/:/\n/g' | sed '1d' | sed 's/}//g' | sed 's/"//g' | tr -d ' '
 echo "---------- Reboot ----------"
 echo "Enter reboot to reboot!"
