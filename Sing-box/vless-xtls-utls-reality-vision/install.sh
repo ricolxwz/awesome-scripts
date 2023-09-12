@@ -131,6 +131,7 @@ LimitNOFILE=infinity
 [Install]
 WantedBy=multi-user.target" > /etc/systemd/system/sing-box.service
 set -e -o pipefail
+systemctl daemon-reload
 systemctl enable sing-box
 systemctl start sing-box
 echo "---------- DNS Configuration ----------"
