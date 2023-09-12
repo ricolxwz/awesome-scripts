@@ -1,4 +1,4 @@
-wget "https://go.dev/dl/$(curl https://go.dev/VERSION?m=text).linux-amd64.tar.gz"
+wget "https://go.dev/dl/$(curl -s https://go.dev/VERSION?m=text|awk 'NR==1 {print $1}').linux-amd64.tar.gz"
 tar -xf go*.linux-amd64.tar.gz -C /usr/local/
 echo 'export GOROOT=/usr/local/go' >> /etc/profile
 echo 'export PATH=$GOROOT/bin:$PATH' >> /etc/profile
