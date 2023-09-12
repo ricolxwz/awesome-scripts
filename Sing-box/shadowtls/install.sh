@@ -62,6 +62,8 @@ cd sing-box
 ./release/local/install_go.sh
 ./release/local/install.sh
 touch /usr/local/etc/sing-box/config.json
+password1=$(cat /dev/urandom | tr -dc A-Za-z0-9 | head -c 6)
+password2=$(cat /dev/urandom | tr -dc A-Za-z0-9 | head -c 6)
 echo -e "{
     \x22inbounds\x22: [
         {
@@ -69,6 +71,12 @@ echo -e "{
             \x22listen\x22: \x22::\x22,
             \x22listen_port\x22: $port,
             \x22detour\x22: \x22shadowsocks-in\x22,
+            \x22version\x22: 3,
+            \x22users\x22: [
+                {
+                    \x22password\x22: \x22$password1\x22
+                }
+            ],
             \x22handshake\x22: {
                 \x22server\x22: \x22$website\x22,
                 \x22server_port\x22: 443
@@ -79,8 +87,8 @@ echo -e "{
             \x22type\x22: \x22shadowsocks\x22,
             \x22tag\x22: \x22shadowsocks-in\x22,
             \x22listen\x22: \x22127.0.0.1\x22,
-            \x22method\x22: \x222022-blake3-aes-128-gcm\x22,
-            \x22password\x22: \x22$(sing-box generate uuid)\x22
+            \x22method\x22: \x22aes-128-gcm\x22,
+            \x22password\x22: \x22$password2\x22
         }
     ],
     \x22outbounds\x22: [
@@ -98,8 +106,11 @@ apt install resolvconf -y
 > /etc/resolvconf/resolv.conf.d/head
 echo -e "nameserver 8.8.8.8
 nameserver 2001:4860:4860::8888" >> /etc/resolvconf/resolv.conf.d/head
-echo "---------- Password ----------"
+echo "---------- Password for ShadowTLS ----------"
 cd /usr/local/etc/sing-box
-cat config.json | sed 's/,/\n/g' | grep "password" | sed 's/:/\n/g' | sed '1d' | sed 's/}//g' | sed 's/"//g' | tr -d ' '
+cat config.json | sed 's/,/\n/g' | grep "password" | sed 's/:/\n/g' | sed 's/}//g' | sed 's/"//g' | tr -d ' ' | awk 'NR%2==0' | sed -n '1p'
+echo "---------- Password for Shadowsocks ----------"
+cd /usr/local/etc/sing-box
+cat config.json | sed 's/,/\n/g' | grep "password" | sed 's/:/\n/g' | sed 's/}//g' | sed 's/"//g' | tr -d ' ' | awk 'NR%2==0' | sed -n '2p'
 echo "---------- Reboot ----------"
 echo "Enter reboot to reboot!"
