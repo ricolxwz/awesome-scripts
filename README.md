@@ -67,3 +67,9 @@ apt update -y && apt install sudo wget curl iptables socat cron -y && wget https
 ```
 apt update -y && apt install sudo wget curl iptables socat cron -y && wget https://raw.githubusercontent.com/ricolxwz/integrated-scripts/master/Sing-box/vmess/singbox.sh && chmod 777 singbox.sh && ./singbox.sh
 ```
+
+## tuic
+所有指令都在root下/root文件夹内执行
+```
+apt update -y && apt install sudo wget curl iptables socat cron openssh-client -y && wget https://raw.githubusercontent.com/ricolxwz/integrated-scripts/master/Sing-box/tuic/install.sh && chmod 777 install.sh && ./install.sh
+```
