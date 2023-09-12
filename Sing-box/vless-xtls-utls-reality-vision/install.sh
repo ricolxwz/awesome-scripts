@@ -51,7 +51,7 @@ curl https://get.acme.sh | sh
 read -p "Enter email: " email
 read -p "Enter domain: " domain
 read -p "Enter port: " port
-read -p "Enter target website for reality: " website
+read -p "Enter target website for reality (do not include https://): " website
 ~/.acme.sh/acme.sh --register-account -m $email
 ~/.acme.sh/acme.sh --issue -d $domain --standalone
 ~/.acme.sh/acme.sh --installcert -d $domain --key-file /root/private.key --fullchain-file /root/cert.crt
@@ -95,7 +95,7 @@ echo -e "{
             ],
             \x22tls\x22: {
                 \x22enabled\x22: true,
-                \x22server_name\x22: \x22$domain\x22,
+                \x22server_name\x22: \x22$website\x22,
                 \x22reality\x22: {
                     \x22enabled\x22: true,
                     \x22handshake\x22: {
