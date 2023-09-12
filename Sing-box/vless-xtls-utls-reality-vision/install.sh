@@ -55,12 +55,15 @@ read -p "Enter target website for reality: " website
 ~/.acme.sh/acme.sh --register-account -m $email
 ~/.acme.sh/acme.sh --issue -d $domain --standalone
 ~/.acme.sh/acme.sh --installcert -d $domain --key-file /root/private.key --fullchain-file /root/cert.crt
-echo "---------- Sing-box Configuration ----------"
+echo "---------- Sing-box Configuration (build from source) ----------"
 cd /root
-git clone -b main https://github.com/SagerNet/sing-box
-cd sing-box
-./release/local/install_go.sh
-./release/local/install.sh
+apt install golang -y
+go install -v -tags with_reality_server,with_utls github.com/sagernet/sing-box/cmd/sing-box@latest
+cd go/bin
+mv sing-box /usr/local/bin/sing-box
+chmod 777 /usr/local/bin/sing-box
+mkdir -p /var/lib/sing-box
+mkdir -p /usr/local/etc/sing-box
 touch /usr/local/etc/sing-box/config.json
 echo "----- Generate ShortID -----"
 shortID=''
@@ -107,6 +110,25 @@ echo -e "{
         }
     ]
 }" > /usr/local/etc/sing-box/config.json
+echo "----- Add Service -----"
+cd /etc/systemd/system
+touch sing-box.service
+echo -e "[Unit]
+Description=sing-box service
+Documentation=https://sing-box.sagernet.org
+After=network.target nss-lookup.target
+
+[Service]
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH
+ExecStart=/usr/local/bin/sing-box -D /var/lib/sing-box -C /usr/local/etc/sing-box run
+ExecReload=/bin/kill -HUP \x24MAINPID
+Restart=on-failure
+RestartSec=10s
+LimitNOFILE=infinity
+
+[Install]
+WantedBy=multi-user.target" > /etc/systemd/system/sing-box.service
 set -e -o pipefail
 systemctl enable sing-box
 systemctl start sing-box
