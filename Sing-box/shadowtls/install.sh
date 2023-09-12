@@ -51,6 +51,7 @@ curl https://get.acme.sh | sh
 read -p "Enter email: " email
 read -p "Enter domain: " domain
 read -p "Enter port (usually 443): " port
+read -p "Enter target website for reality (do not include https://): " website
 ~/.acme.sh/acme.sh --register-account -m $email
 ~/.acme.sh/acme.sh --issue -d $domain --standalone
 ~/.acme.sh/acme.sh --installcert -d $domain --key-file /root/private.key --fullchain-file /root/cert.crt
@@ -64,24 +65,22 @@ touch /usr/local/etc/sing-box/config.json
 echo -e "{
     \x22inbounds\x22: [
         {
-            \x22type\x22: \x22tuic\x22,
+            \x22type\x22: \x22shadowtls\x22,
             \x22listen\x22: \x22::\x22,
             \x22listen_port\x22: $port,
-            \x22users\x22: [
-                {
-                    \x22uuid\x22: \x22$(sing-box generate uuid)\x22,
-                    \x22password\x22: \x22$(openssl rand -base64 12)\x22
-                }
-            ],
-            \x22congestion_control\x22: \x22bbr\x22,
-            \x22tls\x22: {
-                \x22enabled\x22: true,
-                \x22alpn\x22: [
-                    \x22h3\x22
-                ],
-                \x22certificate_path\x22: \x22/root/cert.crt\x22,
-                \x22key_path\x22: \x22/root/private.key\x22
-            }
+            \x22detour\x22: \x22shadowsocks-in\x22,
+            \x22handshake\x22: {
+                \x22server\x22: \x22$website\x22,
+                \x22server_port\x22: 443
+            },
+            \x22strict_mode\x22: true
+        },
+        {
+            \x22type\x22: \x22shadowsocks\x22,
+            \x22tag\x22: \x22shadowsocks-in\x22,
+            \x22listen\x22: \x22127.0.0.1\x22,
+            \x22method\x22: \x222022-blake3-aes-128-gcm\x22,
+            \x22password\x22: \x22$(sing-box generate uuid)\x22
         }
     ],
     \x22outbounds\x22: [
@@ -99,11 +98,8 @@ apt install resolvconf -y
 > /etc/resolvconf/resolv.conf.d/head
 echo -e "nameserver 8.8.8.8
 nameserver 2001:4860:4860::8888" >> /etc/resolvconf/resolv.conf.d/head
-echo "---------- UUID ----------"
-cd /usr/local/etc/sing-box
-cat config.json | sed 's/,/\n/g' | grep "uuid" | sed 's/:/\n/g' | sed '1d' | sed 's/}//g'
 echo "---------- Password ----------"
 cd /usr/local/etc/sing-box
-cat config.json | sed 's/,/\n/g' | grep "password" | sed 's/:/\n/g' | sed '1d' | sed 's/}//g'
+cat config.json | sed 's/,/\n/g' | grep "password" | sed 's/:/\n/g' | sed '1d' | sed 's/}//g' | sed 's/"//g' | tr -d ' '
 echo "---------- Reboot ----------"
 echo "Enter reboot to reboot!"
