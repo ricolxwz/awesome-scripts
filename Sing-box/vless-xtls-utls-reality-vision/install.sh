@@ -55,7 +55,8 @@ read -p "Enter target website for reality: " website
 ~/.acme.sh/acme.sh --register-account -m $email
 ~/.acme.sh/acme.sh --issue -d $domain --standalone
 ~/.acme.sh/acme.sh --installcert -d $domain --key-file /root/private.key --fullchain-file /root/cert.crt
-echo "---------- Sing-box Configuration (build from source) ----------"
+echo "---------- Sing-box Configuration ----------"
+echo "----- Build From Source -----"
 cd /root
 apt install golang -y
 go install -v -tags with_reality_server,with_utls github.com/sagernet/sing-box/cmd/sing-box@latest
