@@ -42,10 +42,10 @@ apt install resolvconf -y
 echo -e "nameserver 8.8.8.8
 nameserver 2001:4860:4860::8888" >> /etc/resolvconf/resolv.conf.d/head
 echo "---------- PSK ----------"
-cd /usr/local/bin
+cd /usr/local/etc/snell
 grep "psk" snell-server.conf | awk '{print $3}'
 echo "---------- Port ----------"
-cd /usr/local/bin
+cd /usr/local/etc/snell
 grep "listen" snell-server.conf | awk -F: '{print $2}'
 echo "---------- Reboot ----------"
 echo "Enter reboot to reboot!"
