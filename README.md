@@ -36,6 +36,12 @@ apt update -y && apt install sudo wget curl iptables socat cron openssh-client -
 apt update -y && apt install sudo wget curl iptables socat cron openssh-client -y && wget https://raw.githubusercontent.com/ricolxwz/integrated-scripts/master/Sing-box/naive/install.sh && chmod 777 install.sh && ./install.sh
 ```
 
+## trojan
+所有指令都在root下/root文件夹内执行
+```
+apt update -y && apt install sudo wget curl iptables socat cron openssh-client -y && wget https://raw.githubusercontent.com/ricolxwz/integrated-scripts/master/Sing-box/trojan/install.sh && chmod 777 install.sh && ./install.sh
+```
+
 # Surge
 
 ## snell
