@@ -50,8 +50,6 @@ cd /root
 curl https://get.acme.sh | sh
 read -p "Enter email: " email
 read -p "Enter domain: " domain
-read -p "Enter port: " port
-read -p "Enter wspath: " path
 ~/.acme.sh/acme.sh --register-account -m $email
 ~/.acme.sh/acme.sh --issue -d $domain --standalone
 ~/.acme.sh/acme.sh --installcert -d $domain --key-file /root/private.key --fullchain-file /root/cert.crt
