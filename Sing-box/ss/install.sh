@@ -63,21 +63,12 @@ cd sing-box
 touch /usr/local/etc/sing-box/config.json
 echo -e "{
     \x22inbounds\x22: [
-        {
-          \x22inbounds\x22: [
-            {
-              \x22type\x22: \x22shadowsocks\x22,
-              \x22listen\x22: \x22::\x22,
-              \x22listen_port\x22: $port,
-              \x22method\x22: \x22aes-128-gcm\x22,
-              \x22password\x22: \x22$(openssl rand -base64 12)\x22
-            }
-          ],
-          \x22outbounds\x22: [
-            {
-              \x22type\x22: \x22direct\x22
-            }
-          ]
+      {
+        \x22type\x22: \x22shadowsocks\x22,
+        \x22listen\x22: \x22::\x22,
+        \x22listen_port\x22: $port,
+        \x22method\x22: \x22aes-128-gcm\x22,
+        \x22password\x22: \x22$(openssl rand -base64 12)\x22
       }
     ],
     \x22outbounds\x22: [
