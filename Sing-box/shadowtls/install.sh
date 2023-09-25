@@ -51,7 +51,7 @@ curl https://get.acme.sh | sh
 read -p "Enter email: " email
 read -p "Enter domain: " domain
 read -p "Enter port (usually 443): " port
-read -p "Enter target website for reality (do not include https://): " website
+read -p "Enter target website for hiding (do not include https://): " website
 ~/.acme.sh/acme.sh --register-account -m $email
 ~/.acme.sh/acme.sh --issue -d $domain --standalone
 ~/.acme.sh/acme.sh --installcert -d $domain --key-file /root/private.key --fullchain-file /root/cert.crt
