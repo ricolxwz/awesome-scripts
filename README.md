@@ -56,6 +56,12 @@ apt update -y && apt install sudo wget curl iptables socat cron openssh-client -
 apt update -y && apt install sudo wget curl iptables socat cron openssh-client unzip -y && wget https://raw.githubusercontent.com/ricolxwz/integrated-scripts/master/Snell/install.sh && chmod 777 install.sh && ./install.sh
 ```
 
+# SSh
+所有指令都在root下/root文件夹内执行
+```
+apt update -y && apt install sudo wget curl iptables socat cron openssh-client unzip -y && wget https://raw.githubusercontent.com/ricolxwz/integrated-scripts/master/SSH/install.sh && chmod 777 install.sh && ./install.sh
+```
+
 # xray
 
 ## Vmess+tls+ws+caddy
