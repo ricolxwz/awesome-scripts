@@ -32,3 +32,9 @@
   "outbound": "socks-out"
 ]
 ```
+
+### 查询代理后的地址
+
+```
+curl ifconfig.me --proxy socks5://127.0.0.1:40000
+```
