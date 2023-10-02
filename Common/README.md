@@ -38,11 +38,13 @@
     "download_detour": "DIRECT"
   },
   "rules": [
+    {
     "geosite": [
       "openai",
       "netflix"
     ],
     "outbound": "socks-out"
+    }
   ],
   "final": "DIRECT"
 }
