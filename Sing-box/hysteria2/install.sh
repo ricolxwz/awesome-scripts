@@ -55,11 +55,20 @@ read -p "Enter port (usually 443): " port
 ~/.acme.sh/acme.sh --issue -d $domain --standalone
 ~/.acme.sh/acme.sh --installcert -d $domain --key-file /root/private.key --fullchain-file /root/cert.crt
 echo "---------- Sing-box Configuration ----------"
+echo "----- Install Go -----"
 cd /root
-git clone -b main https://github.com/SagerNet/sing-box
-cd sing-box
-./release/local/install_go.sh
-./release/local/install.sh
+wget "https://go.dev/dl/$(curl -s https://go.dev/VERSION?m=text|awk 'NR==1 {print $1}').linux-amd64.tar.gz"
+tar -xf go*.linux-amd64.tar.gz -C /usr/local/
+echo 'export GOROOT=/usr/local/go' >> /etc/profile
+echo 'export PATH=$GOROOT/bin:$PATH' >> /etc/profile
+source /etc/profile
+echo "----- Build From Source -----"
+go install -v -tags with_quic github.com/sagernet/sing-box/cmd/sing-box@latest
+cd go/bin
+mv sing-box /usr/local/bin/sing-box
+chmod 777 /usr/local/bin/sing-box
+mkdir -p /var/lib/sing-box
+mkdir -p /usr/local/etc/sing-box
 touch /usr/local/etc/sing-box/config.json
 echo -e "{
     \x22inbounds\x22: [
