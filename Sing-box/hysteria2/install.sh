@@ -94,7 +94,27 @@ echo -e "{
         }
     ]
 }" > /usr/local/etc/sing-box/config.json
+echo "----- Add Service -----"
+cd /etc/systemd/system
+touch sing-box.service
+echo -e "[Unit]
+Description=sing-box service
+Documentation=https://sing-box.sagernet.org
+After=network.target nss-lookup.target
+
+[Service]
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH
+ExecStart=/usr/local/bin/sing-box -D /var/lib/sing-box -C /usr/local/etc/sing-box run
+ExecReload=/bin/kill -HUP \x24MAINPID
+Restart=on-failure
+RestartSec=10s
+LimitNOFILE=infinity
+
+[Install]
+WantedBy=multi-user.target" > /etc/systemd/system/sing-box.service
 set -e -o pipefail
+systemctl daemon-reload
 systemctl enable sing-box
 systemctl start sing-box
 echo "---------- DNS Configuration ----------"
