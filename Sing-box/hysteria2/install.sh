@@ -74,9 +74,6 @@ echo -e "{
             ],
             \x22tls\x22: {
                 \x22enabled\x22: true,
-                \x22alpn\x22: [
-                    \x22h3\x22
-                ],
                 \x22certificate_path\x22: \x22/root/cert.crt\x22,
                 \x22key_path\x22: \x22/root/private.key\x22
             }
