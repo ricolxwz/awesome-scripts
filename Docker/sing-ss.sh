@@ -1,5 +1,5 @@
 read -p "Enter Port: " port
-sudo cd /root
+cd /root
 echo "net.ipv6.conf.default.disable_ipv6 = 0
 net.ipv6.conf.all.disable_ipv6 = 0
 net.ipv6.conf.lo.disable_ipv6 = 0" | sudo tee -a /etc/sysctl.conf > /dev/null
@@ -67,6 +67,6 @@ sudo docker run -d \
         ghcr.io/sagernet/sing-box \
         -D /var/lib/sing-box \
         -C /etc/sing-box/ run
-sudo cd /etc/sing-box
-sudo cat config.json | sed 's/,/\n/g' | grep "password" | sed 's/:/\n/g' | sed '1d' | sed 's/}//g' | sed 's/"//g' | tr -d ' '
+cd /etc/sing-box
+cat config.json | sed 's/,/\n/g' | grep "password" | sed 's/:/\n/g' | sed '1d' | sed 's/}//g' | sed 's/"//g' | tr -d ' '
 sudo reboot
