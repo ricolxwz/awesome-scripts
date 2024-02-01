@@ -67,10 +67,6 @@ sudo docker run -d \
         ghcr.io/sagernet/sing-box \
         -D /var/lib/sing-box \
         -C /etc/sing-box/ run
-cd /root
-sudo apt install resolvconf -y
-sudo sh -c '> /etc/resolvconf/resolv.conf.d/head'
-echo -e "nameserver 8.8.8.8
-nameserver 2001:4860:4860::8888" | sudo tee -a /etc/resolvconf/resolv.conf.d/head
 cd /etc/sing-box
 sudo cat config.json | sed 's/,/\n/g' | grep "password" | sed 's/:/\n/g' | sed '1d' | sed 's/}//g' | sed 's/"//g' | tr -d ' '
+reboot
