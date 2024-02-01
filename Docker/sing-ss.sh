@@ -40,7 +40,7 @@ echo -e "{
         \x22listen\x22: \x22::\x22,
         \x22listen_port\x22: $port,
         \x22method\x22: \x22aes-128-gcm\x22,
-        \x22password\x22: \x22$(openssl rand -base64 12)\x22,
+        \x22password\x22: \x22$(openssl rand -base64 6)\x22,
         \x22multiplex\x22: {
             \x22enabled\x22: true
         }
