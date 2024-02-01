@@ -1,10 +1,10 @@
 read -p "Enter Port: " port
-cd /root
+sudo cd /root
 echo "net.ipv6.conf.default.disable_ipv6 = 0
 net.ipv6.conf.all.disable_ipv6 = 0
-net.ipv6.conf.lo.disable_ipv6 = 0" | sudo tee -a /etc/sysctl.conf
+net.ipv6.conf.lo.disable_ipv6 = 0" | sudo tee -a /etc/sysctl.conf > /dev/null
 sudo sysctl -p
-echo "precedence ::ffff:0:0/96  100" | sudo tee -a /etc/gai.conf
+echo "precedence ::ffff:0:0/96  100" | sudo tee -a /etc/gai.conf > /dev/null
 sudo apt update -y
 sudo apt install ca-certificates curl -y
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -25,9 +25,9 @@ CONFIG='{
 FILE="/etc/docker/daemon.json"
 if [ -f "$FILE" ]; then
     sudo cp $FILE ${FILE}.bak
-    echo "$CONFIG" | sudo tee $FILE
+    echo "$CONFIG" | sudo tee $FILE > /dev/null
 else
-    echo "$CONFIG" | sudo tee $FILE
+    echo "$CONFIG" | sudo tee $FILE > /dev/null
 fi
 sudo systemctl restart docker
 sudo docker pull ghcr.io/sagernet/sing-box:latest
@@ -51,7 +51,7 @@ echo -e "{
             \x22type\x22: \x22direct\x22
         }
     ]
-}" | sudo tee /etc/sing-box/config.json
+}" | sudo tee /etc/sing-box/config.json > /dev/null
 sudo docker run -d \
         -v /etc/sing-box:/etc/sing-box/ \
         --name=sing-box \
@@ -67,6 +67,6 @@ sudo docker run -d \
         ghcr.io/sagernet/sing-box \
         -D /var/lib/sing-box \
         -C /etc/sing-box/ run
-cd /etc/sing-box
+sudo cd /etc/sing-box
 sudo cat config.json | sed 's/,/\n/g' | grep "password" | sed 's/:/\n/g' | sed '1d' | sed 's/}//g' | sed 's/"//g' | tr -d ' '
-reboot
+sudo reboot
