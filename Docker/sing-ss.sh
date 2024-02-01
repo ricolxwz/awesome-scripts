@@ -59,6 +59,10 @@ sudo docker run -d \
         -p 80:80/udp \
         -p 443:443 \
         -p 443:443/udp \
+        -p 53:53 \
+        -p 53:53/udp \
+        -p 853:853 \
+        -p 853:853/udp \
         -p $port:$port \
         -p $port:$port/udp \
         --device=/dev/net/tun:/dev/net/tun \
