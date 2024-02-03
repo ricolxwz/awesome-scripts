@@ -53,16 +53,16 @@ echo -e "{
 }" | sudo tee /etc/sing-box/config.json > /dev/null
 sudo docker run -d \
         -v /etc/sing-box:/etc/sing-box/ \
-        --name=sing-box \
-        --restart=always \
+        --name sing-box \
+        --restart unless-stopped \
         -p 80:80 \
         -p 80:80/udp \
         -p 443:443 \
         -p 443:443/udp \
         -p $port:$port \
         -p $port:$port/udp \
-        --device=/dev/net/tun:/dev/net/tun \
-        --cap-add=NET_ADMIN \
+        --device /dev/net/tun \
+        --cap-add NET_ADMIN \
         ghcr.io/sagernet/sing-box \
         -D /var/lib/sing-box \
         -C /etc/sing-box/ run
