@@ -5,5 +5,5 @@
 ### Docker
 
 ```
-wget https://raw.githubusercontent.com/ricolxwz/integrated-scripts/master/Docker/sing-ss.sh -O sing.sh && chmod 777 sing.sh && ./sing.sh
+wget https://raw.githubusercontent.com/ricolxwz/integrated-scripts/master/Docker/sing-<protocol_name>.sh -O sing.sh && chmod 777 sing.sh && ./sing.sh
 ```
