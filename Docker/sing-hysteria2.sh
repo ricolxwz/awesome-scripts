@@ -29,7 +29,7 @@ else
     echo "$CONFIG" | sudo tee $FILE > /dev/null
 fi
 sudo systemctl restart docker
-sudo docker pull ghcr.io/sagernet/sing-box:latest
+sudo docker pull ghcr.io/sagernet/sing-box:v1.8.5
 sudo mkdir -p /var/lib/sing-box
 sudo mkdir -p /etc/sing-box
 sudo openssl ecparam -genkey -name prime256v1 -out /etc/sing-box/private.key
@@ -70,7 +70,7 @@ sudo docker run -d \
         -p $port:$port/udp \
         --device /dev/net/tun \
         --cap-add NET_ADMIN \
-        ghcr.io/sagernet/sing-box \
+        ghcr.io/sagernet/sing-box:v1.8.5 \
         -D /var/lib/sing-box \
         -C /etc/sing-box/ run
 cat /etc/sing-box/config.json | sed 's/,/\n/g' | grep "password" | sed 's/:/\n/g' | sed '1d' | sed 's/}//g' | sed 's/"//g' | tr -d ' '
