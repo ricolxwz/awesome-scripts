@@ -2,7 +2,7 @@ apt update -y
 apt install wireguard -y
 echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
 echo "net.ipv6.conf.all.forwarding=1" >> /etc/sysctl.conf
-sysctl -p
+sysctl -p /etc/sysctl.conf
 cd /etc/wireguard/
 chmod 0777 /etc/wireguard
 umask 077
