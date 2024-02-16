@@ -38,4 +38,5 @@ sudo docker run --restart=always --network host -d -v /etc/frp/frps.toml:/etc/fr
 echo "bindPort = $(sudo grep 'bindPort' /etc/frp/frps.toml | awk -F '= ' '{print $2}')"
 echo "quicBindPort = $(sudo grep 'quicBindPort' /etc/frp/frps.toml | awk -F '= ' '{print $2}')"
 echo "auth.token = $(sudo grep 'auth.token' /etc/frp/frps.toml | awk -F '= ' '{print $2}' | tr -d '\"')"
+echo "ip = $(sudo hostname -I | awk '{print $1}')"
 sudo reboot
