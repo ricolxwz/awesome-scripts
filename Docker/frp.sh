@@ -33,6 +33,7 @@ echo -e "
 bindPort = $(shuf -i 1-65535 -n 1)
 quicBindPort = $(shuf -i 1-65535 -n 1)
 auth.token = \x22$(openssl rand -base64 20)\x22
+transport.tls.force = true
 " | sudo tee /etc/frp/frps.toml > /dev/null
 sudo docker run --restart=always --network host -d -v /etc/frp/frps.toml:/etc/frp/frps.toml --name frps snowdreamtech/frps
 echo "bindPort = $(sudo grep 'bindPort' /etc/frp/frps.toml | awk -F '= ' '{print $2}')"
