@@ -37,9 +37,9 @@ webServer.user = "admin"
 webServer.password = \x22$(openssl rand -base64 20)\x22
 " | sudo tee /etc/frp/frps.toml > /dev/null
 sudo docker run --restart=always --network host -d -v /etc/frp/frps.toml:/etc/frp/frps.toml --name frps snowdreamtech/frps
-echo "quicBindPort = $(sudo grep 'quicBindPort' /etc/frp/frpc.toml | awk -F '= ' '{print $2}')"
-echo "auth.token = $(sudo grep 'auth.token' /etc/frp/frpc.toml | awk -F '= ' '{print $2}' | tr -d '\"')"
-echo "webServer.port = $(sudo grep 'webServer.port' /etc/frp/frpc.toml | awk -F '= ' '{print $2}')"
-echo "webServer.user = $(sudo grep 'webServer.user' /etc/frp/frpc.toml | awk -F '= ' '{print $2}' | tr -d '\"')"
-echo "webServer.password = $(sudo grep 'webServer.password' /etc/frp/frpc.toml | awk -F '= ' '{print $2}' | tr -d '\"')"
+echo "quicBindPort = $(sudo grep 'quicBindPort' /etc/frp/frps.toml | awk -F '= ' '{print $2}')"
+echo "auth.token = $(sudo grep 'auth.token' /etc/frp/frps.toml | awk -F '= ' '{print $2}' | tr -d '\"')"
+echo "webServer.port = $(sudo grep 'webServer.port' /etc/frp/frps.toml | awk -F '= ' '{print $2}')"
+echo "webServer.user = $(sudo grep 'webServer.user' /etc/frp/frps.toml | awk -F '= ' '{print $2}' | tr -d '\"')"
+echo "webServer.password = $(sudo grep 'webServer.password' /etc/frp/frps.toml | awk -F '= ' '{print $2}' | tr -d '\"')"
 sudo reboot
