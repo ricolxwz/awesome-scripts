@@ -28,6 +28,7 @@ else
     echo "$CONFIG" | sudo tee $FILE > /dev/null
 fi
 sudo systemctl restart docker
+sudo mkdir -p /etc/frp
 echo -e "
 bindPort = shuf -i 1-65535 -n 1
 auth.token = \x22$(openssl rand -base64 20)\x22
