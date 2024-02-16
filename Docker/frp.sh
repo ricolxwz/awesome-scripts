@@ -30,7 +30,7 @@ fi
 sudo systemctl restart docker
 sudo mkdir -p /etc/frp
 echo -e "
-bindPort = shuf -i 1-65535 -n 1
+bindPort = $(shuf -i 1-65535 -n 1)
 auth.token = \x22$(openssl rand -base64 20)\x22
 " | sudo tee /etc/frp/frps.toml > /dev/null
 sudo docker run --restart=always --network host -d -v /etc/frp/frps.toml:/etc/frp/frps.toml --name frps snowdreamtech/frps
