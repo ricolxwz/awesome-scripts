@@ -27,9 +27,6 @@ AllowedIPs = 10.0.8.0/24, fd86::0/112" > wg0.conf
 systemctl enable wg-quick@wg0
 wg-quick up wg0
 echo "server.key:" && cat server.key && \
-echo "" && \
 echo "server.key.pub:" && cat server.key.pub && \
-echo "" && \
 echo "client1.key:" && cat client1.key && \
-echo "" && \
 echo "client1.key.pub:" && cat client1.key.pub
