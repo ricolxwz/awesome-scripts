@@ -30,3 +30,4 @@ echo -n "server.key: " && cat server.key && \
 echo -n "server.key.pub: " && cat server.key.pub && \
 echo -n "client1.key: " && cat client1.key && \
 echo -n "client1.key.pub: " && cat client1.key.pub
+reboot
