@@ -90,4 +90,5 @@ sed -i "s/\"https_port\": [^,]*/\"https_port\": $port/" $config_file
 sed -i 's/"force_https": false/"force_https": true/' $config_file
 sed -i 's|"key_file": "[^"]*"|"key_file": "/root/private.key"|' $config_file
 sed -i 's|"cert_file": "[^"]*"|"cert_file": "/root/cert.crt"|' $config_file
+sed -i 's/"tls_insecure_skip_verify": true/"tls_insecure_skip_verify": false/' $config_file
 systemctl restart alist
