@@ -82,7 +82,8 @@ echo "You have selected: $opt"
 echo "---------- Alist Configuration ----------"
 curl -fsSL "https://alist.nn.ci/v3.sh" | bash -s install
 cd /opt/alist
-./alist admin random
+read -p "Enter alist admin password: " password
+./alist admin set password
 read -p "Enter https port: " port
 config_file="/opt/alist/data/config.json"
 sed -i "s/\"https_port\": [^,]*/\"https_port\": $port/" $config_file
