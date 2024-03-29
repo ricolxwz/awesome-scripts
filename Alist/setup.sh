@@ -1,5 +1,5 @@
 apt update -y
-apt install git -y
+apt install git socat -y
 echo "---------- DDNS Configuration ----------"
 cd /root
 git clone https://github.com/timothymiller/cloudflare-ddns.git
