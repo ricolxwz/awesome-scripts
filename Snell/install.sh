@@ -1,3 +1,6 @@
+echo "---------- Install Packages ----------"
+apt update -y
+apt install unzip -y
 echo "---------- IPv6 Configuration ----------"
 cd /root
 echo "net.ipv6.conf.default.disable_ipv6 = 0
@@ -31,6 +34,7 @@ LimitNOFILE=infinity
 
 [Install]
 WantedBy=multi-user.target" > /etc/systemd/system/snell.service
+systemctl daemon-reload
 systemctl start snell.service
 systemctl enable snell.service
 echo "---------- PSK ----------"
