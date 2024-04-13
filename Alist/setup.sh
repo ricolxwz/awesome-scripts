@@ -86,6 +86,7 @@ read -p "Enter alist admin password: " password
 ./alist admin set $password
 read -p "Enter https port: " port
 config_file="/opt/alist/data/config.json"
+sed -i "s/\"http_port\": [^,]*/\"http_port\": -1/" $config_file
 sed -i "s/\"https_port\": [^,]*/\"https_port\": $port/" $config_file
 sed -i 's/"force_https": false/"force_https": true/' $config_file
 sed -i 's|"key_file": "[^"]*"|"key_file": "/root/private.key"|' $config_file
