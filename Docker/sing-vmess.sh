@@ -165,6 +165,9 @@ echo "---------- 下载nginx镜像 ----------"
 docker pull nginx
 echo "---------- nginx配置文件 ----------" 
 cd /root
+mkdir /etc/nginx
+cd /etc/nginx
+touch nginx.conf
 echo -e "user www-data;
 worker_processes auto;
 pid /run/nginx.pid;
