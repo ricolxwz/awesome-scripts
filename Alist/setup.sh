@@ -128,7 +128,6 @@ server {
           proxy_set_header Range \x24http_range;
     	  proxy_set_header If-Range \x24http_if_range;
           proxy_redirect off;
-          proxy_pass http://127.0.0.1:5244;
           client_max_body_size 20000m;
         }
     }
