@@ -121,6 +121,13 @@ server {
         ssl_prefer_server_ciphers off;
         location / {
           proxy_pass http://localhost:$port;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header Host $http_host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header Range $http_range;
+          proxy_set_header If-Range $http_if_range;
+          proxy_redirect off;
+          client_max_body_size 20000m;
         }
     }
 }" > /etc/nginx/nginx.conf
