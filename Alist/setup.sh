@@ -121,12 +121,14 @@ server {
         ssl_prefer_server_ciphers off;
         location / {
           proxy_pass http://localhost:$port;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header Host $http_host;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header Range $http_range;
-          proxy_set_header If-Range $http_if_range;
+          proxy_set_header X-Forwarded-For \x24proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto \x24scheme;
+          proxy_set_header Host \x24http_host;
+          proxy_set_header X-Real-IP \x24remote_addr;
+          proxy_set_header Range \x24http_range;
+    	  proxy_set_header If-Range \x24http_if_range;
           proxy_redirect off;
+          proxy_pass http://127.0.0.1:5244;
           client_max_body_size 20000m;
         }
     }
