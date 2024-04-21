@@ -8,6 +8,11 @@ touch config.json
 read -p "Enter api_token: " api
 read -p "Enter zone_id: " zone
 read -p "Enter sub_domain: " sub_domain
+read -p "Should the domain be proxied? (y/n): " proxy_answer
+proxied="false"
+if [[ "$proxy_answer" == "y" ]]; then
+    proxied="true"
+fi
 echo -e "{
   \x22cloudflare\x22: [
     {
@@ -18,7 +23,7 @@ echo -e "{
       \x22subdomains\x22: [
         {
           \x22name\x22: \x22$sub_domain\x22,
-          \x22proxied\x22: false
+          \x22proxied\x22: $proxied
         }
       ]
     }
@@ -87,6 +92,7 @@ read -p "Enter alist admin password: " password
 read -p "Enter http port: " port
 config_file="/opt/alist/data/config.json"
 sed -i "s/\"http_port\": [^,]*/\"http_port\": $port/" $config_file
+sed -i '/"s3": {/,/}/ s/"port": [0-9]\+/"port": -1/' $config_file
 systemctl restart alist
 echo "---------- Nginx Configuration ----------"
 apt install nginx -y
