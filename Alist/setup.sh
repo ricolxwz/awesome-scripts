@@ -90,8 +90,6 @@ sed -i "s/\"http_port\": [^,]*/\"http_port\": $port/" $config_file
 systemctl restart alist
 echo "---------- Nginx Configuration ----------"
 apt install nginx -y
-cd /root
-mkdir /etc/nginx
 cd /etc/nginx
 touch nginx.conf
 echo -e "user www-data;
