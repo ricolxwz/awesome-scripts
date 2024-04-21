@@ -84,12 +84,41 @@ curl -fsSL "https://alist.nn.ci/v3.sh" | bash -s install
 cd /opt/alist
 read -p "Enter alist admin password: " password
 ./alist admin set $password
-read -p "Enter https port: " port
+read -p "Enter http port: " port
 config_file="/opt/alist/data/config.json"
-sed -i "s/\"http_port\": [^,]*/\"http_port\": -1/" $config_file
-sed -i "s/\"https_port\": [^,]*/\"https_port\": $port/" $config_file
-sed -i 's/"force_https": false/"force_https": true/' $config_file
-sed -i 's|"key_file": "[^"]*"|"key_file": "/root/private.key"|' $config_file
-sed -i 's|"cert_file": "[^"]*"|"cert_file": "/root/cert.crt"|' $config_file
-sed -i 's/"tls_insecure_skip_verify": true/"tls_insecure_skip_verify": false/' $config_file
+sed -i "s/\"http_port\": [^,]*/\"http_port\": $port/" $config_file
 systemctl restart alist
+echo "---------- Nginx Configuration ----------"
+apt install nginx -y
+cd /root
+mkdir /etc/nginx
+cd /etc/nginx
+touch nginx.conf
+echo -e "user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;
+events {
+        worker_connections 768;
+        # multi_accept on;
+}
+http {
+server {
+        listen 443 ssl;
+        listen [::]:443 ssl;
+        server_name $domain;
+        ssl_certificate       /root/cert.crt;
+        ssl_certificate_key   /root/private.key;
+        ssl_session_timeout 1d;
+        ssl_session_cache shared:MozSSL:10m;
+        ssl_session_tickets off;
+        ssl_protocols         TLSv1.2 TLSv1.3;
+        ssl_ciphers           ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+        ssl_prefer_server_ciphers off;
+        location / {
+          proxy_pass http://localhost:$port;
+        }
+    }
+}" > /etc/nginx/nginx.conf
+systemctl restart nginx
+reboot
