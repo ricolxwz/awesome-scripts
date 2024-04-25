@@ -7,7 +7,7 @@ echo "---------- IPv4优先级更高 ----------"
 echo "precedence ::ffff:0:0/96  100" >> /etc/gai.conf
 echo "---------- 安装常用依赖 ----------"
 dnf update -y
-dnf install ca-certificates git crontabs socat -y
+dnf install ca-certificates git cronie socat -y
 echo "---------- DDNS安装配置 ----------"
 cd /root
 git clone https://github.com/timothymiller/cloudflare-ddns.git
