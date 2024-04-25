@@ -89,6 +89,8 @@ echo "你选择的SSL证书机构为: $opt"
 ~/.acme.sh/acme.sh --installcert -d $domain --key-file /root/private.key --fullchain-file /root/cert.crt
 echo "---------- 安装docker ----------"
 dnf install -y docker
+systemctl start docker
+systemctl enable docker
 echo "---------- 配置容器默认启用IPv6 ----------"
 CONFIG='{
   "ipv6": true,
