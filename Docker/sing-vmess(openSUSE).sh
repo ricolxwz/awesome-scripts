@@ -39,7 +39,7 @@ zypper --non-interactive install python311
 python3.11 -m venv venv
 ./start-sync.sh
 echo "---------- Crontab配置 ----------"
-cd /var/spool/cron
+cd /var/spool/cron/tabs
 touch root
 echo "*/15 * * * * cd /root/cloudflare-ddns && ./start-sync.sh" >> root
 echo "@reboot cd /root/cloudflare-ddns && ./start-sync.sh" >> root
@@ -87,9 +87,9 @@ echo "你选择的SSL证书机构为: $opt"
 ~/.acme.sh/acme.sh --issue -d $domain --standalone
 ~/.acme.sh/acme.sh --installcert -d $domain --key-file /root/private.key --fullchain-file /root/cert.crt
 echo "---------- 安装docker ----------"
-dnf install -y docker
-systemctl start docker
+zypper --non-interactive install docker docker-compose docker-compose-switch
 systemctl enable docker
+systemctl start docker
 echo "---------- 配置容器默认启用IPv6 ----------"
 CONFIG='{
   "ipv6": true,
