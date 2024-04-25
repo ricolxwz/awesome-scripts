@@ -35,15 +35,15 @@ echo -e "{
   \x22purgeUnknownRecords\x22: false,
   \x22ttl\x22: 300
 }" > config.json
-dnf install python3 -y
-python3 -m venv venv
+zypper --non-interactive install python311
+python3.11 -m venv venv
 ./start-sync.sh
 echo "---------- Crontab配置 ----------"
 cd /var/spool/cron
 touch root
 echo "*/15 * * * * cd /root/cloudflare-ddns && ./start-sync.sh" >> root
 echo "@reboot cd /root/cloudflare-ddns && ./start-sync.sh" >> root
-systemctl restart crond
+systemctl restart cron
 echo "---------- ACME配置 ----------"
 cd /root
 curl https://get.acme.sh | sh
