@@ -215,6 +215,7 @@ server {
 }
 }" > /etc/nginx/nginx.conf
 systemctl restart nginx
+systemctl enable nginx
 echo "---------- 密钥 ----------"
 cd /usr/local/etc/sing-box
 cat config.json | sed 's/,/\n/g' | grep "uuid" | sed 's/:/\n/g' | sed '1d' | sed 's/}//g' | sed 's/"//g' | tr -d ' '
