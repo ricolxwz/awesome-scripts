@@ -98,7 +98,11 @@ go install -v github.com/sagernet/sing-box/cmd/sing-box@latest
 cd go/bin
 mv sing-box /usr/local/bin/sing-box
 chmod 777 /usr/local/bin/sing-box
+echo "---------- 配置vmess监听端口 ----------"
+read -p "请输入vmess所使用的port: " port
+read -p "请输入websocket路径: " path
 echo "---------- Sing-box Configuration ----------"
+mkdir -p /usr/local/etc/sing-box
 touch /usr/local/etc/sing-box/config.json
 echo -e "{
     \x22inbounds\x22: [
@@ -155,7 +159,7 @@ systemctl daemon-reload
 systemctl enable sing-box
 systemctl start sing-box
 echo "---------- 密钥 ----------"
-cd /etc/sing-box
+cd /usr/local/etc/sing-box
 cat config.json | sed 's/,/\n/g' | grep "uuid" | sed 's/:/\n/g' | sed '1d' | sed 's/}//g' | sed 's/"//g' | tr -d ' '
 echo "---------- 重启 ----------"
 reboot
