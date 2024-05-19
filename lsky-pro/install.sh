@@ -33,6 +33,7 @@ echo -e "server {
 	listen [::]:80 default_server;
 	root /var/www/html/public;
 	server_name _;
+ 	index index.php;
 	location / {
 	  try_files \x24uri \x24uri/ /index.php?\x24query_string;
 	}
