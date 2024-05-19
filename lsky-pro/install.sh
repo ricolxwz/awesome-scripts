@@ -27,6 +27,8 @@ systemctl reload nginx
 echo "---------- 配置nginx ----------"
 chown -R www-data:www-data /var/www/html
 chmod -R 755 /var/www/html
+chmod 755 /var/www/html/.env
+chown www-data:www-data /var/www/html/.env
 cd /etc/nginx/sites-available
 echo -e "server {
 	listen 80 default_server;
