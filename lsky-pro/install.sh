@@ -23,7 +23,12 @@ systemctl restart nginx
 echo "---------- 建立网站 ----------"
 read -p "Please input download url: " download_url
 cd /var/www/html
+rm -rf * .*
 wget $download_url
 unzip *
 ls -a | grep 'zip' | xargs -d '\n' rm
 systemctl reload nginx
+echo "---------- 配置nginx ----------"
+cd /var/www
+chown -R www-data:www-data /var/www/html
+chmod -R 755 /var/www/html
