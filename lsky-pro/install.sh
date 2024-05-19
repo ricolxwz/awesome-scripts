@@ -14,7 +14,7 @@ apt install nginx -y
 echo "---------- 安装redis ----------"
 apt install redis -y
 echo "---------- 安装php扩展 ----------"
-apt install php-mysqli php-curl php-mbstring php-imagick php-redis php-dom php-bcmath -y
+apt install php-mysqli php-sqlite3 php-curl php-mbstring php-imagick php-redis php-dom php-bcmath -y
 systemctl restart nginx
 echo "---------- 建立网站 ----------"
 read -p "Please input download url: " download_url
