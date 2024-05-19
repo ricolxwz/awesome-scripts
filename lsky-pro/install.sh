@@ -50,5 +50,5 @@ read -p "Please input host: " app_url
 read -p "Please input serial no: " serial_no
 read -p "Please input secret: " app_secret
 sed -i "s|APP_URL=.*|APP_URL=${app_url}|" .env
-sed -i "s|APP_SERIAL_NO=.*|APP_URL=${serial_no}|" .env
-sed -i "s|APP_SECRET=.*|APP_URL=${app_secret}|" .env
+sed -i "s|APP_SERIAL_NO=.*|APP_SERIAL_NO=${serial_no}|" .env
+sed -i "s|APP_SECRET=.*|APP_SECRET=${app_secret}|" .env
