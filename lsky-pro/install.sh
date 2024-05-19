@@ -29,6 +29,15 @@ unzip *
 ls -a | grep 'zip' | xargs -d '\n' rm
 systemctl reload nginx
 echo "---------- 配置nginx ----------"
-cd /var/www
 chown -R www-data:www-data /var/www/html
 chmod -R 755 /var/www/html
+cd /etc/nginx/sites-available
+echo "---------- 配置env ----------"
+cd /var/www/html
+php artisan key:generate
+read -p "Please input host: " app_url
+read -p "Please input serial no: " serial_no
+read -p "Please input secret: " app_secret
+sed -i "s|APP_URL=.*|APP_URL=${app_url}|" .env
+sed -i "s|APP_SERIAL_NO=.*|APP_URL=${serial_no}|" .env
+sed -i "s|APP_SECRET=.*|APP_URL=${app_secret}|" .env
