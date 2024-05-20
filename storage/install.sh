@@ -143,6 +143,12 @@ chown -R www-data:www-data /var/www/html
 chmod -R 755 /var/www/html
 cd /etc/nginx/sites-available
 echo -e "server {
+    listen 80;
+    listen [::]:80;
+    server_name $domain1;
+    return 301 https://\x24server_name\x24request_uri;
+}
+server {
         listen 443 ssl;
         listen [::]:443 ssl;
         server_name $domain1;
