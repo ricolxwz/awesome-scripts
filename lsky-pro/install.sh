@@ -1,5 +1,11 @@
 echo "---------- 安装基础依赖 ----------"
 apt install cron git curl wget unzip -y
+echo "---------- Crontab Configuration ----------"
+cd /var/spool/cron/crontabs
+touch root
+echo "* * * * * cd /www/wwwroot/lsky-pro && php artisan schedule:run >> /dev/null 2>&1" >> root
+systemctl restart cron
+cd /root
 echo "---------- 安装php ----------"
 apt install php -y
 echo "---------- 安装sqlite3 ----------"
