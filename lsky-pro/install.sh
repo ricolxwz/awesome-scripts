@@ -1,3 +1,4 @@
+apt update -y
 echo "---------- 安装基础依赖 ----------"
 apt install cron git curl wget unzip ca-certificates -y
 echo "---------- IPv6启动 ----------"
