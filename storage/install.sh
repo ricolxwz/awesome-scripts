@@ -17,7 +17,7 @@ read -p "请输入域名区域id: " zone
 read -p "请输入alist的二级域名: " sub_domain1
 read -p "请输入lsky-pro的二级域名: " sub_domain2
 read -p "alist要让CF代理吗? (y/n): " proxy_answer1
-read -p "lsky-pro要让CF代理吗? (y/n): " proxy_answer1
+read -p "lsky-pro要让CF代理吗? (y/n): " proxy_answer2
 proxied1="false"
 if [[ "$proxy_answer1" == "y" ]]; then
     proxied1="true"
