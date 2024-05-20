@@ -56,5 +56,5 @@ sed -i "s|APP_SERIAL_NO=.*|APP_SERIAL_NO=${serial_no}|" .env
 sed -i "s|APP_SECRET=.*|APP_SECRET=${app_secret}|" .env
 echo "---------- Crontab配置2 ----------"
 cd /var/spool/cron/crontabs
-echo "* * * * * cd /www/wwwroot/lsky-pro && php artisan schedule:run >> /dev/null 2>&1" >> root
+echo "* * * * * cd /var/www/html && php artisan schedule:run >> /dev/null 2>&1" >> root
 systemctl restart cron
