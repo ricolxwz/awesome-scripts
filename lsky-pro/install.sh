@@ -54,6 +54,26 @@ read -p "Please input secret: " app_secret
 sed -i "s|APP_URL=.*|APP_URL=${app_url}|" .env
 sed -i "s|APP_SERIAL_NO=.*|APP_SERIAL_NO=${serial_no}|" .env
 sed -i "s|APP_SECRET=.*|APP_SECRET=${app_secret}|" .env
+echo "---------- Supervisor配置 ----------"
+apt install supervisor -y
+cd /etc/supervisor/conf.d
+touch lsky-pro.conf
+echo "[program:lsky-pro-worker]
+process_name=%(program_name)s_%(process_num)02d
+command=php artisan queue:work --queue=emails,images,thumbnails
+directory=/var/www/html/
+user=root
+numprocs=1
+autorestart=true
+startsecs=3
+startretries=3
+stdout_logfile=/var/www/html/storage/logs/supervisor.out.log
+stderr_logfile=/var/www/html/storage/logs/supervisor.err.log
+stdout_logfile_maxbytes=2MB
+stderr_logfile_maxbytes=2MB" > lsky-pro.conf
+supervisorctl reread
+supervisorctl update
+supervisorctl start lsky-pro-worker:*
 echo "---------- Crontab配置2 ----------"
 cd /var/spool/cron/crontabs
 echo "* * * * * cd /var/www/html && php artisan schedule:run >> /dev/null 2>&1" >> root
