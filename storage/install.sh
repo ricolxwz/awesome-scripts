@@ -181,7 +181,6 @@ server {
           proxy_redirect off;
           client_max_body_size 20000m;
         }
-    }
 }
 server {
     listen 80;
