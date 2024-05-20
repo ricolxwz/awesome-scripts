@@ -118,7 +118,7 @@ echo -e "server {
     listen 80;
     listen [::]:80;
     server_name $domain;
-    return 301 https:///x24server_name/x24request_uri;
+    return 301 https://\x24server_name\x24request_uri;
 }
 server {
     listen 443 ssl http2;
@@ -130,14 +130,14 @@ server {
     root /var/www/html/public;
     index index.php;
     location / {
-            try_files /x24uri /x24uri/ /index.php?/x24query_string;
-            proxy_set_header Host /x24host;
-            proxy_set_header X-Real-IP /x24remote_addr;
-            proxy_set_header X-Forwarded-For /x24proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Proto /x24scheme;
-            proxy_set_header REMOTE-HOST /x24remote_addr;
+            try_files \x24uri \x24uri/ /index.php?\x24query_string;
+            proxy_set_header Host \x24host;
+            proxy_set_header X-Real-IP \x24remote_addr;
+            proxy_set_header X-Forwarded-For \x24proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto \x24scheme;
+            proxy_set_header REMOTE-HOST \x24remote_addr;
     }
-    location ~ \.php/x24 {
+    location ~ \.php\x24 {
             include snippets/fastcgi-php.conf;
             fastcgi_pass unix:/run/php/php8.2-fpm.sock;
     }
