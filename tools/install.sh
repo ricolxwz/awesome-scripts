@@ -183,6 +183,8 @@ echo "---------- sing-box容器配置 ----------"
 docker run -d \
     -v /etc/sing-box:/etc/sing-box/ \
     --name sing-box \
+    -p $sport:$sport \
+    -p $sport:$sport/udp \
     --restart unless-stopped \
     ghcr.io/sagernet/sing-box \
     -D /var/lib/sing-box \
@@ -326,7 +328,7 @@ server {
         }
         location $spath {
                 proxy_redirect off;
-                proxy_pass http://sing-box:$sport; 
+                proxy_pass http://localhost:$sport; 
                 proxy_http_version 1.1;
                 proxy_set_header Upgrade \x24http_upgrade;
                 proxy_set_header Connection \x22upgrade\x22;
