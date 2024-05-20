@@ -14,8 +14,18 @@ cd cloudflare-ddns
 touch config.json
 read -p "请输入DNS服务商API: " api
 read -p "请输入域名区域id: " zone
-read -p "请输入二级域名: " sub_domain
-read -p "Should the domain be proxied? (y/n): " proxy_answer
+read -p "请输入alist的二级域名: " sub_domain1
+read -p "请输入lsky-pro的二级域名: " sub_domain2
+read -p "alist要让CF代理吗? (y/n): " proxy_answer1
+read -p "lsky-pro要让CF代理吗? (y/n): " proxy_answer1
+proxied1="false"
+if [[ "$proxy_answer1" == "y" ]]; then
+    proxied1="true"
+fi
+proxied2="false"
+if [[ "$proxy_answer2" == "y" ]]; then
+    proxied2="true"
+fi
 echo -e "{
   \x22cloudflare\x22: [
     {
@@ -25,8 +35,28 @@ echo -e "{
       \x22zone_id\x22: \x22$zone\x22,
       \x22subdomains\x22: [
         {
-          \x22name\x22: \x22$sub_domain\x22,
-          \x22proxied\x22: $proxied
+          \x22name\x22: \x22$sub_domain1\x22,
+          \x22proxied\x22: $proxied1
+        }
+      ]
+    }
+  ],
+  \x22a\x22: true,
+  \x22aaaa\x22: true,
+  \x22purgeUnknownRecords\x22: false,
+  \x22ttl\x22: 300
+}" > config.json
+echo -e "{
+  \x22cloudflare\x22: [
+    {
+      \x22authentication\x22: {
+        \x22api_token\x22: \x22$api\x22
+      },
+      \x22zone_id\x22: \x22$zone\x22,
+      \x22subdomains\x22: [
+        {
+          \x22name\x22: \x22$sub_domain2\x22,
+          \x22proxied\x22: $proxied2
         }
       ]
     }
@@ -49,7 +79,8 @@ echo "---------- ACME配置 ----------"
 cd /root
 curl https://get.acme.sh | sh
 read -p "请输入邮箱: " email
-read -p "请输入域名: " domain
+read -p "请输入alist域名: " domain1
+read -p "请输入lsky-pro域名: " domain2
 echo "请选择一个SSL证书机构:"
 options=("letsencrypt" "buypass" "zerossl" "ssl.com" "google")
 select opt in "${options[@]}"
@@ -85,14 +116,17 @@ do
 done
 echo "你选择的SSL证书机构为: $opt"
 ~/.acme.sh/acme.sh --register-account -m $email
-~/.acme.sh/acme.sh --issue -d $domain --standalone
-~/.acme.sh/acme.sh --installcert -d $domain --key-file /root/private.key --fullchain-file /root/cert.crt
+~/.acme.sh/acme.sh --issue -d $domain1 --standalone
+~/.acme.sh/acme.sh --installcert -d $domain1 --key-file /root/private1.key --fullchain-file /root/cert1.crt
+~/.acme.sh/acme.sh --register-account -m $email
+~/.acme.sh/acme.sh --issue -d $domain2 --standalone
+~/.acme.sh/acme.sh --installcert -d $domain2 --key-file /root/private2.key --fullchain-file /root/cert2.crt
 echo "---------- Alist配置 ----------"
 curl -fsSL "https://alist.nn.ci/v3.sh" | bash -s install
 cd /opt/alist
 read -p "Enter alist admin password: " password
 ./alist admin set $password
-read -p "Enter http port: " port
+read -p "输入alist的端口: " port
 config_file="/opt/alist/data/config.json"
 sed -i "s/\"http_port\": [^,]*/\"http_port\": $port/" $config_file
 sed -i '/"s3": {/,/}/ s/"port": [0-9]\+/"port": -1/' $config_file
@@ -126,21 +160,18 @@ chown -R www-data:www-data /var/www/html
 chmod -R 755 /var/www/html
 cd /etc/nginx/sites-available
 echo -e "server {
-    listen 80;
-    listen [::]:80;
-    server_name $domain;
-    return 301 https://\x24server_name\x24request_uri;
-}
-server {
-    listen 443 ssl http2;
-    listen [::]:443 ssl http2;
-    server_name $domain;
-    ssl_certificate /root/cert.crt;
-    ssl_certificate_key /root/private.key;
-    client_max_body_size 100M;
-    root /var/www/html/public;
-    index index.php;
-    location / {
+        listen 443 ssl;
+        listen [::]:443 ssl;
+        server_name $domain1;
+        ssl_certificate       /root/cert1.crt;
+        ssl_certificate_key   /root/private1.key;
+        ssl_session_timeout 1d;
+        ssl_session_cache shared:MozSSL:10m;
+        ssl_session_tickets off;
+        ssl_protocols         TLSv1.2 TLSv1.3;
+        ssl_ciphers           ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+        ssl_prefer_server_ciphers off;
+        location / {
           proxy_pass http://localhost:$port;
           proxy_set_header X-Forwarded-For \x24proxy_add_x_forwarded_for;
           proxy_set_header X-Forwarded-Proto \x24scheme;
@@ -150,8 +181,25 @@ server {
     	  proxy_set_header If-Range \x24http_if_range;
           proxy_redirect off;
           client_max_body_size 20000m;
+        }
     }
-    location /img {
+}
+server {
+    listen 80;
+    listen [::]:80;
+    server_name $domain2;
+    return 301 https://\x24server_name\x24request_uri;
+}
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name $domain2;
+    ssl_certificate /root/cert2.crt;
+    ssl_certificate_key /root/private2.key;
+    client_max_body_size 100M;
+    root /var/www/html/public;
+    index index.php;
+    location / {
             try_files \x24uri \x24uri/ /index.php?\x24query_string;
             proxy_set_header Host \x24host;
             proxy_set_header X-Real-IP \x24remote_addr;
@@ -173,7 +221,7 @@ cd /var/www/html
 php artisan key:generate
 chmod 755 /var/www/html/.env
 chown www-data:www-data /var/www/html/.env
-app_url="https://$domain"
+app_url="https://$domain2"
 read -p "Please input serial no: " serial_no
 read -p "Please input secret: " app_secret
 sed -i "s|APP_URL=.*|APP_URL=${app_url}|" .env
