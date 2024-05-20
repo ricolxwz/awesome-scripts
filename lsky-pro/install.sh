@@ -25,7 +25,7 @@ echo -e "{
       \x22subdomains\x22: [
         {
           \x22name\x22: \x22$sub_domain\x22,
-          \x22proxied\x22: false
+          \x22proxied\x22: true
         }
       ]
     }
