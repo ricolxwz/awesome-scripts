@@ -37,23 +37,7 @@ echo -e "{
         {
           \x22name\x22: \x22$sub_domain1\x22,
           \x22proxied\x22: $proxied1
-        }
-      ]
-    }
-  ],
-  \x22a\x22: true,
-  \x22aaaa\x22: true,
-  \x22purgeUnknownRecords\x22: false,
-  \x22ttl\x22: 300
-}" > config.json
-echo -e "{
-  \x22cloudflare\x22: [
-    {
-      \x22authentication\x22: {
-        \x22api_token\x22: \x22$api\x22
-      },
-      \x22zone_id\x22: \x22$zone\x22,
-      \x22subdomains\x22: [
+        },
         {
           \x22name\x22: \x22$sub_domain2\x22,
           \x22proxied\x22: $proxied2
@@ -118,7 +102,6 @@ echo "你选择的SSL证书机构为: $opt"
 ~/.acme.sh/acme.sh --register-account -m $email
 ~/.acme.sh/acme.sh --issue -d $domain1 --standalone
 ~/.acme.sh/acme.sh --installcert -d $domain1 --key-file /root/private1.key --fullchain-file /root/cert1.crt
-~/.acme.sh/acme.sh --register-account -m $email
 ~/.acme.sh/acme.sh --issue -d $domain2 --standalone
 ~/.acme.sh/acme.sh --installcert -d $domain2 --key-file /root/private2.key --fullchain-file /root/cert2.crt
 echo "---------- Alist配置 ----------"
