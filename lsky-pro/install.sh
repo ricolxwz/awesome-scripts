@@ -104,10 +104,20 @@ echo "---------- 安装php扩展 ----------"
 apt install php-mysqli php-sqlite3 php-curl php-mbstring php-imagick php-redis php-dom php-bcmath -y
 systemctl restart nginx
 echo "---------- 建立网站 ----------"
-read -p "Please input download url: " download_url
 cd /var/www/html
 rm -rf * .*
-wget $download_url
+read -p "你有lsky-pro的zip文件的下载链接吗? (y/n) " url_judge
+if [[ "$url_judge" == "y" ]]; then
+    read -p "Please input download url: " download_url
+    wget $download_url
+else
+    while true; do
+        read -n 1 -p "请将.zip文件通过SFTP放到/var/www/html下, 放好请输入y: " key
+        if [[ $key == "y" ]]; then
+            break
+        fi
+    done
+fi
 unzip *
 ls -a | grep 'zip' | xargs -d '\n' rm
 systemctl reload nginx
