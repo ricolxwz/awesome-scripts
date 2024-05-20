@@ -249,3 +249,4 @@ echo "---------- Crontab配置2 ----------"
 cd /var/spool/cron/crontabs
 echo "* * * * * cd /var/www/html && php artisan schedule:run >> /dev/null 2>&1" >> root
 systemctl restart cron
+sudo reboot
