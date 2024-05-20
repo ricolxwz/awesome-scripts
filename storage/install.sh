@@ -1,5 +1,5 @@
 echo "---------- 安装基础依赖 ----------"
-apt install cron git curl wget unzip ca-certificates -y
+apt install cron git curl wget unzip ca-certificates socat -y
 echo "---------- IPv6启动 ----------"
 echo "net.ipv6.conf.default.disable_ipv6 = 0
 net.ipv6.conf.all.disable_ipv6 = 0
