@@ -1,11 +1,5 @@
 echo "---------- 安装基础依赖 ----------"
 apt install cron git curl wget unzip -y
-echo "---------- Crontab Configuration ----------"
-cd /var/spool/cron/crontabs
-touch root
-echo "* * * * * cd /www/wwwroot/lsky-pro && php artisan schedule:run >> /dev/null 2>&1" >> root
-systemctl restart cron
-cd /root
 echo "---------- 安装php ----------"
 apt install php -y
 echo "---------- 安装sqlite3 ----------"
@@ -60,3 +54,7 @@ read -p "Please input secret: " app_secret
 sed -i "s|APP_URL=.*|APP_URL=${app_url}|" .env
 sed -i "s|APP_SERIAL_NO=.*|APP_SERIAL_NO=${serial_no}|" .env
 sed -i "s|APP_SECRET=.*|APP_SECRET=${app_secret}|" .env
+echo "---------- Crontab配置2 ----------"
+cd /var/spool/cron/crontabs
+echo "* * * * * cd /www/wwwroot/lsky-pro && php artisan schedule:run >> /dev/null 2>&1" >> root
+systemctl restart cron
