@@ -113,8 +113,6 @@ systemctl reload nginx
 echo "---------- 配置nginx ----------"
 chown -R www-data:www-data /var/www/html
 chmod -R 755 /var/www/html
-chmod 755 /var/www/html/.env
-chown www-data:www-data /var/www/html/.env
 cd /etc/nginx/sites-available
 echo -e "server {
     listen 80;
@@ -151,6 +149,8 @@ systemctl restart nginx
 echo "---------- 配置env ----------"
 cd /var/www/html
 php artisan key:generate
+chmod 755 /var/www/html/.env
+chown www-data:www-data /var/www/html/.env
 app_url="https://$domain"
 read -p "Please input serial no: " serial_no
 read -p "Please input secret: " app_secret
