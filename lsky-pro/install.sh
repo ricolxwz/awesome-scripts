@@ -39,10 +39,6 @@ echo -e "server {
 	location / {
 	  try_files \x24uri \x24uri/ /index.php?\x24query_string;
 	}
-	location ~ \.php\x24 {
-	  include snippets/fastcgi-php.conf;
-	  fastcgi_pass unix:/run/php/php8.2-fpm.sock;
-	}
 }" > default
 systemctl restart nginx
 echo "---------- 配置env ----------"
