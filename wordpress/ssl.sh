@@ -42,4 +42,4 @@ done
 echo "You have selected: $opt"
 ~/.acme.sh/acme.sh --register-account -m $email
 ~/.acme.sh/acme.sh --issue -d $domain --standalone
-~/.acme.sh/acme.sh --installcert -d $domain --key-file $cert_path/fullchain.pem / --fullchain-file $cert_path/privkey.pem
+~/.acme.sh/acme.sh --installcert -d $domain --key-file $cert_path/fullchain.pem --fullchain-file $cert_path/privkey.pem
