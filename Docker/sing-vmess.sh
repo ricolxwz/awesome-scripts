@@ -1,3 +1,4 @@
+apt update -y
 apt install socat -y
 echo "---------- IPv6启动 ----------"
 echo "net.ipv6.conf.default.disable_ipv6 = 0
