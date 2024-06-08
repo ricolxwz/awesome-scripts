@@ -125,6 +125,8 @@ plugins:
           default: false
           nav_translations:
             开始: Home
+            更新日志: Change Log
+
             通用配置: General Config
       reconfigure_material: true
       reconfigure_search: true
