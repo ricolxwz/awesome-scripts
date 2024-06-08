@@ -125,9 +125,12 @@ plugins:
           default: false
           nav_translations:
             开始: Home
+            通用配置: General Config
       reconfigure_material: true
       reconfigure_search: true
 nav:
   - 开始:
     - index.md
     - 更新日志: changelog.md
+  - 通用配置:
+    - IPv6: general-config/ipv6.md

@@ -26,8 +26,8 @@
     - Wordpress
 - 饥荒
     - No not starve together
-- 部分配置
-    - Ipv6
+- 通用配置
+    - IPv6
     - DDNS
     - BBR
     - Docker
