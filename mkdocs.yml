@@ -2,6 +2,8 @@ site_name: Awesome Scripts
 site_author: ricolxwz
 copyright: Copyright &copy; 2024 ricolxwz
 site_description: A collection of useful scripts for daily use
+repo_url: https://github.com/ricolxwz/awesome-scripts
+repo_name: ricolxwz/awesome-scripts
 theme:
   name: material
   logo: assets/favicon-faded-8.svg
@@ -11,18 +13,17 @@ theme:
   features:
     - content.code.annotate
     - content.code.copy
+    - content.code.select
     - content.tabs.link
     # - header.autohide
-    - announce.dismiss
+    # - announce.dismiss
     # - navigation.footer
     - navigation.tabs
     - navitation.sections
+    - navigation.expand
     - navigation.indexes
-    - navigation.top
+    # - navigation.top
     - navigation.tracking
-    - search.highlight
-    - search.share
-    - search.suggest
   palette:
     - media: "(prefers-color-scheme)"
       toggle:
@@ -45,23 +46,21 @@ theme:
   icon:
     admonition:
       question: material/new-box
-extra_css:
-  - stylesheets/extra.css
-  - https://unpkg.com/katex@0/dist/katex.min.css
-repo_url: https://github.com/ricolxwz/awesome-scripts
-repo_name: ricolxwz/awesome-scripts
-markdown_extensions:
-  - pymdownx.arithmatex:
-      generic: true
-extra_javascript:
-  - javascripts/katex.js
-  - https://unpkg.com/katex@0/dist/katex.min.js
-  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+nav:
+  - Home:
+    - index.md
 extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/ricolxwz
   generator: false
+extra_css:
+  - stylesheets/extra.css
+  - https://unpkg.com/katex@0/dist/katex.min.css
+extra_javascript:
+  - javascripts/katex.js
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
 markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
@@ -78,6 +77,8 @@ markdown_extensions:
   - md_in_html
   - footnotes
   - def_list
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.tabbed:
@@ -94,6 +95,3 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
 plugins:
   - search
-nav:
-  - Home:
-    - index.md
