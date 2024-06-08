@@ -46,9 +46,6 @@ theme:
     admonition:
       question: material/new-box
     repo: fontawesome/brands/github-alt
-nav:
-  - Home:
-    - index.md
 extra:
   social:
     - icon: fontawesome/brands/github
@@ -99,3 +96,22 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
 plugins:
   - search
+  - i18n:
+      docs_structure: suffix
+      fallback_to_default: true
+      languages:
+        - locale: zh
+          name: 简体中文
+          build: true
+          default: true
+        - locale: en
+          name: English
+          build: true
+          default: false
+          nav_translations:
+            开始: Home
+      reconfigure_material: true
+      reconfigure_search: true
+nav:
+  - 开始:
+    - index.md
