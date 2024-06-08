@@ -1,7 +1,10 @@
 site_name: Awesome Scripts
+site_author: ricolxwz
+copyright: Copyright &copy; 2024 ricolxwz
+site_description: A collection of useful scripts for daily use
 theme:
   name: material
-  logo: assets/favicon-faded-5.svg
+  logo: assets/favicon-faded-8.svg
   favicon: assets/favicon-white-background.svg
   language: zh
   repo: fontawesome/brands/git-alt
@@ -9,7 +12,7 @@ theme:
     - content.code.annotate
     - content.code.copy
     - content.tabs.link
-    - header.autohide
+    # - header.autohide
     - announce.dismiss
     # - navigation.footer
     - navigation.tabs
@@ -39,7 +42,58 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to system preference 
+  icon:
+    admonition:
+      question: material/new-box
 extra_css:
   - stylesheets/extra.css
+  - https://unpkg.com/katex@0/dist/katex.min.css
 repo_url: https://github.com/ricolxwz/awesome-scripts
 repo_name: ricolxwz/awesome-scripts
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+extra_javascript:
+  - javascripts/katex.js
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ricolxwz
+  generator: false
+markdown_extensions:
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.magiclink
+  - admonition
+  - attr_list
+  - md_in_html
+  - footnotes
+  - def_list
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+plugins:
+  - search
+nav:
+  - Home:
+    - index.md
