@@ -47,6 +47,7 @@ theme:
         icon: material/brightness-4
         name: Switch to system preference 
   icon:
+    repo: fontawesome/brands/github-alt
     admonition:
       note: octicons/tag-16
       abstract: octicons/checklist-16
