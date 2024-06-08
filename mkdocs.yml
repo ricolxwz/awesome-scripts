@@ -115,3 +115,4 @@ plugins:
 nav:
   - 开始:
     - index.md
+    - 更新日志: changelog.md
