@@ -9,7 +9,6 @@ theme:
   logo: assets/favicon-faded-8.svg
   favicon: assets/favicon-white-background.svg
   language: zh
-  repo: fontawesome/brands/git-alt
   features:
     - content.code.annotate
     - content.code.copy
@@ -46,6 +45,7 @@ theme:
   icon:
     admonition:
       question: material/new-box
+    repo: fontawesome/brands/github-alt
 nav:
   - Home:
     - index.md
@@ -53,6 +53,10 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/ricolxwz
+    - icon: fontawesome/brands/gitlab
+      link: https://gitlab.com/ricolxwz
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/u/ricolxwz
   generator: false
 extra_css:
   - stylesheets/extra.css
