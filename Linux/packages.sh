@@ -13,16 +13,17 @@ sudo apt install \
   trash-cli \
   duf \
   gh \
-  htop -y
+  bat \
+  htop \
+  -y
 echo 'eval "$(zoxide init bash)"' >> ~/.bashrc
 echo 'export PATH="$PATH:/home/wenzexu/.cargo/bin"' >> ~/.bashrc
 cargo install \
-  bat \
   du-dust \
   eza \
   procs \
   ripgrep \
-  bat
+  --quiet
 echo 'alias bat="batcat"' >> ~/.bashrc
 echo 'alias vi="nvim"' >> ~/.bashrc
 echo 'alias vim="nvim"' >> ~/.bashrc
