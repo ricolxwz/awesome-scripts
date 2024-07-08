@@ -29,3 +29,4 @@ echo 'alias rm="trash-put"' >> ~/.bashrc
 echo 'alias ll="eza -al -s=time"' >> ~/.bashrc
 echo 'alias cd="z"' >> ~/.bashrc
 echo 'alias jn="jupyter notebook --no-browser --ServerApp.root_dir=\'/home/wenzexu/jupyter\' --IdentityProvider.token=hzndyh8cpnwscc4heicqq7esnovaud --ServerApp.allow_origin=\'*\' --port=65520 --ServerApp.port_retries=0"' >> ~/.bashrc
+source .bashrc
