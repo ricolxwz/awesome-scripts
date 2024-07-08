@@ -12,6 +12,7 @@ sudo apt install \
   plocate \
   trash-cli \
   duf \
+  gh \
   htop -y
 echo 'eval "$(zoxide init bash)"' >> ~/.bashrc
 echo 'export PATH="$PATH:/home/wenzexu/.cargo/bin"' >> ~/.bashrc
@@ -30,3 +31,5 @@ echo 'alias ll="eza -al -s=time"' >> ~/.bashrc
 echo 'alias cd="z"' >> ~/.bashrc
 echo 'alias jn="jupyter notebook --no-browser --ServerApp.root_dir=\'/home/wenzexu/jupyter\' --IdentityProvider.token=hzndyh8cpnwscc4heicqq7esnovaud --ServerApp.allow_origin=\'*\' --port=65520 --ServerApp.port_retries=0"' >> ~/.bashrc
 source .bashrc
+git configure --global user.name "wenzexu"
+git configure --global user.email "ricol.xwz@outlook.com"
