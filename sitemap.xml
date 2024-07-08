@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://awesome-scripts.ricolxwz.de/</loc>
+        <lastmod>2024-07-08</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://awesome-scripts.ricolxwz.de/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://awesome-scripts.ricolxwz.de/en/"/>
+    </url>
+    <url>
+        <loc>https://awesome-scripts.ricolxwz.de/changelog/</loc>
+        <lastmod>2024-07-08</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://awesome-scripts.ricolxwz.de/changelog/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://awesome-scripts.ricolxwz.de/en/changelog/"/>
+    </url>
+    <url>
+        <loc>https://awesome-scripts.ricolxwz.de/general-config/ipv6/</loc>
+        <lastmod>2024-07-08</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://awesome-scripts.ricolxwz.de/general-config/ipv6/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://awesome-scripts.ricolxwz.de/en/general-config/ipv6/"/>
+    </url>
+    <url>
+        <loc>https://awesome-scripts.ricolxwz.de/en/</loc>
+        <lastmod>2024-07-08</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://awesome-scripts.ricolxwz.de/en/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://awesome-scripts.ricolxwz.de/"/>
+    </url>
+    <url>
+        <loc>https://awesome-scripts.ricolxwz.de/en/changelog/</loc>
+        <lastmod>2024-07-08</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://awesome-scripts.ricolxwz.de/en/changelog/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://awesome-scripts.ricolxwz.de/changelog/"/>
+    </url>
+    <url>
+        <loc>https://awesome-scripts.ricolxwz.de/en/general-config/ipv6/</loc>
+        <lastmod>2024-07-08</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://awesome-scripts.ricolxwz.de/en/general-config/ipv6/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://awesome-scripts.ricolxwz.de/general-config/ipv6/"/>
+    </url>
+</urlset>
