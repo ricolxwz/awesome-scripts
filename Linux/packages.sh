@@ -15,6 +15,7 @@ sudo apt install \
   gh \
   bat \
   htop \
+  httping \
   -y
 echo 'eval "$(zoxide init bash)"' >> ~/.bashrc
 echo 'export PATH="$PATH:/home/wenzexu/.cargo/bin"' >> ~/.bashrc
