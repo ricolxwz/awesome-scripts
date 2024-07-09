@@ -27,7 +27,6 @@ cargo install \
   eza \
   procs \
   ripgrep \
-  gitui \
   --quiet
 sudo snap install \
   bandwhich \
