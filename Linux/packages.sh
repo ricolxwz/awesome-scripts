@@ -26,8 +26,7 @@ cargo install \
   du-dust \
   eza \
   procs \
-  ripgrep \
-  --quiet
+  ripgrep
 sudo snap install \
   bandwhich \
   dog
