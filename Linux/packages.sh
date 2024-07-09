@@ -16,15 +16,24 @@ sudo apt install \
   bat \
   htop \
   httping \
+  aria2 \
+  tmux \
+  gping \
+  speedtest-cli \
+  httpie \
   -y
-echo 'eval "$(zoxide init bash)"' >> ~/.bashrc
-echo 'export PATH="$PATH:/home/wenzexu/.cargo/bin"' >> ~/.bashrc
 cargo install \
   du-dust \
   eza \
   procs \
   ripgrep \
+  gitui \
   --quiet
+sudo snap install \
+  bandwhich \
+  dog
+echo 'eval "$(zoxide init bash)"' >> ~/.bashrc
+echo 'export PATH="$PATH:/home/wenzexu/.cargo/bin"' >> ~/.bashrc
 echo 'alias bat="batcat"' >> ~/.bashrc
 echo 'alias vi="nvim"' >> ~/.bashrc
 echo 'alias vim="nvim"' >> ~/.bashrc
