@@ -1,5 +1,4 @@
 cd ~/.ssh
-read -p "请输入公钥: " key
 echo "$key" > authorized_keys
 cd /etc/ssh
 sudo sed -i '/PrintLastLog/c\PrintLastLog no' sshd_config
@@ -9,7 +8,6 @@ sudo sed -i '/session\s\+optional\s\+pam_motd\.so\s\+noupdate/s/^/#/' sshd
 sudo systemctl restart ssh
 cd /etc/netplan
 sudo rm -rf 50*
-read -p "请输入网卡名称: " interface
 echo "
 network:
   version: 2
