@@ -1,6 +1,6 @@
 cd /etc/netplan
 sudo rm -rf 50*
-sudo touch 01-netcfg.yaml
+read -p "请输入网卡名称: " interface
 echo "
 network:
   version: 2
