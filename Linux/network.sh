@@ -1,6 +1,7 @@
 DEFAULT_IP="192.168.91.100"
 DEFAULT_GATEWAY="192.168.91.2"
 DEFAULT_DNS="192.168.91.2"
+read -p "请输入公钥: " key
 interface=$(ip -o -4 route show to default | awk '{print $5}')
 read -p "请输入静态IP地址 [默认: $DEFAULT_IP]: " ip
 ip=${ip:-$DEFAULT_IP}
@@ -29,7 +30,6 @@ sudo chmod 600 01-netcfg.yaml
 sudo netplan generate
 sudo netplan apply
 cd ~/.ssh
-read -p "请输入公钥: " key
 echo "$key" > authorized_keys
 cd /etc/ssh
 sudo sed -i '/PrintLastLog/c\PrintLastLog no' sshd_config
