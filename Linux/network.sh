@@ -18,16 +18,16 @@ network:
   version: 2
   renderer: networkd
   ethernets:
-    $interface:
+    ${interface}:
       dhcp4: false
       dhcp6: false
       addresses:
-        - $ip/24
+        - ${ip}/24
       routes:
         - to: default
-          via: $gateway
+          via: ${gateway}
       nameservers:
-        addresses: [$dns]" | sudo tee /etc/netplan/01-netcfg.yaml > /dev/null
+        addresses: [${dns}]" | sudo tee /etc/netplan/01-netcfg.yaml > /dev/null
 sudo chmod 600 01-netcfg.yaml
 sudo netplan generate
 sudo netplan apply
