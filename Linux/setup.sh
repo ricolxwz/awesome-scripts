@@ -11,9 +11,9 @@ chmod a+x *.sh
 ip a
 ./input.sh
 ./user.sh
-./network.sh
 ./packages.sh
 ./docker.sh
 ./pyenv.sh
+./network.sh
 cd ~
 rm -rf *.sh
