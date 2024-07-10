@@ -8,6 +8,9 @@ sudo sed -i '/session\s\+optional\s\+pam_motd\.so\s\+motd=\/run\/motd\.dynamic/s
 sudo sed -i '/session\s\+optional\s\+pam_motd\.so\s\+noupdate/s/^/#/' sshd
 sudo systemctl restart ssh
 # read -p "请输入网卡名称: " interface
+# read -p "请输入静态ip地址: " ip
+# read -p "请输入网关ip地址: " gateway
+# read -p "请输入dns地址: " dns
 cd /etc/netplan
 sudo rm -rf 50*
 echo "
@@ -19,12 +22,12 @@ network:
       dhcp4: false
       dhcp6: false
       addresses:
-        - 192.168.91.100/24
+        - $ip/24
       routes:
         - to: default
-          via: 192.168.91.2
+          via: $gateway
       nameservers:
-        addresses: [192.168.91.2]" | sudo tee /etc/netplan/01-netcfg.yaml > /dev/null
+        addresses: [$dns]" | sudo tee /etc/netplan/01-netcfg.yaml > /dev/null
 sudo chmod 600 01-netcfg.yaml
 sudo netplan generate
 sudo netplan apply
