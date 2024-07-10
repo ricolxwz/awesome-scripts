@@ -1,15 +1,6 @@
 DEFAULT_IP="192.168.91.100"
 DEFAULT_GATEWAY="192.168.91.2"
 DEFAULT_DNS="192.168.91.2"
-cd ~/.ssh
-read -p "请输入公钥: " key
-echo "$key" > authorized_keys
-cd /etc/ssh
-sudo sed -i '/PrintLastLog/c\PrintLastLog no' sshd_config
-cd /etc/pam.d
-sudo sed -i '/session\s\+optional\s\+pam_motd\.so\s\+motd=\/run\/motd\.dynamic/s/^/#/' sshd
-sudo sed -i '/session\s\+optional\s\+pam_motd\.so\s\+noupdate/s/^/#/' sshd
-sudo systemctl restart ssh
 ip a
 interface=$(ip -o -4 route show to default | awk '{print $5}')
 read -p "请输入静态IP地址 [默认: $DEFAULT_IP]: " ip
@@ -38,3 +29,12 @@ network:
 sudo chmod 600 01-netcfg.yaml
 sudo netplan generate
 sudo netplan apply
+cd ~/.ssh
+read -p "请输入公钥: " key
+echo "$key" > authorized_keys
+cd /etc/ssh
+sudo sed -i '/PrintLastLog/c\PrintLastLog no' sshd_config
+cd /etc/pam.d
+sudo sed -i '/session\s\+optional\s\+pam_motd\.so\s\+motd=\/run\/motd\.dynamic/s/^/#/' sshd
+sudo sed -i '/session\s\+optional\s\+pam_motd\.so\s\+noupdate/s/^/#/' sshd
+sudo systemctl restart ssh
