@@ -1,6 +1,6 @@
 cd /etc/netplan
 sudo rm -rf 50*
-touch 01-netcfg.yaml
+sudo touch 01-netcfg.yaml
 echo "
 network:
   version: 2
