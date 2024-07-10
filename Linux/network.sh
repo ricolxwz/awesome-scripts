@@ -1,7 +1,6 @@
 DEFAULT_IP="192.168.91.100"
 DEFAULT_GATEWAY="192.168.91.2"
 DEFAULT_DNS="192.168.91.2"
-ip a
 interface=$(ip -o -4 route show to default | awk '{print $5}')
 read -p "请输入静态IP地址 [默认: $DEFAULT_IP]: " ip
 ip=${ip:-$DEFAULT_IP}
