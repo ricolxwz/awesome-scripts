@@ -1,3 +1,6 @@
+DEFAULT_IP="192.168.91.100"
+DEFAULT_GATEWAY="192.168.91.2"
+DEFAULT_DNS="192.168.91.2"
 cd ~/.ssh
 read -p "请输入公钥: " key
 echo "$key" > authorized_keys
@@ -8,10 +11,13 @@ sudo sed -i '/session\s\+optional\s\+pam_motd\.so\s\+motd=\/run\/motd\.dynamic/s
 sudo sed -i '/session\s\+optional\s\+pam_motd\.so\s\+noupdate/s/^/#/' sshd
 sudo systemctl restart ssh
 ip a
-read -p "请输入网卡名称: " interface
-read -p "请输入静态ip地址: " ip
-read -p "请输入网关ip地址: " gateway
-read -p "请输入dns地址: " dns
+interface=$(ip -o -4 route show to default | awk '{print $5}')
+read -p "请输入静态IP地址 [默认: $DEFAULT_IP]: " ip
+ip=${ip:-$DEFAULT_IP}
+read -p "请输入网关IP地址 [默认: $DEFAULT_GATEWAY]: " gateway
+gateway=${gateway:-$DEFAULT_GATEWAY}
+read -p "请输入DNS地址 [默认: $DEFAULT_DNS]: " dns
+dns=${dns:-$DEFAULT_DNS}
 cd /etc/netplan
 sudo rm -rf 50*
 echo "
