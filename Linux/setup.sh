@@ -8,6 +8,7 @@ wget -O packages.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/
 wget -O docker.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Linux/docker.sh"
 wget -O pyenv.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Linux/pyenv.sh"
 chmod a+x *.sh
+ip a
 ./input.sh
 ./user.sh
 ./network.sh
