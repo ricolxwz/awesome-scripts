@@ -38,7 +38,6 @@ sudo netplan generate
 sudo netplan apply
 sudo apt install openssh-client -y
 sudo apt install openssh-server -y
-mkdir ~/.ssh
 cd ~/.ssh
 echo "$key" > authorized_keys
 cd /etc/ssh
