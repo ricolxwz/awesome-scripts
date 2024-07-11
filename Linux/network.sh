@@ -9,12 +9,19 @@ read -p "请输入网关IP地址 [默认: $DEFAULT_GATEWAY]: " gateway
 gateway=${gateway:-$DEFAULT_GATEWAY}
 read -p "请输入DNS地址 [默认: $DEFAULT_DNS]: " dns
 dns=${dns:-$DEFAULT_DNS}
+read -p "是否为桌面版本? (y/n) [默认: n]: " is_desktop
+is_desktop=${is_desktop:-n}
+if [[ "$is_desktop" == "y" ]]; then
+    renderer="NetworkManager"
+else
+    renderer="networkd"
+fi
 cd /etc/netplan
-sudo rm -rf 50*
+sudo rm -rf *
 echo "
 network:
   version: 2
-  renderer: networkd
+  renderer: $renderer
   ethernets:
     ${interface}:
       dhcp4: false
@@ -29,6 +36,9 @@ network:
 sudo chmod 600 01-netcfg.yaml
 sudo netplan generate
 sudo netplan apply
+sudo apt install openssh-client -y
+sudo apt install openssh-server -y
+mkdir ~/.ssh
 cd ~/.ssh
 echo "$key" > authorized_keys
 cd /etc/ssh
