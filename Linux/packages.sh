@@ -41,3 +41,6 @@ echo 'alias cd="z"' >> ~/.bashrc
 source .bashrc
 git config --global user.name "wenzexu"
 git config --global user.email "ricol.xwz@outlook.com"
+sudo apt update && sudo apt install ubuntu-advantage-tools
+read -p "请输入Ubuntu Pro Token" token
+sudo pro attach $token
