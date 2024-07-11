@@ -48,4 +48,5 @@ if [ -z "$token" ]; then
 else
     sudo apt update && sudo apt install -y ubuntu-advantage-tools
     sudo pro attach $token
+    sudo apt update -y
 fi
