@@ -41,6 +41,11 @@ echo 'alias cd="z"' >> ~/.bashrc
 source .bashrc
 git config --global user.name "wenzexu"
 git config --global user.email "ricol.xwz@outlook.com"
-sudo apt update && sudo apt install ubuntu-advantage-tools
-read -p "请输入Ubuntu Pro Token" token
-sudo pro attach $token
+token=""
+read -p "请输入Ubuntu Pro Token (按Enter跳过): " token
+if [ -z "$token" ]; then
+    echo "没有输入Token，跳过安装。"
+else
+    sudo apt update && sudo apt install -y ubuntu-advantage-tools
+    sudo pro attach $token
+fi
