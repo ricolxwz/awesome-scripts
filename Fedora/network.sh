@@ -6,8 +6,6 @@ OLD_PROFILE=$(nmcli -t -f NAME,TYPE connection show | grep 'ethernet' | head -n 
 sudo dnf install NetworkManager -y
 sudo systemctl restart NetworkManager
 
-nmcli
-
 read -p "请输入公钥: " key
 interface=$(ip -o -4 route show to default | awk '{print $5}')
 read -p "请输入静态IP地址 [默认: $DEFAULT_IP]: " ip
