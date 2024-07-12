@@ -11,6 +11,16 @@ if [ "$answer" = "y" ]; then
           gnome-software \
           ibus-rime -y
     fi
+    if [ "$desktop_version" = "kde" ]; then
+        sudo apt remove fcitx
+        sudo apt remove fcitx-module*
+        sudo apt remove fcitx-frontend*
+        sudo apt purge fcitx*
+        sudo apt autoclean && sudo apt autoremove
+        sudo apt install -y \
+        ibus \
+        ibus-rime
+    fi
     if [ "$desktop_version" = "xfce" ]; then
         sudo apt install -y \
         fonts-wqy-zenhei \
