@@ -37,7 +37,7 @@ else
 fi
 
 # Configure network settings
-sudo nmcli con add type ethernet con-name static-ip ifname ${interface} ipv4.addresses "$ip/24" ipv4.gateway ${gateway} ipv4.dns ${dns} ipv4.method manual connection.autoconnect yes
+sudo nmcli con add type ethernet con-name static-ip ifname ${interface} ipv4.addresses ${ip}/24 ipv4.gateway ${gateway} ipv4.dns ${dns} ipv4.method manual connection.autoconnect yes
 
 # Restart services
 sudo systemctl restart sshd
