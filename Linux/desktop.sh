@@ -12,11 +12,11 @@ if [ "$answer" = "y" ]; then
           ibus-rime -y
     fi
     if [ "$desktop_version" = "kde" ]; then
-        sudo apt remove fcitx
-        sudo apt remove fcitx-module*
-        sudo apt remove fcitx-frontend*
-        sudo apt purge fcitx*
-        sudo apt autoclean && sudo apt autoremove
+        sudo apt remove fcitx* -y
+        sudo apt remove fcitx-module* -y
+        sudo apt remove fcitx-frontend* -y
+        sudo apt purge fcitx* -y
+        sudo apt autoclean && sudo apt autoremove -y
         sudo apt install -y \
         ibus \
         ibus-rime
@@ -32,7 +32,7 @@ if [ "$answer" = "y" ]; then
         sudo apt remove fcitx-module* -y
         sudo apt remove fcitx-frontend* -y
         sudo apt purge fcitx* -y
-        sudo apt autoclean && sudo apt autoremove
+        sudo apt autoclean && sudo apt autoremove -y
         sudo apt install -y \
         ibus \
         ibus-rime
