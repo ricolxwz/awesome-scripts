@@ -22,6 +22,7 @@ sudo apt install \
   speedtest-cli \
   httpie \
   libfuse2t64 \
+  snapd \
   -y
 cargo install \
   du-dust \
