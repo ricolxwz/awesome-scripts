@@ -2,7 +2,7 @@ read -p "是否需要安装桌面环境和相关软件? (y/n): " answer
 if [ "$answer" = "y" ]; then
     cd ~
     sudo apt install unzip wget -y
-    read -p "请输入桌面类型(gnome/kde/xfce): " desktop_version
+    read -p "请输入桌面类型(gnome/kde/xfce/cinnamon): " desktop_version
     if [ "$desktop_version" = "gnome" ]; then
         sudo add-apt-repository universe -y
         sudo apt install \
@@ -24,6 +24,16 @@ if [ "$answer" = "y" ]; then
     if [ "$desktop_version" = "xfce" ]; then
         sudo apt install -y \
         fonts-wqy-zenhei \
+        ibus \
+        ibus-rime
+    fi
+    if [ "$desktop_version" = "cinnamon" ]; then
+        sudo apt remove fcitx
+        sudo apt remove fcitx-module*
+        sudo apt remove fcitx-frontend*
+        sudo apt purge fcitx*
+        sudo apt autoclean && sudo apt autoremove
+        sudo apt install -y \
         ibus \
         ibus-rime
     fi
