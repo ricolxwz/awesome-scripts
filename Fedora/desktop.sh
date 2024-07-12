@@ -4,7 +4,6 @@ if [ "$answer" = "y" ]; then
     sudo dnf install unzip wget -y
     sudo dnf install \
       gnome-tweaks \
-      gnome-shell-extensions \
       ibus-rime -y
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/config.tar.gz"
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/opencc.tar.gz"
