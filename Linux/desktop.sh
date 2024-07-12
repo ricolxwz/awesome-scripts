@@ -20,6 +20,10 @@ if [ "$answer" = "y" ]; then
         sudo apt install -y \
         ibus \
         ibus-rime
+        echo "export GTK_IM_MODULE=ibus" >> ~/.bashrc
+        echo "export XMODIFIERS=@im=ibus" >> ~/.bashrc
+        echo "export QT_IM_MODULE=ibus" >> ~/.bashrc
+        source ~/.bashrc
     fi
     if [ "$desktop_version" = "xfce" ]; then
         sudo apt install -y \
