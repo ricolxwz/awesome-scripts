@@ -59,6 +59,7 @@ network:
       nameservers:
         addresses: [${dns}]" | sudo tee /etc/netplan/01-netcfg.yaml > /dev/null
 sudo chmod 600 01-netcfg.yaml
+echo "Bye Bye~, 请尝试用新的IP访问此机器"
 sudo systemctl restart ssh
 sudo netplan generate
 sudo netplan apply
