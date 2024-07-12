@@ -12,7 +12,7 @@ chmod a+x *.sh
 ./packages.sh
 ./docker.sh
 ./pyenv.sh
-./network.sh
 ./desktop.sh
+./network.sh
 cd ~
 rm -rf *.sh
