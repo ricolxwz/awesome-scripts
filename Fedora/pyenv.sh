@@ -17,7 +17,7 @@ echo 'eval "$(pyenv init -)"' >> ~/.profile
 source ~/.bashrc
 source ~/.profile
 
-dnf install make gcc patch zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel tk-devel libffi-devel xz-devel libuuid-devel gdbm-libs libnsl2 -y
+sudo dnf install make gcc patch zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel tk-devel libffi-devel xz-devel libuuid-devel gdbm-libs libnsl2 -y
 
 pyenv install $pyv
 pyenv global $pyvm
