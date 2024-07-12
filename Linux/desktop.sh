@@ -27,6 +27,14 @@ mv dict2/* ~/dicts/
 mv dict3/* ~/dicts/
 mv dict4/* ~/dicts/
 mv dict5/* ~/dicts/
+mkdir -p ~/.config/ibus/rime
+mv ~/dicts ~/.config/ibus/rime/
+mv ~/opencc ~/.config/ibus/rime/
+mv ~/config/* ~/.config/ibus/rime/
+rm -rf ~/config
+rm -rf ~/opencc
+rm -rf ~/dicts
+rm -rf dict*
 wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Iosevka.zip"
 wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/IosevkaTerm.zip"
 wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/UbuntuMono.zip"
