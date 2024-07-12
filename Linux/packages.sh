@@ -22,16 +22,12 @@ sudo apt install \
   speedtest-cli \
   httpie \
   libfuse2t64 \
-  snapd \
   -y
 cargo install \
   du-dust \
   eza \
   procs \
   ripgrep
-sudo snap install \
-  bandwhich \
-  dog
 echo 'eval "$(zoxide init bash)"' >> ~/.bashrc
 echo 'export PATH="$PATH:/home/wenzexu/.cargo/bin"' >> ~/.bashrc
 echo 'alias bat="batcat"' >> ~/.bashrc
