@@ -2,14 +2,20 @@ read -p "是否需要安装桌面环境和相关软件? (y/n): " answer
 if [ "$answer" = "y" ]; then
     cd ~
     sudo apt install unzip wget -y
-    read -p "桌面是否为Gnome? (y/n): " gnome
-    if [ "$gnome" = "y" ]; then
+    read -p "请输入桌面类型(gnome/kde/xfce): " desktop_version
+    if [ "$desktop_version" = "gnome" ]; then
         sudo add-apt-repository universe -y
         sudo apt install \
           gnome-tweak-tool \
           gnome-shell-extension-manager \
           gnome-software \
           ibus-rime -y
+    fi
+    if [ "$desktop_version" = "xfce" ]; then
+        sudo apt install -y \
+        fonts-wqy-zenhei \
+        ibus \
+        ibus-rime
     fi
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/config.tar.gz"
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/opencc.tar.gz"
