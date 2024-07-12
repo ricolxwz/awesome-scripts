@@ -21,6 +21,7 @@ sudo apt install \
   gping \
   speedtest-cli \
   httpie \
+  libfuse2t64 \
   -y
 cargo install \
   du-dust \
