@@ -18,7 +18,6 @@ sudo dnf install -y \
   httping \
   aria2 \
   tmux \
-  gping \
   speedtest-cli \
   httpie \
   fuse3
