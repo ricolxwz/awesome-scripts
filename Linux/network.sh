@@ -18,6 +18,22 @@ if [[ "$is_desktop" == "y" ]]; then
 else
     renderer="networkd"
 fi
+sudo apt install openssh-client -y
+sudo apt install openssh-server -y
+cd ~/.ssh
+echo "$key" > authorized_keys
+cd /etc/ssh
+sudo sed -i '/PrintLastLog/c\PrintLastLog no' sshd_config
+cd /etc/pam.d
+sudo sed -i '/session\s\+optional\s\+pam_motd\.so\s\+motd=\/run\/motd\.dynamic/s/^/#/' sshd
+sudo sed -i '/session\s\+optional\s\+pam_motd\.so\s\+noupdate/s/^/#/' sshd
+read -p "请输入用于Github的SSH私钥(请使用ed25519加密, 若没有输入, 则跳过): " ssh_private_key
+if [ -n "$ssh_private_key" ]; then
+    echo "$ssh_private_key" > ~/.ssh/id_ed25519
+    chmod 600 ~/.ssh/id_ed25519
+else
+    echo "未输入SSH私钥，跳过保存过程。"
+fi
 cd /etc/netplan
 sudo rm -rf *
 echo "
@@ -36,15 +52,6 @@ network:
       nameservers:
         addresses: [${dns}]" | sudo tee /etc/netplan/01-netcfg.yaml > /dev/null
 sudo chmod 600 01-netcfg.yaml
+sudo systemctl restart ssh
 sudo netplan generate
 sudo netplan apply
-sudo apt install openssh-client -y
-sudo apt install openssh-server -y
-cd ~/.ssh
-echo "$key" > authorized_keys
-cd /etc/ssh
-sudo sed -i '/PrintLastLog/c\PrintLastLog no' sshd_config
-cd /etc/pam.d
-sudo sed -i '/session\s\+optional\s\+pam_motd\.so\s\+motd=\/run\/motd\.dynamic/s/^/#/' sshd
-sudo sed -i '/session\s\+optional\s\+pam_motd\.so\s\+noupdate/s/^/#/' sshd
-sudo systemctl restart ssh
