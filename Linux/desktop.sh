@@ -1,5 +1,11 @@
 cd ~
 sudo apt install unzip wget -y
+sudo add-apt-repository universe
+sudo apt install \
+  gnome-tweak-tool \
+  gnome-shell-extension-manager \
+  gnome-software \
+  ibus-rime -y
 wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Iosevka.zip"
 wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/IosevkaTerm.zip"
 wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/UbuntuMono.zip"
@@ -10,7 +16,9 @@ mkdir -p ~/.local/share/fonts
 mv Iosevka ~/.local/share/fonts/
 mv IosevkaTerm ~/.local/share/fonts/
 mv UbuntuMono ~/.local/share/fonts/
-rm -rf Iosevka
-rm -rf IosevkaTerm
-rm -rf UbuntuMono
+rm Iosevka.zip
+rm IosevkaTerm.zip
+rm UbuntuMono.zip
 fc-cache -v
+wget -O code.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+sudo dpkg -i code.deb
