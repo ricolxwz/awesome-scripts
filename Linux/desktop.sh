@@ -36,6 +36,10 @@ if [ "$answer" = "y" ]; then
         sudo apt install -y \
         ibus \
         ibus-rime
+        echo "export GTK_IM_MODULE=ibus" >> ~/.bashrc
+        echo "export XMODIFIERS=@im=ibus" >> ~/.bashrc
+        echo "export QT_IM_MODULE=ibus" >> ~/.bashrc
+        source ~/.bashrc
     fi
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/config.tar.gz"
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/opencc.tar.gz"
