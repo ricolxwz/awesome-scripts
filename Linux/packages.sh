@@ -18,10 +18,9 @@ sudo apt install \
   httping \
   aria2 \
   tmux \
-  gping \
   speedtest-cli \
   httpie \
-  libfuse2t64 \
+  libfuse2 \
   -y
 cargo install \
   du-dust \
