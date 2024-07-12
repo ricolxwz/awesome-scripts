@@ -1,6 +1,7 @@
 DEFAULT_IP="192.168.91.100"
 DEFAULT_GATEWAY="192.168.91.2"
 DEFAULT_DNS="192.168.91.2"
+ip r
 ip a
 read -p "请输入公钥: " key
 interface=$(ip -o -4 route show to default | awk '{print $5}')
