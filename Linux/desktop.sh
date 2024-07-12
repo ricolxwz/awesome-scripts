@@ -6,6 +6,23 @@ sudo apt install \
   gnome-shell-extension-manager \
   gnome-software \
   ibus-rime -y
+wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/dict1.tar.gz"
+wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/dict2.tar.gz"
+wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/dict3.tar.gz"
+wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/dict4.tar.gz"
+wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/dict5.tar.gz"
+tar -xzvf dict1.tar.gz dict1
+tar -xzvf dict2.tar.gz dict2
+tar -xzvf dict3.tar.gz dict3
+tar -xzvf dict4.tar.gz dict4
+tar -xzvf dict5.tar.gz dict5
+rm *.tar.gz
+mkdir ~/dicts
+mv dict1/* ~/dicts/
+mv dict2/* ~/dicts/
+mv dict3/* ~/dicts/
+mv dict4/* ~/dicts/
+mv dict5/* ~/dicts/
 wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Iosevka.zip"
 wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/IosevkaTerm.zip"
 wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/UbuntuMono.zip"
