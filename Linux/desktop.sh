@@ -59,6 +59,8 @@ if [ "$answer" = "y" ]; then
         wget -O code.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
     fi
     mv code.deb software/
+    sudo dpkg -i ~/software/code.deb
+    sudo chown -R $(whoami) /usr/share/code
 else
     echo "未执行任何操作."
 fi
