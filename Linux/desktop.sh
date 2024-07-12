@@ -2,7 +2,7 @@ read -p "是否需要安装桌面环境和相关软件？(y/n): " answer
 if [ "$answer" = "y" ]; then
     cd ~
     sudo apt install unzip wget -y
-    sudo add-apt-repository universe
+    sudo add-apt-repository universe -y
     sudo apt install \
       gnome-tweak-tool \
       gnome-shell-extension-manager \
