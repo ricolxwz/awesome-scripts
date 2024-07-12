@@ -41,6 +41,6 @@ sudo nmcli con add type ethernet con-name static-ip ifname ${interface} ipv4.add
 # Restart services
 sudo systemctl restart sshd
 sudo nmcli con up static-ip
-sudo nmcli con delete $OLD_PROFILE
+sudo nmcli con delete "$OLD_PROFILE"
 
 echo "Bye Bye~, 请尝试用新的IP访问此机器"
