@@ -1,13 +1,16 @@
-read -p "是否需要安装桌面环境和相关软件？(y/n): " answer
+read -p "是否需要安装桌面环境和相关软件? (y/n): " answer
 if [ "$answer" = "y" ]; then
     cd ~
     sudo apt install unzip wget -y
-    sudo add-apt-repository universe -y
-    sudo apt install \
-      gnome-tweak-tool \
-      gnome-shell-extension-manager \
-      gnome-software \
-      ibus-rime -y
+    read -p "桌面是否为Gnome? (y/n): " gnome
+    if [ "$gnome" = "y" ]; then
+        sudo add-apt-repository universe -y
+        sudo apt install \
+          gnome-tweak-tool \
+          gnome-shell-extension-manager \
+          gnome-software \
+          ibus-rime -y
+    fi
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/config.tar.gz"
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/opencc.tar.gz"
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/dict1.tar.gz"
