@@ -1,6 +1,6 @@
-DEFAULT_IP="192.168.91.100"
-DEFAULT_GATEWAY="192.168.91.2"
-DEFAULT_DNS="192.168.91.2"
+DEFAULT_IP=$(ip -4 addr show scope global | grep inet | awk '{print $2}' | cut -d'/' -f1 | head -n 1)
+DEFAULT_GATEWAY=$(ip route | grep default | awk '{print $3}')
+DEFAULT_DNS=$(ip route | grep default | awk '{print $3}')
 ip r
 ip a
 read -p "请输入公钥: " key
