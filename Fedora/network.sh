@@ -1,6 +1,7 @@
 DEFAULT_IP=$(ip -4 addr show scope global | grep inet | awk '{print $2}' | cut -d'/' -f1 | head -n 1)
 DEFAULT_GATEWAY=$(ip route | grep default | awk '{print $3}')
 DEFAULT_DNS=$(ip route | grep default | awk '{print $3}')
+OLD_PROFILE=$(nmcli -t -f NAME,TYPE connection show | grep 'ethernet' | head -n 1 | cut -d: -f1)
 
 sudo dnf install NetworkManager -y
 sudo systemctl restart NetworkManager
@@ -42,5 +43,6 @@ sudo nmcli con add type ethernet con-name static-ip ifname ${interface} ipv4.add
 # Restart services
 sudo systemctl restart sshd
 sudo nmcli con up static-ip
+sudo nmcli con delete $OLD_PROFILE
 
 echo "Bye Bye~, 请尝试用新的IP访问此机器"
