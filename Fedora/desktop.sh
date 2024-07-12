@@ -2,9 +2,12 @@ read -p "是否需要安装桌面环境和相关软件？(y/n): " answer
 if [ "$answer" = "y" ]; then
     cd ~
     sudo dnf install unzip wget -y
-    sudo dnf install \
-      gnome-tweaks \
-      ibus-rime -y
+    read -p "桌面是否为Gnome? (y/n): " gnome
+    if [ "$gnome" = "y" ]; then
+        sudo dnf install \
+          gnome-tweaks \
+          ibus-rime -y
+    fi
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/config.tar.gz"
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/opencc.tar.gz"
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/dict1.tar.gz"
