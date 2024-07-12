@@ -51,7 +51,12 @@ if [ "$answer" = "y" ]; then
     rm IosevkaTerm.zip
     rm UbuntuMono.zip
     fc-cache -v
-    wget -O code.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+    read -p "是否为ARM架构？(y/n, 留空或其他为amd64架构): " arm_answer
+    if [ "$arm_answer" = "y" ]; then
+        wget -O code.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-arm64"
+    else
+        wget -O code.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+    fi
     sudo dpkg -i code.deb
     rm code.deb
     sudo chown -R $(whoami) /usr/share/code
