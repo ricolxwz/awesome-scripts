@@ -20,6 +20,7 @@ else
 fi
 sudo apt install openssh-client -y
 sudo apt install openssh-server -y
+mkdir -p ~/.ssh
 cd ~/.ssh
 echo "$key" > authorized_keys
 cd /etc/ssh
@@ -36,7 +37,6 @@ while IFS= read -r line; do
     ssh_private_key+="$line"$'\n'
 done
 if [ -n "$ssh_private_key" ]; then
-    mkdir -p ~/.ssh
     echo "$ssh_private_key" > ~/.ssh/id_ed25519
     chmod 600 ~/.ssh/id_ed25519
 else
