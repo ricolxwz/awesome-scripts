@@ -20,6 +20,7 @@ else
 fi
 sudo apt install openssh-client -y
 sudo apt install openssh-server -y
+sudo systemctl enable ssh
 mkdir -p ~/.ssh
 cd ~/.ssh
 echo "$key" > authorized_keys
