@@ -20,7 +20,9 @@ sudo dnf install -y \
   tmux \
   speedtest-cli \
   httpie \
-  fuse3
+  fuse3 \
+  glibc-langpack-zh \
+  glibc-langpack-en
 
 cargo install \
   du-dust \
