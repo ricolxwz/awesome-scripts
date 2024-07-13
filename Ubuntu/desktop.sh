@@ -1,4 +1,4 @@
-read -p "是否需要安装桌面环境和相关软件? (y/n): " answer
+read -p "是否需要安装桌面环境和相关软件? (y/n, 默认为不安装): " answer
 if [ "$answer" = "y" ]; then
     cd ~
     sudo apt install unzip wget fonts-wqy-zenhei -y
