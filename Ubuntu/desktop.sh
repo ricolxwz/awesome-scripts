@@ -45,13 +45,13 @@ if [ "$answer" = "y" ]; then
         echo "export QT_IM_MODULE=ibus" >> ~/.bashrc
         source ~/.bashrc
     fi
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/config.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/opencc.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/dict1.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/dict2.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/dict3.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/dict4.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Linux/rime/dict5.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/config.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/opencc.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict1.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict2.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict3.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict4.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict5.tar.gz"
     tar -xzvf config.tar.gz config
     tar -xzvf opencc.tar.gz opencc
     tar -xzvf dict1.tar.gz dict1
