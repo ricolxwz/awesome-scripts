@@ -21,6 +21,7 @@ sudo apt install \
   speedtest-cli \
   httpie \
   libfuse2 \
+  language-pack-zh-hans \
   -y
 cargo install \
   du-dust \
