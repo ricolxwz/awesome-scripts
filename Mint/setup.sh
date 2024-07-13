@@ -7,7 +7,7 @@ wget -O packages.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/
 wget -O docker.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Mint/docker.sh"
 wget -O pyenv.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Ubuntu/pyenv.sh"
 wget -O desktop.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Ubuntu/desktop.sh"
-wget -O desktop.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Ubuntu/locale.sh"
+wget -O locale.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Ubuntu/locale.sh"
 chmod a+x *.sh
 ./user.sh
 ./packages.sh
