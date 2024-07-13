@@ -1,21 +1,21 @@
 read -p "是否需要安装桌面环境和相关软件? (y/n): " answer
 if [ "$answer" = "y" ]; then
     cd ~
-    sudo apt install unzip wget -y
+    sudo apt install unzip wget fonts-wqy-zenhei -y
+    sudo apt remove fcitx* -y
+    sudo apt remove fcitx-module* -y
+    sudo apt remove fcitx-frontend* -y
+    sudo apt purge fcitx* -y
+    sudo apt autoclean && sudo apt autoremove -y
+    sudo apt install -y \
+        ibus \
+        ibus-rime
+    echo "export GTK_IM_MODULE=ibus" >> ~/.bashrc
+    echo "export XMODIFIERS=@im=ibus" >> ~/.bashrc
+    echo "export QT_IM_MODULE=ibus" >> ~/.bashrc
+    source ~/.bashrc
     read -p "请输入桌面类型(gnome/kde/xfce/cinnamon): " desktop_version
     if [ "$desktop_version" = "gnome" ]; then
-        sudo apt remove fcitx* -y
-        sudo apt remove fcitx-module* -y
-        sudo apt remove fcitx-frontend* -y
-        sudo apt purge fcitx* -y
-        sudo apt autoclean && sudo apt autoremove -y
-        sudo apt install -y \
-            ibus \
-            ibus-rime
-        echo "export GTK_IM_MODULE=ibus" >> ~/.bashrc
-        echo "export XMODIFIERS=@im=ibus" >> ~/.bashrc
-        echo "export QT_IM_MODULE=ibus" >> ~/.bashrc
-        source ~/.bashrc
         sudo add-apt-repository universe -y
         sudo apt install -y \
           gnome-tweak-tool \
@@ -23,48 +23,10 @@ if [ "$answer" = "y" ]; then
           gnome-software
     fi
     if [ "$desktop_version" = "kde" ]; then
-        sudo apt remove fcitx* -y
-        sudo apt remove fcitx-module* -y
-        sudo apt remove fcitx-frontend* -y
-        sudo apt purge fcitx* -y
-        sudo apt autoclean && sudo apt autoremove -y
-        sudo apt install -y \
-            ibus \
-            ibus-rime
-        echo "export GTK_IM_MODULE=ibus" >> ~/.bashrc
-        echo "export XMODIFIERS=@im=ibus" >> ~/.bashrc
-        echo "export QT_IM_MODULE=ibus" >> ~/.bashrc
-        source ~/.bashrc
     fi
     if [ "$desktop_version" = "xfce" ]; then
-        sudo apt install -y \
-            fonts-wqy-zenhei
-        sudo apt remove fcitx* -y
-        sudo apt remove fcitx-module* -y
-        sudo apt remove fcitx-frontend* -y
-        sudo apt purge fcitx* -y
-        sudo apt autoclean && sudo apt autoremove -y
-        sudo apt install -y \
-            ibus \
-            ibus-rime
-        echo "export GTK_IM_MODULE=ibus" >> ~/.bashrc
-        echo "export XMODIFIERS=@im=ibus" >> ~/.bashrc
-        echo "export QT_IM_MODULE=ibus" >> ~/.bashrc
-        source ~/.bashrc
     fi
     if [ "$desktop_version" = "cinnamon" ]; then
-        sudo apt remove fcitx* -y
-        sudo apt remove fcitx-module* -y
-        sudo apt remove fcitx-frontend* -y
-        sudo apt purge fcitx* -y
-        sudo apt autoclean && sudo apt autoremove -y
-        sudo apt install -y \
-            ibus \
-            ibus-rime
-        echo "export GTK_IM_MODULE=ibus" >> ~/.bashrc
-        echo "export XMODIFIERS=@im=ibus" >> ~/.bashrc
-        echo "export QT_IM_MODULE=ibus" >> ~/.bashrc
-        source ~/.bashrc
     fi
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/config.tar.gz"
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/opencc.tar.gz"
