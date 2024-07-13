@@ -4,12 +4,23 @@ if [ "$answer" = "y" ]; then
     sudo apt install unzip wget -y
     read -p "请输入桌面类型(gnome/kde/xfce/cinnamon): " desktop_version
     if [ "$desktop_version" = "gnome" ]; then
+        sudo apt remove fcitx* -y
+        sudo apt remove fcitx-module* -y
+        sudo apt remove fcitx-frontend* -y
+        sudo apt purge fcitx* -y
+        sudo apt autoclean && sudo apt autoremove -y
+        sudo apt install -y \
+            ibus \
+            ibus-rime
+        echo "export GTK_IM_MODULE=ibus" >> ~/.bashrc
+        echo "export XMODIFIERS=@im=ibus" >> ~/.bashrc
+        echo "export QT_IM_MODULE=ibus" >> ~/.bashrc
+        source ~/.bashrc
         sudo add-apt-repository universe -y
-        sudo apt install \
+        sudo apt install -y \
           gnome-tweak-tool \
           gnome-shell-extension-manager \
-          gnome-software \
-          ibus-rime -y
+          gnome-software
     fi
     if [ "$desktop_version" = "kde" ]; then
         sudo apt remove fcitx* -y
@@ -18,8 +29,8 @@ if [ "$answer" = "y" ]; then
         sudo apt purge fcitx* -y
         sudo apt autoclean && sudo apt autoremove -y
         sudo apt install -y \
-        ibus \
-        ibus-rime
+            ibus \
+            ibus-rime
         echo "export GTK_IM_MODULE=ibus" >> ~/.bashrc
         echo "export XMODIFIERS=@im=ibus" >> ~/.bashrc
         echo "export QT_IM_MODULE=ibus" >> ~/.bashrc
@@ -27,9 +38,19 @@ if [ "$answer" = "y" ]; then
     fi
     if [ "$desktop_version" = "xfce" ]; then
         sudo apt install -y \
-        fonts-wqy-zenhei \
-        ibus \
-        ibus-rime
+            fonts-wqy-zenhei
+        sudo apt remove fcitx* -y
+        sudo apt remove fcitx-module* -y
+        sudo apt remove fcitx-frontend* -y
+        sudo apt purge fcitx* -y
+        sudo apt autoclean && sudo apt autoremove -y
+        sudo apt install -y \
+            ibus \
+            ibus-rime
+        echo "export GTK_IM_MODULE=ibus" >> ~/.bashrc
+        echo "export XMODIFIERS=@im=ibus" >> ~/.bashrc
+        echo "export QT_IM_MODULE=ibus" >> ~/.bashrc
+        source ~/.bashrc
     fi
     if [ "$desktop_version" = "cinnamon" ]; then
         sudo apt remove fcitx* -y
@@ -38,8 +59,8 @@ if [ "$answer" = "y" ]; then
         sudo apt purge fcitx* -y
         sudo apt autoclean && sudo apt autoremove -y
         sudo apt install -y \
-        ibus \
-        ibus-rime
+            ibus \
+            ibus-rime
         echo "export GTK_IM_MODULE=ibus" >> ~/.bashrc
         echo "export XMODIFIERS=@im=ibus" >> ~/.bashrc
         echo "export QT_IM_MODULE=ibus" >> ~/.bashrc
