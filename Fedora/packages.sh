@@ -25,7 +25,6 @@ sudo dnf install -y \
 cargo install \
   du-dust \
   eza \
-  procs \
   ripgrep
 
 echo 'eval "$(zoxide init bash)"' >> ~/.bashrc
