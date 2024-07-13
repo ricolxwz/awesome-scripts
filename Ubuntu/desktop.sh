@@ -23,6 +23,7 @@ if [ "$answer" = "y" ]; then
           gnome-software
     fi
     if [ "$desktop_version" = "kde" ]; then
+        mkdir -p ~/.config
         echo "[Formats]
             LANG=zh_CN.UTF-8
             LC_CTYPE=en_US.UTF-8
