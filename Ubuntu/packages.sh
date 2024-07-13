@@ -52,7 +52,8 @@ echo 'export LC_TELEPHONE=en_US.UTF-8' >> ~/.profile
 echo 'export LC_MEASUREMENT=en_US.UTF-8' >> ~/.profile
 echo 'export LC_IDENTIFICATION=en_US.UTF-8' >> ~/.profile
 echo 'export LC_ALL=' >> ~/.profile
-source .bashrc
+source ~/.bashrc
+source ~/.profile
 git config --global user.name "wenzexu"
 git config --global user.email "ricol.xwz@outlook.com"
 token=""
