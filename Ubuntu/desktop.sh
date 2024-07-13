@@ -23,10 +23,13 @@ if [ "$answer" = "y" ]; then
           gnome-software
     fi
     if [ "$desktop_version" = "kde" ]; then
+        :
     fi
     if [ "$desktop_version" = "xfce" ]; then
+        :
     fi
     if [ "$desktop_version" = "cinnamon" ]; then
+        :
     fi
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/config.tar.gz"
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/opencc.tar.gz"
