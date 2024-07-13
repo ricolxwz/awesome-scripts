@@ -52,7 +52,6 @@ echo 'export LC_TELEPHONE=en_US.UTF-8' >> ~/.bashrc
 echo 'export LC_MEASUREMENT=en_US.UTF-8' >> ~/.bashrc
 echo 'export LC_IDENTIFICATION=en_US.UTF-8' >> ~/.bashrc
 echo 'export LC_ALL=' >> ~/.bashrc
-source ~/.bashrc
 git config --global user.name "wenzexu"
 git config --global user.email "ricol.xwz@outlook.com"
 token=""
