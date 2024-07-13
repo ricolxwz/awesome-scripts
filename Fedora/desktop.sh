@@ -1,12 +1,50 @@
 read -p "是否需要安装桌面环境和相关软件？(y/n): " answer
 if [ "$answer" = "y" ]; then
     cd ~
-    sudo dnf install unzip wget -y
-    read -p "桌面是否为Gnome? (y/n): " gnome
-    if [ "$gnome" = "y" ]; then
-        sudo dnf install \
-          gnome-tweaks \
-          ibus-rime -y
+    sudo dnf install unzip wget wqy-zenhei-fonts -y
+    sudo dnf remove fcitx* -y
+    sudo dnf remove fcitx-module* -y
+    sudo dnf remove fcitx-frontend* -y
+    sudo dnf remove fcitx* --setopt="clean_requirements_on_remove=true" -y
+    sudo dnf install -y \
+        ibus \
+        ibus-rime
+    echo "export GTK_IM_MODULE=ibus" >> ~/.bashrc
+    echo "export XMODIFIERS=@im=ibus" >> ~/.bashrc
+    echo "export QT_IM_MODULE=ibus" >> ~/.bashrc
+    source ~/.bashrc
+    read -p "请输入桌面类型(gnome/kde/xfce/cinnamon): " desktop_version
+    if [ "$desktop_version" = "gnome" ]; then
+        sudo dnf install -y \
+            gnome-tweaks \
+            gnome-extensions-app \
+            gnome-software
+    fi
+    if [ "$desktop_version" = "kde" ]; then
+        mkdir -p ~/.config
+        echo "[Formats]
+            LANG=zh_CN.UTF-8
+            LC_CTYPE=en_US.UTF-8
+            LC_NUMERIC=en_US.UTF-8
+            LC_TIME=zh_CN.UTF-8
+            LC_COLLATE=en_US.UTF-8
+            LC_MONETARY=en_US.UTF-8
+            LC_MESSAGES=en_US.UTF-8
+            LC_PAPER=en_US.UTF-8
+            LC_NAME=en_US.UTF-8
+            LC_ADDRESS=en_US.UTF-8
+            LC_TELEPHONE=en_US.UTF-8
+            LC_MEASUREMENT=en_US.UTF-8
+            LC_IDENTIFICATION=en_US.UTF-8
+            
+            [Translations]
+            LANGUAGE=zh_CN" | tr -d ' ' > ~/.config/plasma-localerc
+    fi
+    if [ "$desktop_version" = "xfce" ]; then
+        :
+    fi
+    if [ "$desktop_version" = "cinnamon" ]; then
+        :
     fi
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/config.tar.gz"
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/opencc.tar.gz"
