@@ -26,7 +26,6 @@ sudo apt install \
 cargo install \
   du-dust \
   eza \
-  procs \
   ripgrep
 echo 'eval "$(zoxide init bash)"' >> ~/.bashrc
 echo 'export PATH="$PATH:/home/wenzexu/.cargo/bin"' >> ~/.bashrc
