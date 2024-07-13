@@ -21,7 +21,6 @@ sudo apt install \
   speedtest-cli \
   httpie \
   libfuse2 \
-  locales \
   -y
 cargo install \
   du-dust \
