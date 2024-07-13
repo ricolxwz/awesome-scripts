@@ -1,5 +1,6 @@
 sudo apt update -y
 sudo apt install \
+  locales \
   tree \
   git \
   neovim \
