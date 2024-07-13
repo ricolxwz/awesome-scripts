@@ -3,6 +3,9 @@ DEFAULT_GATEWAY=$(ip route | grep default | awk '{print $3}')
 DEFAULT_DNS=$(ip route | grep default | awk '{print $3}')
 OLD_PROFILE=$(nmcli -t -f NAME,TYPE connection show | grep 'ethernet' | head -n 1 | cut -d: -f1)
 
+ip r
+ip a
+
 sudo dnf install NetworkManager -y
 sudo systemctl restart NetworkManager
 
@@ -16,6 +19,7 @@ read -p "请输入DNS地址 [默认: $DEFAULT_DNS]: " dns
 dns=${dns:-$DEFAULT_DNS}
 
 sudo dnf install -y openssh-clients openssh-server
+sudo systemctl enable sshd
 
 mkdir -p ~/.ssh
 echo "$key" > ~/.ssh/authorized_keys
@@ -35,12 +39,10 @@ else
     echo "未输入SSH私钥, 跳过保存过程"
 fi
 
-# Configure network settings
 sudo nmcli con add type ethernet con-name static-ip ifname ${interface} ipv4.addresses ${ip}/24 ipv4.gateway ${gateway} ipv4.dns ${dns} ipv4.method manual connection.autoconnect yes
 
-# Restart services
+echo "Bye Bye~, 请尝试用新的IP访问此机器"
+
 sudo systemctl restart sshd
 sudo nmcli con up static-ip
 sudo nmcli con delete "$OLD_PROFILE"
-
-echo "Bye Bye~, 请尝试用新的IP访问此机器"
