@@ -1,6 +1,26 @@
 DEFAULT_IP=$(ip -4 addr show scope global | grep inet | awk '{print $2}' | cut -d'/' -f1 | head -n 1)
 DEFAULT_GATEWAY=$(ip route | grep default | awk '{print $3}')
 DEFAULT_DNS=$(ip route | grep default | awk '{print $3}')
+echo '
+alias proxy="
+    export http_proxy=socks5://$DEFAULT_GATEWAY:7890;
+    export https_proxy=socks5://$DEFAULT_GATEWAY:7890;
+    export all_proxy=socks5://$DEFAULT_GATEWAY:7890;
+    export no_proxy=socks5://$DEFAULT_GATEWAY:7890;
+    export HTTP_PROXY=socks5://$DEFAULT_GATEWAY:7890;
+    export HTTPS_PROXY=socks5://$DEFAULT_GATEWAY:7890;
+    export ALL_PROXY=socks5://$DEFAULT_GATEWAY:7890;
+    export NO_PROXY=socks5://$DEFAULT_GATEWAY:7890;"
+alias unproxy="
+    unset http_proxy;
+    unset https_proxy;
+    unset all_proxy;
+    unset no_proxy;
+    unset HTTP_PROXY;
+    unset HTTPS_PROXY;
+    unset ALL_PROXY;
+    unset NO_PROXY"
+' >> ~/.bashrc
 ip r
 ip a
 read -p "请输入公钥: " key
