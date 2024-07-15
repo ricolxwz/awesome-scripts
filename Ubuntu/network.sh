@@ -21,6 +21,7 @@ alias unproxy="
     unset ALL_PROXY;
     unset NO_PROXY"
 ' >> ~/.bashrc
+source ~/.bashrc
 ip r
 ip a
 read -p "请输入公钥: " key
