@@ -6,6 +6,7 @@ wget -O network.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/m
 wget -O packages.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Fedora/packages.sh"
 wget -O docker.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Fedora/docker.sh"
 wget -O pyenv.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Fedora/pyenv.sh"
+wget -O sing-box.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Fedora/sing-box.sh"
 wget -O desktop.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Fedora/desktop.sh"
 wget -O locale.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Fedora/locale.sh"
 chmod a+x *.sh
@@ -14,6 +15,7 @@ chmod a+x *.sh
 ./docker.sh
 ./pyenv.sh
 ./desktop.sh
+./sing-box.sh
 ./network.sh
 ./locale.sh
 cd ~
