@@ -3,14 +3,14 @@ DEFAULT_GATEWAY=$(ip route | grep default | awk '{print $3}')
 DEFAULT_DNS=$(ip route | grep default | awk '{print $3}')
 echo '
 alias proxy="
-    export http_proxy=socks5://127.0.0.1:5353;
-    export https_proxy=socks5://127.0.0.1:5353;
-    export all_proxy=socks5://127.0.0.1:5353;
-    export no_proxy=socks5://127.0.0.1:5353;
-    export HTTP_PROXY=socks5://127.0.0.1:5353;
-    export HTTPS_PROXY=socks5://127.0.0.1:5353;
-    export ALL_PROXY=socks5://127.0.0.1:5353;
-    export NO_PROXY=socks5://127.0.0.1:5353;"
+    export http_proxy=http://127.0.0.1:5353;
+    export https_proxy=http://127.0.0.1:5353;
+    export all_proxy=http://127.0.0.1:5353;
+    export no_proxy=http://127.0.0.1:5353;
+    export HTTP_PROXY=http://127.0.0.1:5353;
+    export HTTPS_PROXY=http://127.0.0.1:5353;
+    export ALL_PROXY=http://127.0.0.1:5353;
+    export NO_PROXY=http://127.0.0.1:5353;"
 alias unproxy="
     unset http_proxy;
     unset https_proxy;
