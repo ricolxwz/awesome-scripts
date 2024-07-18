@@ -21,6 +21,8 @@ if [ "$answer" = "y" ]; then
           gnome-tweak-tool \
           gnome-shell-extension-manager \
           gnome-software
+        read -p "请输入缩放因子(0-无穷): " scale_factor
+        gsettings set org.gnome.desktop.interface scaling-factor $scale_factor
     fi
     if [ "$desktop_version" = "kde" ]; then
         mkdir -p ~/.config
