@@ -5,7 +5,7 @@ wget -O user.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/mast
 wget -O network.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Ubuntu/network.sh"
 wget -O packages.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Ubuntu/packages.sh"
 wget -O docker.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Ubuntu/docker.sh"
-wget -O pyenv.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Ubuntu/pyenv.sh"
+# wget -O pyenv.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Ubuntu/pyenv.sh"
 wget -O sing-box.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Ubuntu/sing-box.sh"
 wget -O desktop.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Ubuntu/desktop.sh"
 wget -O locale.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Ubuntu/locale.sh"
@@ -13,7 +13,7 @@ chmod a+x *.sh
 ./user.sh
 ./packages.sh
 ./docker.sh
-./pyenv.sh
+# ./pyenv.sh
 ./desktop.sh
 ./sing-box.sh
 ./network.sh
