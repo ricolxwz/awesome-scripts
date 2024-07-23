@@ -103,6 +103,9 @@ if [ "$answer" = "y" ]; then
     mv code.deb software/
     sudo dpkg -i ~/software/code.deb
     sudo chown -R $(whoami) /usr/share/code
+    curl -f http://zed.dev/install.sh | sh
+    echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc
+    source ~/.bashrc
 else
     echo "未执行任何操作."
 fi
