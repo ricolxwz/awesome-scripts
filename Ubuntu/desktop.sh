@@ -89,10 +89,10 @@ if [ "$answer" = "y" ]; then
         echo "export XMODIFIERS=@im=fcitx5" >> ~/.bashrc
         echo "export QT_IM_MODULE=fcitx5" >> ~/.bashrc
         source ~/.bashrc
-        mkdir -p ~/.config/ibus/rime
-        mv ~/dicts ~/.config/ibus/rime/
-        mv ~/opencc ~/.config/ibus/rime/
-        mv ~/config/* ~/.config/ibus/rime/
+        mkdir -p ~/.config/fcitx5/rime
+        mv ~/dicts ~/.config/fcitx5/rime/
+        mv ~/opencc ~/.config/fcitx5/rime/
+        mv ~/config/* ~/.config/fcitx5/rime/
     fi
     rm -rf ~/config
     rm -rf ~/opencc
