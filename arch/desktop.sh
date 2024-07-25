@@ -2,7 +2,15 @@ read -p "是否需要安装桌面环境和相关软件? (y/n, 默认为不安装
 if [ "$answer" = "y" ]; then
     cd ~
     sudo pacman -S --needed unzip wget wqy-zenhei --noconfirm
-    sudo pacman -Rns fcitx ibus --noconfirm
+    if pacman -Qq | grep -q "^fcitx"; then
+        sudo pacman -Rns $(pacman -Qq | grep "^fcitx") --noconfirm
+    fi
+    if pacman -Qq | grep -q "^fcitx5"; then
+        sudo pacman -Rns $(pacman -Qq | grep "^fcitx5") --noconfirm
+    fi
+    if pacman -Qq | grep -q "^ibus"; then
+        sudo pacman -Rns $(pacman -Qq | grep "^ibus") --noconfirm
+    fi
     sudo pacman -Scc --noconfirm
     read -p "请输入桌面类型(gnome/kde/xfce/cinnamon): " desktop_version
     if [ "$desktop_version" = "gnome" ]; then
@@ -31,10 +39,10 @@ if [ "$answer" = "y" ]; then
             LANGUAGE=zh_CN" | tr -d ' ' > ~/.config/plasma-localerc
     fi
     if [ "$desktop_version" = "xfce" ]; then
-        sudo pacman -S --needed xfce4 xfce4-goodies --noconfirm
+        :
     fi
     if [ "$desktop_version" = "cinnamon" ]; then
-        sudo pacman -S --needed cinnamon --noconfirm
+        :
     fi
     read -p "请输入输入法版本(ibus/fcitx5): " im_version
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/config.tar.gz"
@@ -99,19 +107,6 @@ if [ "$answer" = "y" ]; then
     rm IosevkaTerm.zip
     rm UbuntuMono.zip
     fc-cache -v
-    mkdir ~/software
-    read -p "是否为ARM架构？(y/n, 留空或其他为amd64架构): " arm_answer
-    if [ "$arm_answer" = "y" ]; then
-        wget -O code.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-arm64"
-    else
-        wget -O code.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
-    fi
-    mv code.deb software/
-    sudo pacman -U ~/software/code.deb --noconfirm
-    sudo chown -R $(whoami) /usr/share/code
-    curl -f http://zed.dev/install.sh | sh
-    echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc
-    source ~/.bashrc
 else
     echo "未执行任何操作."
 fi
