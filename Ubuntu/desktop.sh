@@ -47,26 +47,26 @@ if [ "$answer" = "y" ]; then
     fi
     read -p "请输入输入法版本(ibus/fcitx5): " im_version
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/config.tar.gz"
-        wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/opencc.tar.gz"
-        wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict1.tar.gz"
-        wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict2.tar.gz"
-        wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict3.tar.gz"
-        wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict4.tar.gz"
-        wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict5.tar.gz"
-        tar -xzvf config.tar.gz config
-        tar -xzvf opencc.tar.gz opencc
-        tar -xzvf dict1.tar.gz dict1
-        tar -xzvf dict2.tar.gz dict2
-        tar -xzvf dict3.tar.gz dict3
-        tar -xzvf dict4.tar.gz dict4
-        tar -xzvf dict5.tar.gz dict5
-        rm *.tar.gz
-        mkdir ~/dicts
-        mv dict1/* ~/dicts/
-        mv dict2/* ~/dicts/
-        mv dict3/* ~/dicts/
-        mv dict4/* ~/dicts/
-        mv dict5/* ~/dicts/
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/opencc.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict1.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict2.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict3.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict4.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict5.tar.gz"
+    tar -xzvf config.tar.gz config
+    tar -xzvf opencc.tar.gz opencc
+    tar -xzvf dict1.tar.gz dict1
+    tar -xzvf dict2.tar.gz dict2
+    tar -xzvf dict3.tar.gz dict3
+    tar -xzvf dict4.tar.gz dict4
+    tar -xzvf dict5.tar.gz dict5
+    rm *.tar.gz
+    mkdir ~/dicts
+    mv dict1/* ~/dicts/
+    mv dict2/* ~/dicts/
+    mv dict3/* ~/dicts/
+    mv dict4/* ~/dicts/
+    mv dict5/* ~/dicts/
     if [ "$im_version" = "ibus" ]; then
         sudo apt install -y \
             ibus \
