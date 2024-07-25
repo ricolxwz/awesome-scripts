@@ -85,9 +85,9 @@ if [ "$answer" = "y" ]; then
             fcitx5 \
             fcitx5-rime \
             fcitx5-material-color
-        echo "export GTK_IM_MODULE=fcitx" >> ~/.bashrc
-        echo "export XMODIFIERS=@im=fcitx" >> ~/.bashrc
-        echo "export QT_IM_MODULE=fcitx" >> ~/.bashrc
+        echo "export GTK_IM_MODULE=fcitx5" >> ~/.bashrc
+        echo "export XMODIFIERS=@im=fcitx5" >> ~/.bashrc
+        echo "export QT_IM_MODULE=fcitx5" >> ~/.bashrc
         source ~/.bashrc
         mkdir -p ~/.config/ibus/rime
         mv ~/dicts ~/.config/ibus/rime/
