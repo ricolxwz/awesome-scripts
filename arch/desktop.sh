@@ -78,7 +78,13 @@ if [ "$answer" = "y" ]; then
         mv ~/config/* ~/.config/ibus/rime/
     fi
     if [ "$im_version" = "fcitx5" ]; then
-        sudo pacman -S --needed fcitx5 fcitx5-rime fcitx5-configtool --noconfirm
+        sudo pacman -S --needed  --noconfirm \
+            fcitx5 \
+            fcitx5-rime \
+            fcitx5-configtool \
+            fcitx5-gtk \
+            fcitx5-qt \
+            fcitx5-chinese-addons
         echo "export GTK_IM_MODULE=fcitx5" >> ~/.bashrc
         echo "export XMODIFIERS=@im=fcitx5" >> ~/.bashrc
         echo "export QT_IM_MODULE=fcitx5" >> ~/.bashrc
