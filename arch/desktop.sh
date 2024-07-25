@@ -130,6 +130,7 @@ if [ "$answer" = "y" ]; then
     rm IosevkaTerm.zip
     rm UbuntuMono.zip
     fc-cache -v
+    sudo pacman -S --needed --noconfirm vscode
 else
     echo "未执行任何操作."
 fi
