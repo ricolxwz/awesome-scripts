@@ -70,6 +70,8 @@ Address=${ip}/24
 Gateway=${gateway}
 DNS=${dns}" | sudo tee /etc/systemd/network/99-vm.network > /dev/null
 
+sudo systemctl restart systemd-networkd
+
 echo "Bye Bye~, 请尝试用新的IP访问此机器"
 
 sudo systemctl restart sshd
