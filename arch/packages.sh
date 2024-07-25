@@ -29,7 +29,12 @@ sudo pacman -S --needed --noconfirm \
   firefox \
   ark \
   packagekit-qt6 packagekit appstream-qt appstream \
-  gwenview
+  gwenview \
+  base-devel
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+cd ~
 cargo install \
   du-dust \
   eza \
