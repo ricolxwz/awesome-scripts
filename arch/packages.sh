@@ -21,8 +21,7 @@ sudo pacman -S --needed --noconfirm \
   tmux \
   speedtest-cli \
   httpie \
-  fuse2 \
-  --noconfirm
+  fuse2
 cargo install \
   du-dust \
   eza \
