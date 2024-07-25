@@ -5,15 +5,10 @@ if [ "$answer" = "y" ]; then
     sudo apt remove fcitx* -y
     sudo apt remove fcitx-module* -y
     sudo apt remove fcitx-frontend* -y
+    sudo apt remove ibus -y
+    sudo apt purge ibus -y
     sudo apt purge fcitx* -y
     sudo apt autoclean && sudo apt autoremove -y
-    sudo apt install -y \
-        ibus \
-        ibus-rime
-    echo "export GTK_IM_MODULE=ibus" >> ~/.bashrc
-    echo "export XMODIFIERS=@im=ibus" >> ~/.bashrc
-    echo "export QT_IM_MODULE=ibus" >> ~/.bashrc
-    source ~/.bashrc
     read -p "请输入桌面类型(gnome/kde/xfce/cinnamon): " desktop_version
     if [ "$desktop_version" = "gnome" ]; then
         sudo add-apt-repository universe -y
@@ -50,35 +45,83 @@ if [ "$answer" = "y" ]; then
     if [ "$desktop_version" = "cinnamon" ]; then
         :
     fi
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/config.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/opencc.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict1.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict2.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict3.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict4.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict5.tar.gz"
-    tar -xzvf config.tar.gz config
-    tar -xzvf opencc.tar.gz opencc
-    tar -xzvf dict1.tar.gz dict1
-    tar -xzvf dict2.tar.gz dict2
-    tar -xzvf dict3.tar.gz dict3
-    tar -xzvf dict4.tar.gz dict4
-    tar -xzvf dict5.tar.gz dict5
-    rm *.tar.gz
-    mkdir ~/dicts
-    mv dict1/* ~/dicts/
-    mv dict2/* ~/dicts/
-    mv dict3/* ~/dicts/
-    mv dict4/* ~/dicts/
-    mv dict5/* ~/dicts/
-    mkdir -p ~/.config/ibus/rime
-    mv ~/dicts ~/.config/ibus/rime/
-    mv ~/opencc ~/.config/ibus/rime/
-    mv ~/config/* ~/.config/ibus/rime/
-    rm -rf ~/config
-    rm -rf ~/opencc
-    rm -rf ~/dicts
-    rm -rf dict*
+    read -p "请输入输入法版本(ibus/fcitx5): " im_version
+    if [ "$im_version" = "ibus" ]; then
+        sudo apt install -y \
+            ibus \
+            ibus-rime
+        echo "export GTK_IM_MODULE=ibus" >> ~/.bashrc
+        echo "export XMODIFIERS=@im=ibus" >> ~/.bashrc
+        echo "export QT_IM_MODULE=ibus" >> ~/.bashrc
+        source ~/.bashrc
+        wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/config.tar.gz"
+        wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/opencc.tar.gz"
+        wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict1.tar.gz"
+        wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict2.tar.gz"
+        wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict3.tar.gz"
+        wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict4.tar.gz"
+        wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict5.tar.gz"
+        tar -xzvf config.tar.gz config
+        tar -xzvf opencc.tar.gz opencc
+        tar -xzvf dict1.tar.gz dict1
+        tar -xzvf dict2.tar.gz dict2
+        tar -xzvf dict3.tar.gz dict3
+        tar -xzvf dict4.tar.gz dict4
+        tar -xzvf dict5.tar.gz dict5
+        rm *.tar.gz
+        mkdir ~/dicts
+        mv dict1/* ~/dicts/
+        mv dict2/* ~/dicts/
+        mv dict3/* ~/dicts/
+        mv dict4/* ~/dicts/
+        mv dict5/* ~/dicts/
+        mkdir -p ~/.config/ibus/rime
+        mv ~/dicts ~/.config/ibus/rime/
+        mv ~/opencc ~/.config/ibus/rime/
+        mv ~/config/* ~/.config/ibus/rime/
+        rm -rf ~/config
+        rm -rf ~/opencc
+        rm -rf ~/dicts
+        rm -rf dict*
+    fi
+    if [ "$im_version" = "fcitx5" ]; then
+        sudo apt install -y \
+            fcitx5 \
+            fcitx5-rime
+        echo "export GTK_IM_MODULE=fcitx" >> ~/.bashrc
+        echo "export XMODIFIERS=@im=fcitx" >> ~/.bashrc
+        echo "export QT_IM_MODULE=fcitx" >> ~/.bashrc
+        source ~/.bashrc
+        wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/config.tar.gz"
+        wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/opencc.tar.gz"
+        wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict1.tar.gz"
+        wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict2.tar.gz"
+        wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict3.tar.gz"
+        wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict4.tar.gz"
+        wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict5.tar.gz"
+        tar -xzvf config.tar.gz config
+        tar -xzvf opencc.tar.gz opencc
+        tar -xzvf dict1.tar.gz dict1
+        tar -xzvf dict2.tar.gz dict2
+        tar -xzvf dict3.tar.gz dict3
+        tar -xzvf dict4.tar.gz dict4
+        tar -xzvf dict5.tar.gz dict5
+        rm *.tar.gz
+        mkdir ~/dicts
+        mv dict1/* ~/dicts/
+        mv dict2/* ~/dicts/
+        mv dict3/* ~/dicts/
+        mv dict4/* ~/dicts/
+        mv dict5/* ~/dicts/
+        mkdir -p ~/.config/ibus/rime
+        mv ~/dicts ~/.config/ibus/rime/
+        mv ~/opencc ~/.config/ibus/rime/
+        mv ~/config/* ~/.config/ibus/rime/
+        rm -rf ~/config
+        rm -rf ~/opencc
+        rm -rf ~/dicts
+        rm -rf dict*
+    fi
     wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Iosevka.zip"
     wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/IosevkaTerm.zip"
     wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/UbuntuMono.zip"
