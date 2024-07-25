@@ -1,5 +1,5 @@
 sudo pacman -Syu
-sudo pacman -S --noconfirm \
+sudo pacman -S --needed --noconfirm \
   glibc \
   tree \
   git \
