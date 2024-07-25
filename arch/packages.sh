@@ -21,7 +21,15 @@ sudo pacman -S --needed --noconfirm \
   tmux \
   speedtest-cli \
   httpie \
-  fuse2
+  fuse2 \
+  sof-firmware alsa-firmware alsa-ucm-conf \
+  ntfs-3g \
+  adobe-source-han-serif-cn-fonts wqy-zenhei \
+  noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra \
+  firefox \
+  ark \
+  packagekit-qt6 packagekit appstream-qt appstream \
+  gwenview
 cargo install \
   du-dust \
   eza \
