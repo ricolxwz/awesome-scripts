@@ -41,7 +41,7 @@ gateway=${gateway:-$DEFAULT_GATEWAY}
 read -p "请输入DNS地址 [默认: $DEFAULT_DNS]: " dns
 dns=${dns:-$DEFAULT_DNS}
 
-sudo dnf install -y openssh-clients openssh-server
+sudo pacman -S --needed --noconfirm openssh
 sudo systemctl enable sshd
 sudo systemctl start sshd
 
