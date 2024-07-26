@@ -9,7 +9,6 @@ wget -O sing-box.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/
 wget -O desktop.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/arch/desktop.sh"
 wget -O locale.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/arch/locale.sh"
 wget -O conda.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/arch/conda.sh"
-wget -O vm.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/arch/vm.sh"
 chmod a+x *.sh
 ./user.sh
 ./packages.sh
