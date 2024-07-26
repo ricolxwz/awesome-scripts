@@ -129,7 +129,10 @@ systemctl start vmtoolsd
 systemctl enable vmware-vmblock-fuse
 systemctl start vmware-vmblock-fuse
 pacman -S gtkmm3
-sudo reboot
+reboot
+
+## 切换到root
+su
 
 ## 将当前用户添加到sudoers
 cd /etc
