@@ -136,6 +136,9 @@ chmod 600 sudoers
 echo "wenzexu ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 chmod 400 sudoers
 
+## 切换到wenzexu
+exit
+
 ## 执行自动化安装程序
 cd ~
 wget -O setup.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/arch/setup.sh"
