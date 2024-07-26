@@ -21,13 +21,18 @@ timedatectl set-ntp true
 timedatectl status
 
 ## 分区
+lsblk
 parted /dev/nvme0n1
 mktable gpt
-mkpart EFI fat32 0% 800MB
-mkpart PRI ext4 800MB 100%
+mkpart EFI 0% 800MB
+mkpart PRI 800MB 100%
 print
 quit
 fdisk -l
+
+## 格式化
+mkfs.vfat /dev/nvme0n1p1
+mkfs.ext4 /dev/nvme0n1p2
 
 ## 挂载
 mount /dev/nvme0n1p2 /mnt
