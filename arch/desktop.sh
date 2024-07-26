@@ -134,9 +134,10 @@ if [ "$answer" = "y" ]; then
     rm UbuntuMono.zip
     fc-cache -v
     yay -S --noconfirm --needed \
-        visual-studio-code-bin
-        # visual-studio-code-insiders-bin
-    sudo chown -R $(whoami) /opt/visual-studio-code
+        visual-studio-code-insiders-bin
+        # visual-studio-code-bin
+    # sudo chown -R $(whoami) /opt/visual-studio-code
+    sudo chown -R $(whoami) /opt/visual-studio-code-insiders
 else
     echo "未执行任何操作."
 fi
