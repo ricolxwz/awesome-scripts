@@ -93,23 +93,25 @@ if [ "$answer" = "y" ]; then
         mv ~/opencc ~/.local/share/fcitx5/rime/
         mv ~/config/* ~/.local/share/fcitx5/rime/
         rm ~/.local/share/fcitx5/rime/ibus_rime.custom.yaml
-        echo "Vertical Candidate List=False
-        WheelForPaging=True
-        Font="Sans 10"
-        MenuFont="Sans 10"
-        TrayFont="Sans Bold 10"
-        TrayOutlineColor=#000000
-        TrayTextColor=#ffffff
-        PreferTextIcon=False
-        ShowLayoutNameInIcon=True
-        UseInputMethodLanguageToDisplayText=True
-        Theme=plasma
-        DarkTheme=plasma
-        UseDarkTheme=False
-        UseAccentColor=True
-        PerScreenDPI=True
-        ForceWaylandDPI=0
-        EnableFractionalScale=True" > ~/.config/fcitx5/conf/classicui.conf
+        if [ "$desktop_version" = "kde" ]; then
+            echo "Vertical Candidate List=False
+            WheelForPaging=True
+            Font="Sans 10"
+            MenuFont="Sans 10"
+            TrayFont="Sans Bold 10"
+            TrayOutlineColor=#000000
+            TrayTextColor=#ffffff
+            PreferTextIcon=False
+            ShowLayoutNameInIcon=True
+            UseInputMethodLanguageToDisplayText=True
+            Theme=plasma
+            DarkTheme=plasma
+            UseDarkTheme=False
+            UseAccentColor=True
+            PerScreenDPI=True
+            ForceWaylandDPI=0
+            EnableFractionalScale=True" > ~/.config/fcitx5/conf/classicui.conf
+        fi
     fi
     rm -rf ~/config
     rm -rf ~/opencc
