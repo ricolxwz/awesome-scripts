@@ -95,6 +95,7 @@ if [ "$answer" = "y" ]; then
         mv ~/config/* ~/.local/share/fcitx5/rime/
         rm ~/.local/share/fcitx5/rime/ibus_rime.custom.yaml
         if [ "$desktop_version" = "kde" ]; then
+            mkdir -p ~/.config/fcitx5/conf
             echo "Vertical Candidate List=False
             WheelForPaging=True
             Font="Sans 10"
