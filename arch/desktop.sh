@@ -134,8 +134,8 @@ if [ "$answer" = "y" ]; then
     rm UbuntuMono.zip
     fc-cache -v
     yay -S --noconfirm --needed \
-        visual-studio-code-bin \
-        visual-studio-code-insiders-bin
+        visual-studio-code-bin
+        # visual-studio-code-insiders-bin
 else
     echo "未执行任何操作."
 fi
