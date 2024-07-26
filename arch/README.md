@@ -132,9 +132,7 @@ chmod 400 sudoers
 ## 安装vm工具(可选)
 pacman -S open-vm-tools
 systemctl enable vmtoolsd
-systemctl start vmtoolsd
 systemctl enable vmware-vmblock-fuse
-systemctl start vmware-vmblock-fuse
 pacman -S gtkmm3
 reboot
 
