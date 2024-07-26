@@ -119,13 +119,22 @@ systemctl start sddm
 
 # 进入图形操作界面
 
-## 安装vm工具
-sudo pacman -S open-vm-tools
-sudo systemctl enable vmtoolsd
-sudo systemctl start vmtoolsd
-sudo systemctl enable vmware-vmblock-fuse
-sudo systemctl start vmware-vmblock-fuse
-sudo pacman -S gtkmm3
+## 切换到root
+su
+
+## 安装vm工具(可选)
+pacman -S open-vm-tools
+systemctl enable vmtoolsd
+systemctl start vmtoolsd
+systemctl enable vmware-vmblock-fuse
+systemctl start vmware-vmblock-fuse
+pacman -S gtkmm3
+
+## 将当前用户添加到sudoers
+cd /etc
+sudo chmod 600 sudoers
+echo "$USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+sudo chmod 400 sudoers
 
 ## 执行自动化安装程序
 cd ~
