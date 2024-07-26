@@ -132,9 +132,9 @@ pacman -S gtkmm3
 
 ## 将当前用户添加到sudoers
 cd /etc
-sudo chmod 600 sudoers
+chmod 600 sudoers
 echo "wenzexu ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-sudo chmod 400 sudoers
+chmod 400 sudoers
 
 ## 执行自动化安装程序
 cd ~
