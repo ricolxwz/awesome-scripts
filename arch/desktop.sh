@@ -85,9 +85,9 @@ if [ "$answer" = "y" ]; then
             fcitx5-gtk \
             fcitx5-qt \
             fcitx5-chinese-addons
-        echo "export GTK_IM_MODULE=fcitx5" >> ~/.bashrc
-        echo "export XMODIFIERS=@im=fcitx5" >> ~/.bashrc
-        echo "export QT_IM_MODULE=fcitx5" >> ~/.bashrc
+        echo "export GTK_IM_MODULE=fcitx" >> ~/.bashrc
+        echo "export XMODIFIERS=@im=fcitx" >> ~/.bashrc
+        echo "export QT_IM_MODULE=fcitx" >> ~/.bashrc
         source ~/.bashrc
         mkdir -p ~/.local/share/fcitx5/rime
         mv ~/dicts ~/.local/share/fcitx5/rime/
