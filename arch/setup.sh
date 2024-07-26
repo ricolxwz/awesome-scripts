@@ -12,6 +12,7 @@ chmod a+x *.sh
 ./packages.sh
 ./docker.sh
 ./conda.sh
+./sing-box.sh
 ./desktop.sh
 ./network.sh
 ./locale.sh
