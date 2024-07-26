@@ -88,6 +88,7 @@ reboot
 # 进入新系统
 
 ## 测试网络
+systemctl enable dhcpcd
 systemctl start dhcpcd
 curl cip.cc
 
@@ -122,6 +123,12 @@ systemctl start sddm
 ## 切换到root
 su
 
+## 将当前用户添加到sudoers
+cd /etc
+chmod 600 sudoers
+echo "wenzexu ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+chmod 400 sudoers
+
 ## 安装vm工具(可选)
 pacman -S open-vm-tools
 systemctl enable vmtoolsd
@@ -130,18 +137,6 @@ systemctl enable vmware-vmblock-fuse
 systemctl start vmware-vmblock-fuse
 pacman -S gtkmm3
 reboot
-
-## 切换到root
-su
-
-## 将当前用户添加到sudoers
-cd /etc
-chmod 600 sudoers
-echo "wenzexu ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-chmod 400 sudoers
-
-## 切换到wenzexu
-exit
 
 ## 执行自动化安装程序
 cd ~
