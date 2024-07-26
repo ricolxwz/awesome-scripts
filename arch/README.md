@@ -106,9 +106,9 @@ vim /etc/pacman.conf
 pacman -Syyu
 
 ## 安装KDE(可选)
-pacman -S plasma-meta konsole dolphin # xorg
+pacman -S plasma-meta konsole dolphin # 基本包
   # plasma-meta 元软件包、konsole 终端模拟器和 dolphin 文件管理器
-pacman -S  plasma-workspace xdg-desktop-portal # wayland
+pacman -S  plasma-workspace xdg-desktop-portal # 若还需要wayland支持, 安装这些包
   # N卡用户需要额外安装egl-wayland,xdg-desktop-portal包是为了如obs此类工具录制屏幕使用
   # xdg-desktop-portal包组提供了不同环境下使用的软件包
   # 例如kde用户可选择xdg-desktop-portal-kde包
@@ -118,6 +118,14 @@ systemctl enable sddm
 systemctl start sddm
 
 # 进入图形操作界面
+
+## 安装vm工具
+sudo pacman -S open-vm-tools
+sudo systemctl enable vmtoolsd
+sudo systemctl start vmtoolsd
+sudo systemctl enable vmware-vmblock-fuse
+sudo systemctl start vmware-vmblock-fuse
+sudo pacman -S gtkmm3
 
 ## 执行自动化安装程序
 cd ~
