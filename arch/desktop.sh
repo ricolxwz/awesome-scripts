@@ -136,6 +136,7 @@ if [ "$answer" = "y" ]; then
     yay -S --noconfirm --needed \
         visual-studio-code-bin
         # visual-studio-code-insiders-bin
+    sudo chown -R $(whoami) /opt/visual-studio-code
 else
     echo "未执行任何操作."
 fi
