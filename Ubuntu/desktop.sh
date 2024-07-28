@@ -10,6 +10,7 @@ if [ "$answer" = "y" ]; then
     sudo apt purge fcitx* -y
     sudo apt autoclean && sudo apt autoremove -y
     read -p "请输入桌面类型(gnome/kde/xfce/cinnamon): " desktop_version
+    read -p "请输入桌面后端(wayland/x11): " gui_backend
     if [ "$desktop_version" = "gnome" ]; then
         sudo add-apt-repository universe -y
         sudo apt install -y \
@@ -84,10 +85,6 @@ if [ "$answer" = "y" ]; then
         sudo apt install -y \
             fcitx5 \
             fcitx5-rime
-        echo "export GTK_IM_MODULE=fcitx" >> ~/.bashrc
-        echo "export XMODIFIERS=@im=fcitx" >> ~/.bashrc
-        echo "export QT_IM_MODULE=fcitx" >> ~/.bashrc
-        source ~/.bashrc
         mkdir -p ~/.local/share/fcitx5/rime
         mv ~/dicts ~/.local/share/fcitx5/rime/
         mv ~/opencc ~/.local/share/fcitx5/rime/
@@ -112,6 +109,16 @@ if [ "$answer" = "y" ]; then
             PerScreenDPI=True
             ForceWaylandDPI=0
             EnableFractionalScale=True" > ~/.config/fcitx5/conf/classicui.conf
+        fi
+        if [ "$gui_backend" = "x11" ]; then
+            echo "GTK_IM_MODULE=fcitx" | sudo tee -a /etc/environment > /dev/null
+            echo "XMODIFIERS=@im=fcitx" | sudo tee -a /etc/environment > /dev/null
+            echo "QT_IM_MODULE=fcitx" | sudo tee -a /etc/environment > /dev/null
+            echo "SDL_IM_MODULE=fcitx" | sudo tee -a /etc/environment > /dev/null
+            echo "GLFW_IM_MODULE=ibus" | sudo tee -a /etc/environment > /dev/null
+        fi
+        if [ "$gui_backend" = "wayland" ]; then
+            echo "XMODIFIERS=@im=fcitx" | sudo tee -a /etc/environment > /dev/null
         fi
     fi
     rm -rf ~/config
