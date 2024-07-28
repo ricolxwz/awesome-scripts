@@ -13,6 +13,7 @@ if [ "$answer" = "y" ]; then
     fi
     sudo pacman -Scc --noconfirm
     read -p "请输入桌面类型(gnome/kde/xfce/cinnamon): " desktop_version
+    read -p "请输入桌面后端(wayland/x11): " gui_backend
     if [ "$desktop_version" = "gnome" ]; then
         sudo pacman -S --needed gnome-tweaks gnome-shell-extensions gnome-software --noconfirm
         read -p "请输入缩放因子(0-无穷): " scale_factor
@@ -84,11 +85,8 @@ if [ "$answer" = "y" ]; then
             fcitx5-configtool \
             fcitx5-gtk \
             fcitx5-qt \
-            fcitx5-chinese-addons
-        echo "export GTK_IM_MODULE=fcitx" >> ~/.bashrc
-        echo "export XMODIFIERS=@im=fcitx" >> ~/.bashrc
-        echo "export QT_IM_MODULE=fcitx" >> ~/.bashrc
-        source ~/.bashrc
+            fcitx5-chinese-addons \
+            fcitx5-breeze
         mkdir -p ~/.local/share/fcitx5/rime
         mv ~/dicts ~/.local/share/fcitx5/rime/
         mv ~/opencc ~/.local/share/fcitx5/rime/
@@ -113,6 +111,16 @@ if [ "$answer" = "y" ]; then
             PerScreenDPI=True
             ForceWaylandDPI=0
             EnableFractionalScale=True" > ~/.config/fcitx5/conf/classicui.conf
+        fi
+        if [ "$gui_backend" = "x11" ]; then
+            echo "GTK_IM_MODULE=fcitx" | sudo tee -a /etc/environment > /dev/null
+            echo "XMODIFIERS=@im=fcitx" | sudo tee -a /etc/environment > /dev/null
+            echo "QT_IM_MODULE=fcitx" | sudo tee -a /etc/environment > /dev/null
+            echo "SDL_IM_MODULE=fcitx" | sudo tee -a /etc/environment > /dev/null
+            echo "GLFW_IM_MODULE=ibus" | sudo tee -a /etc/environment > /dev/null
+        fi
+        if [ "$gui_backend" = "wayland" ]; then
+            echo "XMODIFIERS=@im=fcitx" | sudo tee -a /etc/environment > /dev/null
         fi
     fi
     rm -rf ~/config
