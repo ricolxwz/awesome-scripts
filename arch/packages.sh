@@ -35,10 +35,10 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si --noconfirm
 cd ~
-sudo pacman -S --needed base-devel
+sudo pacman -S --needed --noconfirm base-devel
 git clone https://aur.archlinux.org/paru.git
 cd paru
-makepkg -si
+makepkg -si --noconfirm
 cd ~
 cargo install \
   du-dust \
