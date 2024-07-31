@@ -89,6 +89,7 @@ pacman -S amd-ucode
 
 ## 安装引导程序
 pacman -S grub efibootmgr
+# grub-install --target=arm64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 vim /etc/default/grub
   # 1. 去掉 GRUB_CMDLINE_LINUX_DEFAULT 一行中最后的 quiet 参数
