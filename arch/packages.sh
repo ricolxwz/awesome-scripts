@@ -44,6 +44,11 @@ cargo install \
   du-dust \
   eza \
   ripgrep
+paru -S --needed --noconfirm nvm
+echo 'source /usr/share/nvm/init-nvm.sh' >> ~/.bashrc
+source /usr/share/nvm/init-nvm.sh
+nvm install --lts
+nvm use --lts
 echo 'eval "$(zoxide init bash)"' >> ~/.bashrc
 echo 'export PATH="$PATH:/home/wenzexu/.cargo/bin"' >> ~/.bashrc
 echo 'alias bat="batcat"' >> ~/.bashrc
