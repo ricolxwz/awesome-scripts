@@ -30,7 +30,8 @@ sudo pacman -S --needed --noconfirm \
   ark \
   packagekit-qt6 packagekit appstream-qt appstream \
   gwenview \
-  base-devel
+  base-devel \
+  timeshift
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si --noconfirm
