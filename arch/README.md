@@ -146,12 +146,15 @@ chmod 600 sudoers
 echo "wenzexu ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 chmod 400 sudoers
 
-## 安装vm工具(可选)
+## 安装VMware工具(可选)
 pacman -S open-vm-tools
 systemctl enable vmtoolsd
 systemctl enable vmware-vmblock-fuse
 pacman -S gtkmm3
 reboot
+
+## 安装UTM工具(可选)
+pacman -S spice-vdagent
 
 ## 执行自动化安装程序
 cd ~
