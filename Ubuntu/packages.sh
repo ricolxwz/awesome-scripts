@@ -22,7 +22,6 @@ sudo apt install \
   speedtest-cli \
   httpie \
   libfuse2 \
-  timeshift \
   -y
 cargo install \
   du-dust \
