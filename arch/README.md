@@ -2,7 +2,7 @@
 # 使用archboot进行安装
 
 ## 磁盘
-  # 1. 选择Quick Setup, Scheme选择PARTUUID, ESP选择/efi, ESP分区填写800, XBOOTLDR分区填写512, SWAP分区填写0, /和/home的文件系统选择btrfs, /的空间填写0(表示不会为/home创建文件系统), 确认
+  # 1. 选择Quick Setup, Scheme选择PARTUUID, ESP选择/efi, ESP分区填写800, XBOOTLDR分区填写512, SWAP分区填写0, /和/home的文件系统选择btrfs, /的空间按照想要的大小填写, 确认
   # 2. 选择Set Filesystem Mountpoints, Scheme选择PARTUUID, SWAP选择NONE, Root Partition选择主分区, 类型选btrfs, 主分区文件系统的名称为自定义, 可以是ARCH_ROOT, Raid Data Level选择NONE, Subvolume Name填写为@, 透明压缩选择zstd, 跳过自定义选项, ESP选择ESP对应分区, XBOOTLDR选择XBOOTLDR对应分区, Additional Partitions选择DONE
 ```
 
@@ -51,13 +51,13 @@ mkfs.btrfs /dev/nvme0n1p2
 mount -t btrfs -o compress=zstd /dev/nvme0n1p2 /mnt
   # 为了创建子卷, 必须先挂载子卷所属的文件系统
 btrfs subvolume create /mnt/@
-# btrfs subvolume create /mnt/@home
+btrfs subvolume create /mnt/@home
 umount /mnt
   # 想要挂载子卷, 必须先卸载子卷所属的文件系统
 mount -t btrfs -o subvol=/@,compress=zstd /dev/nvme0n1p2 /mnt
   # 将子卷@挂载到/mnt上
-# mkdir /mnt/home
-# mount -t btrfs -o subvol=/@home,compress=zstd /dev/nvme0n1p2 /mnt/home
+mkdir /mnt/home
+mount -t btrfs -o subvol=/@home,compress=zstd /dev/nvme0n1p2 /mnt/home
   # 将子卷@home挂载到/mnt/home上
 mkdir -p /mnt/efi
 mount /dev/nvme0n1p1 /mnt/efi
