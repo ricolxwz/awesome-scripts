@@ -155,6 +155,7 @@ reboot
 
 ## 安装UTM工具(可选)
 pacman -S spice-vdagent
+reboot
 
 ## 执行自动化安装程序 (检查必须在用户wenzexu下运行)
 cd ~
