@@ -156,7 +156,7 @@ reboot
 ## 安装UTM工具(可选)
 pacman -S spice-vdagent
 
-## 执行自动化安装程序
+## 执行自动化安装程序 (检查必须在用户wenzexu下运行)
 cd ~
 sudo pacman -S --needed --noconfirm wget
 wget -O setup.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/arch/setup.sh"
