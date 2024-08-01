@@ -61,6 +61,8 @@ mount -t btrfs -o compress=zstd /dev/vda2 /mnt
 btrfs subvolume create /mnt/@
 umount /mnt
 mount -t btrfs -o subvol=/@,compress=zstd /dev/vda2 /mnt/install
+mkdir -p /mnt/install/efi
+mount /dev/vda1 /mnt/install/efi
 
 ## 系统安装
 pacstrap /mnt base base-devel linux linux-headers linux-firmware
