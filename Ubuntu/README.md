@@ -19,7 +19,7 @@ vim /usr/lib/partman/fstab.d/btrfs
   # 2. 找到/中的home_options, 修改如下: home_options="{options:+$options,}subvol=@home,noatime,space_cache,compress=zstd,discard=async"
   # 3. 找到/中的options, 修改如下: options="{options:+$options,}subvol=@,noatime,space_cache,compress=zstd,discard=async"
   # 4. 找到/home中的pass, 修改如下: pass=0 (一共有2处pass都要改)
-  # 5. 找到/中的options, 修改如下: options="{options:+$options,}subvol=@home,noatime,space_cache,compress=zstd,discard=async"
+  # 5. 找到/home中的options, 修改如下: options="{options:+$options,}subvol=@home,noatime,space_cache,compress=zstd,discard=async"
   # 6. 找到echo "$home_path" "$home_mp" btrfs "$home_options" 0 2, 修改如下: echo "$home_path" "$home_mp" btrfs "$home_options" 0 0
 
 # 启动ubiquity安装程序
