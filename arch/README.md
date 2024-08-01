@@ -56,14 +56,6 @@ mount /dev/nvme0n1p1 /mnt/efi
   # 将/dev/nvme0n1p1挂载到/mnt/efi上
 df -h
 
-## 挂载(AA64)
-mount -t btrfs -o compress=zstd /dev/vda2 /mnt
-btrfs subvolume create /mnt/@
-umount /mnt
-mount -t btrfs -o subvol=/@,compress=zstd /dev/vda2 /mnt/install
-mkdir -p /mnt/install/efi
-mount /dev/vda1 /mnt/install/efi
-
 ## 系统安装
 pacstrap /mnt base base-devel linux linux-headers linux-firmware
 pacstrap /mnt dhcpcd iwd vi vim sudo bash-completion
