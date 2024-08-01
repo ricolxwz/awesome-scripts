@@ -23,7 +23,10 @@ vim /usr/lib/partman/fstab.d/btrfs
   # 6. 找到echo "$home_path" "$home_mp" btrfs "$home_options" 0 2, 修改如下: echo "$home_path" "$home_mp" btrfs "$home_options" 0 0
 
 # 启动ubiquity安装程序
-
+  # 1. 创建磁盘的时候选择something else
+  # 2. 选择创建好的/dev/vda2分区, 下拉列表选择btrfs日志文件系统, 格式化此分区, 挂载点为/
+  # 3. 选择创建好的/dev/vda1分区, 下拉列表选择用于EFI系统分区
+  
 
 # 执行自动化脚本
 cd ~
