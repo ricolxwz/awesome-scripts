@@ -35,13 +35,6 @@ read -p "请输入网关IP地址 [默认: $DEFAULT_GATEWAY]: " gateway
 gateway=${gateway:-$DEFAULT_GATEWAY}
 read -p "请输入DNS地址 [默认: $DEFAULT_DNS]: " dns
 dns=${dns:-$DEFAULT_DNS}
-read -p "是否为桌面版本? (y/n) [默认: n]: " is_desktop
-is_desktop=${is_desktop:-n}
-if [[ "$is_desktop" == "y" ]]; then
-    renderer="NetworkManager"
-else
-    renderer="networkd"
-fi
 sudo apt install openssh-client -y
 sudo apt install openssh-server -y
 sudo systemctl enable ssh
