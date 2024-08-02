@@ -25,7 +25,7 @@ alias unproxy="
 source ~/.bashrc
 ip r
 ip a
-sudo apt install NetworkManager -y
+sudo apt install network-manager -y
 sudo systemctl restart NetworkManager
 read -p "请输入公钥: " key
 interface=$(ip -o -4 route show to default | awk '{print $5}')
