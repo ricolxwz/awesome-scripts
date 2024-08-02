@@ -61,6 +61,9 @@ df -h
   # 将/dev/nvme0n1p1挂载到/mnt/efi上
 # df -h
 
+## 更新keyring, 确保老的镜像文件也可以下载包
+pacman -S archlinux-keyring
+
 ## 系统安装
 pacstrap /mnt base base-devel linux linux-headers linux-firmware
 pacstrap /mnt dhcpcd iwd vi vim sudo bash-completion
