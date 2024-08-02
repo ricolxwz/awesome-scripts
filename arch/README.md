@@ -38,10 +38,12 @@ mkfs.vfat /dev/nvme0n1p1
 mkfs.btrfs /dev/nvme0n1p2
 
 ## 挂载
+### Ext4
 # mount /dev/nvme0n1p2 /mnt
 # mkdir /mnt/efi
 # mount /dev/nvme0n1p1 /mnt/efi
 # df -h
+### Btrfs
 mount -t btrfs -o compress=zstd /dev/nvme0n1p2 /mnt
   # 为了创建子卷, 必须先挂载子卷所属的文件系统
 btrfs subvolume create /mnt/@
