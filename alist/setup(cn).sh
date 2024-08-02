@@ -79,7 +79,7 @@ echo "You have selected: $opt"
 ~/.acme.sh/acme.sh --register-account -m $email
 ~/.acme.sh/acme.sh --issue -d $domain --standalone
 ~/.acme.sh/acme.sh --installcert -d $domain --key-file /root/private.key --fullchain-file /root/cert.crt
-echo "---------- Alist Configuration ----------"
+echo "---------- alist Configuration ----------"
 curl -fsSL "https://alist.nn.ci/v3.sh" | bash -s install
 cd /opt/alist
 read -p "Enter alist admin password: " password

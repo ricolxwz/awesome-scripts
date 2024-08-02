@@ -1,14 +1,14 @@
 sudo apt update -y
 sudo apt install wget
 cd ~
-wget -O user.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Ubuntu/user.sh"
-wget -O network.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Ubuntu/network.sh"
-wget -O packages.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Ubuntu/packages.sh"
-wget -O docker.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Ubuntu/docker.sh"
-# wget -O pyenv.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Ubuntu/pyenv.sh"
-wget -O sing-box.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Ubuntu/sing-box.sh"
-wget -O desktop.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Ubuntu/desktop.sh"
-wget -O locale.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/Ubuntu/locale.sh"
+wget -O user.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/ubuntu/user.sh"
+wget -O network.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/ubuntu/network.sh"
+wget -O packages.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/ubuntu/packages.sh"
+wget -O docker.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/ubuntu/docker.sh"
+# wget -O pyenv.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/ubuntu/pyenv.sh"
+wget -O sing-box.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/ubuntu/sing-box.sh"
+wget -O desktop.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/ubuntu/desktop.sh"
+wget -O locale.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/ubuntu/locale.sh"
 chmod a+x *.sh
 ./user.sh
 ./packages.sh

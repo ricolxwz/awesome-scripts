@@ -46,13 +46,13 @@ if [ "$answer" = "y" ]; then
     if [ "$desktop_version" = "cinnamon" ]; then
         :
     fi
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/config.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/opencc.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict1.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict2.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict3.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict4.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/Ubuntu/rime/dict5.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/ubuntu/rime/config.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/ubuntu/rime/opencc.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/ubuntu/rime/dict1.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/ubuntu/rime/dict2.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/ubuntu/rime/dict3.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/ubuntu/rime/dict4.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/ubuntu/rime/dict5.tar.gz"
     tar -xzvf config.tar.gz
     tar -xzvf opencc.tar.gz
     tar -xzvf dict1.tar.gz

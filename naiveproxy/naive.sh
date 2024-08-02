@@ -7,9 +7,9 @@ go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
 ~/go/bin/xcaddy build --with github.com/caddyserver/forwardproxy@caddy2=github.com/klzgrad/forwardproxy@naive
 read -p "Please Enter your Domain: " domain
 read -p "Please Enter your Email: " email
-read -p "Please Enter your Username for Naiveproxy: " username
-read -p "Please Enter your Password for Naiveproxy: " password
-read -p "Please Enter port for Naiveproxy: " port
+read -p "Please Enter your Username for naiveproxy: " username
+read -p "Please Enter your Password for naiveproxy: " password
+read -p "Please Enter port for naiveproxy: " port
 echo ":$port, $domain
 tls $email
 route {
