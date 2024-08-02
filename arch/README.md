@@ -183,10 +183,9 @@ chmod a+x setup.sh
 
 ## 问题
 
-### 解决声卡不稳定问题
+### 声卡不稳定
 
 ```sh
-## 解决声卡不稳定问题
 mkdir -p ~/.config/wireplumber/wireplumber.conf.d/
 cd ~/.config/wireplumber/wireplumber.conf.d
 vim ~/.config/wireplumber/wireplumber.conf.d/50-alsa-config.conf
