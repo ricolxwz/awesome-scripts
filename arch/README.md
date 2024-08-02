@@ -171,14 +171,7 @@ chmod a+x setup.sh
 
 ```sh
 ## 分区
-lsblk
-parted /dev/nvme0n1
-mktable gpt
-mkpart EFI 0% 800MB
-mkpart PRI 800MB 100%
-print
-quit
-fdisk -l
+  # 使用fdisk/cdisk进行分区
 
 ## 格式化
 mkfs.vfat /dev/nvme0n1p1
