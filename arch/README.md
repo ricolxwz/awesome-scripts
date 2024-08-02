@@ -1,4 +1,4 @@
-# 正常x86-64安装
+# x86-64安装
 
 ```sh
 # cdrom系统下操作
@@ -165,4 +165,35 @@ sudo pacman -S --needed --noconfirm wget
 wget -O setup.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/arch/setup.sh"
 chmod a+x setup.sh
 ./setup.sh
+```
+
+# AArch64安装
+
+```sh
+## 分区
+lsblk
+parted /dev/nvme0n1
+mktable gpt
+mkpart EFI 0% 800MB
+mkpart PRI 800MB 100%
+print
+quit
+fdisk -l
+
+## 格式化
+mkfs.vfat /dev/nvme0n1p1
+# mkfs.ext4 /dev/nvme0n1p2
+mkfs.btrfs /dev/nvme0n1p2
+
+## 挂载
+mount -t btrfs -o compress=zstd /dev/vda2 /mnt/install
+btrfs subvolume create /mnt/install/@
+btrfs subvolume create /mnt/install/@home
+umount /mnt/install
+mount -t btrfs -o subvol=/@,compress=zstd /dev/vda2 /mnt/install
+mkdir /mnt/install/home
+mount -t btrfs -o subvol=/@home,compress=zstd /dev/vda2 /mnt/install/home
+mkdir -p /mnt/efi
+mount /dev/vda1 /mnt/install/efi
+df -Th
 ```
