@@ -63,5 +63,8 @@ fi
 sudo nmcli con add type ethernet con-name static-ip ifname ${interface} ipv4.addresses ${ip}/24 ipv4.gateway ${gateway} ipv4.dns ${dns} ipv4.method manual connection.autoconnect yes
 echo "Bye Bye~, 请尝试用新的IP访问此机器"
 sudo systemctl restart ssh
+sudo rm /etc/network/interfaces
+sudo systemctl disable networking
+sudo systemctl stop networking
 sudo nmcli con up static-ip
 sudo nmcli con delete "$OLD_PROFILE"
