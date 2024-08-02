@@ -9,6 +9,6 @@ chmod a+x setup.sh
 
 ## 问题
 
-### 无法使用剪切板的问题
+### 无法使用剪切板
 
 Debian下, 必须安装所有open-vm-tools-*包: `sudo apt install open-vm-tools-*`
