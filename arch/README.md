@@ -166,3 +166,8 @@ wget -O setup.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/mas
 chmod a+x setup.sh
 ./setup.sh
 ```
+
+# Arm安装
+
+1. 选择Quick Setup, Scheme选择PARTUUID, ESP选择/efi, ESP分区填写800, XBOOTLDR分区填写512, SWAP分区填写0, /和/home的文件系统选择btrfs, /的空间填写0(表示全部分配给/)
+2. 选择Set Filesystem Mountpoints, Scheme选择PARTUUID(Timeshift只支持UUID/设备路径), SWAP选择NONE, Root Partition选择主分区, 类型选btrfs, 主分区文件系统的名称为自定义, 可以是ARCH_ROOT, Raid Data Level选择NONE, Subvolume Name填写为@, 透明压缩选择zstd, 跳过自定义选项, ESP选择ESP对应分区, XBOOTLDR选择XBOOTLDR对应分区, Additional Partitions选择主分区, 挂载点为/home, Subvolume Name填写@home, 透明压缩选择zstd, 最后点击DONE
