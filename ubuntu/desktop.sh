@@ -47,13 +47,13 @@ if [ "$answer" = "y" ]; then
         :
     fi
     read -p "请输入输入法版本(ibus/fcitx5): " im_version
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/ubuntu/rime/config.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/ubuntu/rime/opencc.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/ubuntu/rime/dict1.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/ubuntu/rime/dict2.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/ubuntu/rime/dict3.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/ubuntu/rime/dict4.tar.gz"
-    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/ubuntu/rime/dict5.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/rime/config.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/rime/opencc.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/rime/dict1.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/rime/dict2.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/rime/dict3.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/rime/dict4.tar.gz"
+    wget "https://github.com/ricolxwz/awesome-scripts/raw/master/rime/dict5.tar.gz"
     tar -xzvf config.tar.gz config
     tar -xzvf opencc.tar.gz opencc
     tar -xzvf dict1.tar.gz dict1
