@@ -57,10 +57,10 @@ if [ -n "$ssh_private_key" ]; then
 else
     echo "未输入SSH私钥, 跳过保存过程"
 fi
-sed -i "s/^\(iface $interface_name inet dhcp\)/# \1/" /etc/network/interfaces
+sudo sed -i "s/^\(iface $interface_name inet dhcp\)/# \1/" /etc/network/interfaces
 echo "auto ${interface}
 iface ${interface} inet static
 address ${ip}/24
-gateway ${gateway}" > /etc/network/interfaces.d/net
-sed -i "s/^nameserver $DEFAULT_DNS/nameserver $dns/" /etc/resolv.conf
+gateway ${gateway}" | sudo tee /etc/network/interfaces.d/net > /dev/null
+sudo sed -i "s/^nameserver $DEFAULT_DNS/nameserver $dns/" /etc/resolv.conf
 echo "Bye Bye~, 请尝试用新的IP访问此机器"
