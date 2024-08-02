@@ -168,6 +168,30 @@ sudo pacman -S --needed --noconfirm wget
 wget -O setup.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/master/arch/setup.sh"
 chmod a+x setup.sh
 ./setup.sh
+
+## 解决声卡不稳定问题
+mkdir -p ~/.config/wireplumber/wireplumber.conf.d/
+cd ~/.config/wireplumber/wireplumber.conf.d
+vim ~/.config/wireplumber/wireplumber.conf.d/50-alsa-config.conf
+  # 输入以下内容:
+  monitor.alsa.rules = [
+  {
+    matches = [
+      # This matches the value of the 'node.name' property of the node.
+      {
+        node.name = "~alsa_output.*"
+      }
+    ]
+    actions = {
+      # Apply all the desired node specific settings here.
+      update-props = {
+        api.alsa.period-size   = 2048
+        api.alsa.headroom      = 8192
+      }
+    }
+  }
+  ]
+systemctl --user restart wireplumber pipewire pipewire-pulse
 ```
 
 # Arm安装(Btrfs)
