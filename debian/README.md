@@ -6,3 +6,9 @@ wget -O setup.sh "https://raw.githubusercontent.com/ricolxwz/awesome-scripts/mas
 chmod a+x setup.sh
 ./setup.sh
 ```
+
+## 问题
+
+### 无法使用剪切板的问题
+
+Debian下, 必须安装所有open-vm-tools-*包: `sudo apt install open-vm-tools-*`
