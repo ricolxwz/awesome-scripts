@@ -63,4 +63,3 @@ iface ${interface} inet static
 address ${ip}/24
 gateway ${gateway}" | sudo tee /etc/network/interfaces.d/net > /dev/null
 sudo sed -i "s/^nameserver $DEFAULT_DNS/nameserver $dns/" /etc/resolv.conf
-echo "Bye Bye~, 请尝试用新的IP访问此机器"
