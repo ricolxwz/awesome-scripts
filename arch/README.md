@@ -34,11 +34,12 @@ fdisk -l
 
 ## 格式化
 mkfs.vfat /dev/nvme0n1p1
-mkfs.ext4 /dev/nvme0n1p2
+mkfs.xfs /dev/nvme0n1p2
+# mkfs.ext4 /dev/nvme0n1p2
 # mkfs.btrfs /dev/nvme0n1p2
 
 ## 挂载
-### Ext4
+### Ext4/XFS
 mount /dev/nvme0n1p2 /mnt
 mkdir /mnt/efi
 mount /dev/nvme0n1p1 /mnt/efi
