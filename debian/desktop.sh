@@ -90,6 +90,8 @@ if [ "$answer" = "y" ]; then
         mv ~/opencc ~/.local/share/fcitx5/rime/
         mv ~/config/* ~/.local/share/fcitx5/rime/
         rm ~/.local/share/fcitx5/rime/ibus_rime.custom.yaml
+        mkdir -p ~/.config/autostart
+        ln -s /usr/share/applications/org.fcitx.Fcitx5.desktop ~/.config/autostart/
         if [ "$desktop_version" = "kde" ]; then
             mkdir -p ~/.config/fcitx5/conf
             echo "Vertical Candidate List=False
