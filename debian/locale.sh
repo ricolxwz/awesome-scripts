@@ -1,5 +1,5 @@
-sudo sed -i '/#zh_CN.UTF-8 UTF-8/s/^#//' /etc/locale.gen
-sudo sed -i '/#en_US.UTF-8 UTF-8/s/^#//' /etc/locale.gen
+sudo sed -i '/# zh_CN.UTF-8 UTF-8/s/^#//' /etc/locale.gen
+sudo sed -i '/# en_US.UTF-8 UTF-8/s/^#//' /etc/locale.gen
 sudo locale-gen
 echo 'LANG=zh_CN.UTF-8' | sudo tee /etc/locale.conf
 echo 'LC_CTYPE=en_US.UTF-8' | sudo tee -a /etc/locale.conf
