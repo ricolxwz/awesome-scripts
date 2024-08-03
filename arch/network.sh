@@ -48,7 +48,7 @@ sudo systemctl start sshd
 mkdir -p ~/.ssh
 echo "$key" > ~/.ssh/authorized_keys
 
-echo "Github private key (using ed25519 encryption, enter EOF to execute):"
+echo "Github private key (using ed25519 encryption, enter EOF to execute): "
 ssh_private_key=""
 while IFS= read -r line; do
     if [ "$line" == "EOF" ]; then
