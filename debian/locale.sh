@@ -1,4 +1,5 @@
-sudo locale-gen zh_CN.UTF-8 en_US.UTF-8
+sudo locale-gen zh_CN.UTF-8
+sudo locale-gen en_US.UTF-8
 echo 'LANG=zh_CN.UTF-8' | sudo tee /etc/locale.conf
 echo 'LC_CTYPE=en_US.UTF-8' | sudo tee -a /etc/locale.conf
 echo 'LC_NUMERIC=en_US.UTF-8' | sudo tee -a /etc/locale.conf
