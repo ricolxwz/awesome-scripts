@@ -1,4 +1,4 @@
-read -p "是否需要安装桌面环境和相关软件? (y/n, 默认为不安装): " answer
+read -p "Install desktop env? (y/n, default n): " answer
 if [ "$answer" = "y" ]; then
     cd ~
     sudo pacman -S --needed unzip wget wqy-zenhei --noconfirm
@@ -12,11 +12,11 @@ if [ "$answer" = "y" ]; then
         sudo pacman -Rns $(pacman -Qq | grep "^ibus") --noconfirm
     fi
     sudo pacman -Scc --noconfirm
-    read -p "请输入桌面类型(gnome/kde/xfce/cinnamon): " desktop_version
-    read -p "请输入桌面后端(wayland/x11): " gui_backend
+    read -p "Desktop distribution? (gnome/kde/xfce/cinnamon): " desktop_version
+    read -p "GUI backend? (wayland/x11): " gui_backend
     if [ "$desktop_version" = "gnome" ]; then
         sudo pacman -S --needed gnome-tweaks gnome-shell-extensions gnome-software --noconfirm
-        read -p "请输入缩放因子(0-无穷): " scale_factor
+        read -p "Scale? (0-infty): " scale_factor
         gsettings set org.gnome.desktop.interface scaling-factor $scale_factor
     fi
     if [ "$desktop_version" = "kde" ]; then
@@ -45,7 +45,7 @@ if [ "$answer" = "y" ]; then
     if [ "$desktop_version" = "cinnamon" ]; then
         :
     fi
-    read -p "请输入输入法版本(ibus/fcitx5): " im_version
+    read -p "IM? (ibus/fcitx5): " im_version
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/rime/config.tar.gz"
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/rime/opencc.tar.gz"
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/rime/dict1.tar.gz"
@@ -146,6 +146,13 @@ if [ "$answer" = "y" ]; then
         # visual-studio-code-bin
     # sudo chown -R $(whoami) /opt/visual-studio-code
     sudo chown -R $(whoami) /opt/visual-studio-code-insiders
+    read -p "Install other useful programs? (y/n, default n): " extra_programs
+    if [ "$extra_programs" = "y" ]; then
+        yay -S --needed --noconfirm picgo
+        sudo pacman -S --needed --noconfirm ksnip
+        curl -L -o install.pkg.tar.zst "https://app.warp.dev/download?package=pacman"
+        sudo pacman -U --needed --noconfirm install.pkg.tar.zst
+    fi
 else
-    echo "未执行任何操作."
+    echo "Pass."
 fi
