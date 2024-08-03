@@ -24,9 +24,7 @@ sudo apt install \
   libfuse2 \
   -y
 cargo install \
-  du-dust \
-  eza \
-  ripgrep
+  eza
 echo 'eval "$(zoxide init bash)"' >> ~/.bashrc
 echo 'export PATH="$PATH:/home/wenzexu/.cargo/bin"' >> ~/.bashrc
 echo 'alias bat="batcat"' >> ~/.bashrc
