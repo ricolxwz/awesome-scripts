@@ -24,14 +24,14 @@ sudo apt install \
   libfuse2 \
   -y
 cargo install \
-  eza
+  exa
 echo 'eval "$(zoxide init bash)"' >> ~/.bashrc
 echo 'export PATH="$PATH:/home/wenzexu/.cargo/bin"' >> ~/.bashrc
 echo 'alias bat="batcat"' >> ~/.bashrc
 echo 'alias vi="nvim"' >> ~/.bashrc
 echo 'alias vim="nvim"' >> ~/.bashrc
 echo 'alias rm="trash-put"' >> ~/.bashrc
-echo 'alias ll="eza -al -s=time"' >> ~/.bashrc
+echo 'alias ll="exa -l"' >> ~/.bashrc
 echo 'alias cd="z"' >> ~/.bashrc
 source ~/.bashrc
 git config --global user.name "wenzexu"
