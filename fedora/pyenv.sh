@@ -1,8 +1,8 @@
 cd ~
 sudo dnf install git curl -y
 
-read -p "请输入要安装的Python版本号(以空格分隔): " pyv
-read -p "请输入使用的全局Python版本号: " pyvm
+read -p "Python versions (separated by space): " pyv
+read -p "Global python version: " pyvm
 
 curl https://pyenv.run | bash
 

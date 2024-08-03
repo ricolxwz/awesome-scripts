@@ -1,7 +1,7 @@
 cd ~
 sudo apt install git curl -y
-read -p "请输入要安装的Python版本号(以空格分隔): " pyv
-read -p "请输入使用的全局Python版本号: " pyvm
+read -p "Python versions (separated by space): " pyv
+read -p "Global python version: " pyvm
 curl https://pyenv.run | bash
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
 echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc

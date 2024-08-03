@@ -1,4 +1,4 @@
-read -p "是否需要安装桌面环境和相关软件? (y/n, 默认为不安装): " answer
+read -p "Install desktop env? (y/n, default n): " answer
 if [ "$answer" = "y" ]; then
     cd ~
     sudo apt install unzip wget fonts-wqy-zenhei -y
@@ -9,15 +9,15 @@ if [ "$answer" = "y" ]; then
     sudo apt purge ibus -y
     sudo apt purge fcitx* -y
     sudo apt autoclean && sudo apt autoremove -y
-    read -p "请输入桌面类型(gnome/kde/xfce/cinnamon): " desktop_version
-    read -p "请输入桌面后端(wayland/x11): " gui_backend
+    read -p "Desktop distribution? (gnome/kde/xfce/cinnamon): " desktop_version
+    read -p "GUI backend? (wayland/x11): " gui_backend
     if [ "$desktop_version" = "gnome" ]; then
         sudo add-apt-repository universe -y
         sudo apt install -y \
           gnome-tweak-tool \
           gnome-shell-extension-manager \
           gnome-software
-        read -p "请输入缩放因子(0-无穷): " scale_factor
+        read -p "Scale? (0-infty): " scale_factor
         gsettings set org.gnome.desktop.interface scaling-factor $scale_factor
     fi
     if [ "$desktop_version" = "kde" ]; then
@@ -46,7 +46,7 @@ if [ "$answer" = "y" ]; then
     if [ "$desktop_version" = "cinnamon" ]; then
         :
     fi
-    read -p "请输入输入法版本(ibus/fcitx5): " im_version
+    read -p "IM? (ibus/fcitx5): " im_version
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/rime/config.tar.gz"
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/rime/opencc.tar.gz"
     wget "https://github.com/ricolxwz/awesome-scripts/raw/master/rime/dict1.tar.gz"
@@ -140,7 +140,7 @@ if [ "$answer" = "y" ]; then
     rm UbuntuMono.zip
     fc-cache -v
     mkdir ~/software
-    read -p "是否为ARM架构？(y/n, 留空或其他为amd64架构): " arm_answer
+    read -p "ARM? (y/n, default amd64): " arm_answer
     if [ "$arm_answer" = "y" ]; then
         wget -O code.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-arm64"
     else
@@ -153,5 +153,5 @@ if [ "$answer" = "y" ]; then
     echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc
     source ~/.bashrc
 else
-    echo "未执行任何操作."
+    echo "Pass."
 fi

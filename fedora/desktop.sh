@@ -13,7 +13,7 @@ if [ "$answer" = "y" ]; then
     echo "export XMODIFIERS=@im=ibus" >> ~/.bashrc
     echo "export QT_IM_MODULE=ibus" >> ~/.bashrc
     source ~/.bashrc
-    read -p "请输入桌面类型(gnome/kde/xfce/cinnamon): " desktop_version
+    read -p "Desktop distribution? (gnome/kde/xfce/cinnamon): " desktop_version
     if [ "$desktop_version" = "gnome" ]; then
         sudo dnf install -y \
             gnome-tweaks \
@@ -90,7 +90,7 @@ if [ "$answer" = "y" ]; then
     rm UbuntuMono.zip
     fc-cache -v
     mkdir ~/software
-    read -p "是否为ARM架构？(y/n, 留空或其他为amd64架构): " arm_answer
+    read -p "ARM? (y/n, default amd64): " arm_answer
     if [ "$arm_answer" = "y" ]; then
         wget -O code.rpm "https://code.visualstudio.com/sha/download?build=stable&os=linux-rpm-arm64"
     else
@@ -100,5 +100,5 @@ if [ "$answer" = "y" ]; then
     sudo dnf localinstall ~/software/code.rpm -y
     sudo chown -R $(whoami) /usr/share/code
 else
-    echo "未执行任何操作."
+    echo "Pass."
 fi
