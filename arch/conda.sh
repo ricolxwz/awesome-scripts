@@ -1,4 +1,4 @@
-read -p "是否为ARM架构？(y/n, 留空或其他为amd64架构): " arm_answer
+read -p "ARM? (y/n, default amd64) " arm_answer
 if [ "$arm_answer" = "y" ]; then
     wget -O miniforge3.sh "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh"
 else
