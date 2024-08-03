@@ -14,3 +14,9 @@ chmod a+x setup.sh
 ### 无法使用剪切板
 
 Debian下, 必须安装所有open-vm-tools-*包: `sudo apt install open-vm-tools-*`
+
+## Tip
+
+### Kde5 隐藏菜单栏
+
+Ctrl+Shit+M
