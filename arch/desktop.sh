@@ -149,7 +149,7 @@ if [ "$answer" = "y" ]; then
     read -p "Install other useful programs? (y/n, default n): " extra_programs
     if [ "$extra_programs" = "y" ]; then
         yay -S --needed --noconfirm picgo
-        sudo pacman -S --needed --noconfirm ksnip
+        sudo pacman -S --needed --noconfirm ksnip okular
         curl -L -o install.pkg.tar.zst "https://app.warp.dev/download?package=pacman"
         sudo pacman -U --needed --noconfirm install.pkg.tar.zst
     fi
