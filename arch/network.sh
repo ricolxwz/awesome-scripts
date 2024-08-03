@@ -32,13 +32,13 @@ sudo systemctl stop dhcpcd
 sudo systemctl enable systemd-networkd
 sudo systemctl start systemd-networkd
 
-read -p "请输入公钥: " key
+read -p "Dev public key: " key
 interface=$(ip -o -4 route show to default | awk '{print $5}')
-read -p "请输入静态IP地址 [默认: $DEFAULT_IP]: " ip
+read -p "Static IP [default: $DEFAULT_IP]: " ip
 ip=${ip:-$DEFAULT_IP}
-read -p "请输入网关IP地址 [默认: $DEFAULT_GATEWAY]: " gateway
+read -p "Gateway [default: $DEFAULT_GATEWAY]: " gateway
 gateway=${gateway:-$DEFAULT_GATEWAY}
-read -p "请输入DNS地址 [默认: $DEFAULT_DNS]: " dns
+read -p "Nameserver [default: $DEFAULT_DNS]: " dns
 dns=${dns:-$DEFAULT_DNS}
 
 sudo pacman -S --needed --noconfirm openssh
@@ -48,7 +48,7 @@ sudo systemctl start sshd
 mkdir -p ~/.ssh
 echo "$key" > ~/.ssh/authorized_keys
 
-echo "请输入用于Github的SSH私钥(请使用ed25519加密, 输入完成后换行输入EOF回车):"
+echo "Github private key (using ed25519 encryption, enter EOF to execute):"
 ssh_private_key=""
 while IFS= read -r line; do
     if [ "$line" == "EOF" ]; then
@@ -60,7 +60,7 @@ if [ -n "$ssh_private_key" ]; then
     echo "$ssh_private_key" > ~/.ssh/id_ed25519
     chmod 600 ~/.ssh/id_ed25519
 else
-    echo "未输入SSH私钥, 跳过保存过程"
+    echo "Pass."
 fi
 
 echo "[Match]
@@ -72,6 +72,6 @@ DNS=${dns}" | sudo tee /etc/systemd/network/99-vm.network > /dev/null
 
 sudo systemctl restart systemd-networkd
 
-echo "Bye Bye~, 请尝试用新的IP访问此机器"
+echo "Bye Bye~, Using new IP!"
 
 sudo systemctl restart sshd
