@@ -148,7 +148,7 @@ if [ "$answer" = "y" ]; then
     sudo chown -R $(whoami) /opt/visual-studio-code-insiders
     read -p "Install other useful programs? (y/n, default n): " extra_programs
     if [ "$extra_programs" = "y" ]; then
-        yay -S --needed --noconfirm picgo
+        yay -S --needed --noconfirm picgo zotero
         sudo pacman -S --needed --noconfirm ksnip okular
     fi
 else
