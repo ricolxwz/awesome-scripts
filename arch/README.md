@@ -140,9 +140,12 @@ pacman -S  plasma-workspace # 若还需要wayland支持, 安装这些包
   # xdg-desktop-portal包组提供了不同环境下使用的软件包
   # 例如kde用户可选择xdg-desktop-portal-kde包
 
+## 安装Gnome(可选)
+pacman -S gnome
+
 ## 配置启动sddm
-systemctl enable sddm
-systemctl start sddm
+systemctl enable --now sddm # KDE
+systemctl enable --now gdm # Gnome
 
 # 进入图形操作界面
 
