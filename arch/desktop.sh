@@ -150,8 +150,6 @@ if [ "$answer" = "y" ]; then
     if [ "$extra_programs" = "y" ]; then
         yay -S --needed --noconfirm picgo
         sudo pacman -S --needed --noconfirm ksnip okular
-        curl -L -o install.pkg.tar.zst "https://app.warp.dev/download?package=pacman"
-        sudo pacman -U --needed --noconfirm install.pkg.tar.zst
     fi
 else
     echo "Pass."
