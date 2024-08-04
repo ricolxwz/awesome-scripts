@@ -63,6 +63,7 @@ df -h
 # df -h
 
 ## 更新keyring, 确保老的镜像文件也可以下载包
+pacman -Sy
 pacman -S archlinux-keyring
 
 ## 系统安装
