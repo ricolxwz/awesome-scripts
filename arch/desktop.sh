@@ -158,7 +158,7 @@ if [ "$answer" = "y" ]; then
         Shift_L,   Up,   Shift_L|Button4
         Shift_L,   Down, Shift_L|Button5" > ~/.imwheelrc
         sudo touch /etc/profile.d/imwheeld.sh
-        sudo sh -c 'echo "#!/bin/sh\nimwheel -b \"45\"" > /etc/profile.d/imwheeld.sh && chmod +x /etc/profile.d/imwheeld.sh'
+        sudo sh -c 'echo -e "#!/bin/sh\nimwheel -b \"45\"" > /etc/profile.d/imwheeld.sh && chmod +x /etc/profile.d/imwheeld.sh'
     fi
 else
     echo "Pass."
