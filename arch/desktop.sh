@@ -157,23 +157,9 @@ if [ "$answer" = "y" ]; then
         Control_L, Down, Control_L|Button5
         Shift_L,   Up,   Shift_L|Button4
         Shift_L,   Down, Shift_L|Button5" > ~/.imwheelrc
-        mkdir -p ~/.config/systemd/user
-        touch ~/.config/systemd/user/imwheel.service
-        echo "[Unit]
-        Description=IMWheel
-        Wants=display-manager.service
-        After=display-manager.service
-        
-        [Service]
-        Type=simple
-        Environment=XAUTHORITY=%h/.Xauthority
-        ExecStart=/usr/bin/imwheel -d
-        ExecStop=/usr/bin/pkill imwheel
-        RemainAfterExit=yes
-        
-        [Install]
-        WantedBy=graphical.target" > ~/.config/systemd/user/imwheel.service
-        systemctl --user enable imwheel
+        sudo touch /etc/profile.d/imwheeld.sh
+        echo "#!/bin/sh
+        imwheel -b \"45\"" > /etc/profile.d/imwheeld.sh
     fi
 else
     echo "Pass."
