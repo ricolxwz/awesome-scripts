@@ -70,6 +70,8 @@ pacstrap /mnt base base-devel linux linux-headers linux-firmware
 pacstrap /mnt dhcpcd iwd vi vim sudo bash-completion
 pacstrap /mnt libmd
   # arm64下dhcpcd无法启动, 因为缺少libmd依赖
+pacstrap /mnt btrfs-progs
+  # 如果使用了timeshift
 
 ## 生成fstab
 genfstab -U /mnt >> /mnt/etc/fstab
