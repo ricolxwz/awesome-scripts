@@ -157,6 +157,7 @@ if [ "$answer" = "y" ]; then
         Control_L, Down, Control_L|Button5
         Shift_L,   Up,   Shift_L|Button4
         Shift_L,   Down, Shift_L|Button5" > ~/.imwheelrc
+        mkdir -p ~/.config/systemd/user
         touch ~/.config/systemd/user/imwheel.service
         echo "[Unit]
         Description=IMWheel
