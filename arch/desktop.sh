@@ -150,7 +150,7 @@ if [ "$answer" = "y" ]; then
     if [ "$extra_programs" = "y" ]; then
         yay -S --needed --noconfirm picgo zotero
         sudo pacman -S --needed --noconfirm ksnip okular imwheel
-        echo "".*"
+        echo "\".*\"
         None,      Up,   Button4, 4
         None,      Down, Button5, 4
         Control_L, Up,   Control_L|Button4
