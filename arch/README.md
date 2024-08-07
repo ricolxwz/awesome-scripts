@@ -118,8 +118,7 @@ reboot
 # 进入新系统
 
 ## 测试网络
-systemctl enable dhcpcd
-systemctl start dhcpcd
+systemctl enable --now dhcpcd
 curl cip.cc
 
 ## 升级所有包
