@@ -3,7 +3,7 @@ if [ "$answer" = "y" ]; then
     cd ~
     sudo pacman -S --needed unzip wget --noconfirm
     yay -S --needed --noconfirm ttf-harmonyos-sans
-    mkdir -p /etc/fonts
+    sudo mkdir -p /etc/fonts
     printf '%s\n' '<?xml version="1.0"?>' \
     '<!DOCTYPE fontconfig SYSTEM "fonts.dtd">' \
     '<fontconfig>' \
@@ -23,7 +23,7 @@ if [ "$answer" = "y" ]; then
     '      <string>HarmonyOS Sans TC</string>' \
     '    </edit>' \
     '</match>' \
-    '</fontconfig>' > /etc/fonts/local.conf
+    '</fontconfig>' | sudo tee /etc/fonts/local.conf > /dev/null
     if pacman -Qq | grep -q "^fcitx"; then
         sudo pacman -Rns $(pacman -Qq | grep "^fcitx") --noconfirm
     fi
