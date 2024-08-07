@@ -32,7 +32,6 @@ if [ "$answer" = "y" ]; then
     '    </prefer>' \
     '  </alias>' \
     '</fontconfig>' | sudo tee /etc/fonts/local.conf > /dev/null
-    sudo fc-cache -fv
     if pacman -Qq | grep -q "^fcitx"; then
         sudo pacman -Rns $(pacman -Qq | grep "^fcitx") --noconfirm
     fi
