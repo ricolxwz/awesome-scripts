@@ -1,7 +1,7 @@
 read -p "Install desktop env? (y/n, default n): " answer
 if [ "$answer" = "y" ]; then
     cd ~
-    sudo pacman -S --needed unzip wget wqy-zenhei --noconfirm
+    sudo pacman -S --needed unzip wget --noconfirm
     yay -S --needed --noconfirm ttf-harmonyos-sans
     mkdir -p ~/.config/fontconfig
     printf '%s\n' '<?xml version="1.0"?>' \
