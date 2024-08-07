@@ -148,18 +148,23 @@ if [ "$answer" = "y" ]; then
     sudo chown -R $(whoami) /opt/visual-studio-code-insiders
     read -p "Install other useful programs? (y/n, default n): " extra_programs
     if [ "$extra_programs" = "y" ]; then
-        yay -S --needed --noconfirm picgo zotero
-        sudo pacman -S --needed --noconfirm ksnip okular
-        # sudo pacman -S --needed --noconfirm imwheel
-        # echo "\".*\"
-        # None,      Up,   Button4, 1
-        # None,      Down, Button5, 1
-        # Control_L, Up,   Control_L|Button4
-        # Control_L, Down, Control_L|Button5
-        # Shift_L,   Up,   Shift_L|Button4
-        # Shift_L,   Down, Shift_L|Button5" > ~/.imwheelrc
-        # sudo touch /etc/profile.d/imwheeld.sh
-        # sudo sh -c 'echo -e "#!/bin/sh\nimwheel -b \"45\"" > /etc/profile.d/imwheeld.sh && chmod +x /etc/profile.d/imwheeld.sh'
+        read -p "ARM? (y/n, default amd64) " arm_answer
+        if [ "$arm_answer" = "y" ]; then
+            sudo pacman -S --needed --noconfirm ksnip okular
+        else
+            yay -S --needed --noconfirm picgo zotero
+            sudo pacman -S --needed --noconfirm ksnip okular
+            # sudo pacman -S --needed --noconfirm imwheel
+            # echo "\".*\"
+            # None,      Up,   Button4, 1
+            # None,      Down, Button5, 1
+            # Control_L, Up,   Control_L|Button4
+            # Control_L, Down, Control_L|Button5
+            # Shift_L,   Up,   Shift_L|Button4
+            # Shift_L,   Down, Shift_L|Button5" > ~/.imwheelrc
+            # sudo touch /etc/profile.d/imwheeld.sh
+            # sudo sh -c 'echo -e "#!/bin/sh\nimwheel -b \"45\"" > /etc/profile.d/imwheeld.sh && chmod +x /etc/profile.d/imwheeld.sh'
+        fi
     fi
 else
     echo "Pass."
