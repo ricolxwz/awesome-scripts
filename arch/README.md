@@ -218,3 +218,19 @@ vim ~/.config/wireplumber/wireplumber.conf.d/50-alsa-config.conf
   ]
 systemctl --user restart wireplumber pipewire pipewire-pulse
 ```
+
+### VMware下启用侧边鼠标按键
+
+VMware无法使用logi鼠标的侧边按键, 解决方案是编辑虚拟机的vmx配置文件: 
+
+```
+# 添加下列配置
+mouse.vusb.enable = "TRUE"
+mouse.vusb.useBasicMouse = "FALSE"
+# 下边这行一般已经设置, 如果没有设置, 加上
+usb.generic.allowHID = "TRUE"
+```
+
+### MacOS下滚动设置
+
+Mos设置平滑滚动和Reverse Scroll, 在Exception里面添加UTM, 取消勾选平滑滚动, 勾选Reverse Scroll. 在Kde设置里勾选打开反转滚动方向. 
