@@ -7,22 +7,30 @@ if [ "$answer" = "y" ]; then
     printf '%s\n' '<?xml version="1.0"?>' \
     '<!DOCTYPE fontconfig SYSTEM "fonts.dtd">' \
     '<fontconfig>' \
-    '<match>' \
-    '    <test name="lang" compare="contains">' \
-    '      <string>zh-cn</string>' \
-    '    </test>' \
-    '    <edit name="family" mode="prepend" binding="same">' \
-    '      <string>HarmonyOS Sans SC</string>' \
-    '    </edit>' \
-    '</match>' \
-    '<match>' \
-    '    <test name="lang" compare="contains">' \
-    '      <string>zh-tw</string>' \
-    '    </test>' \
-    '    <edit name="family" mode="prepend" binding="same">' \
-    '      <string>HarmonyOS Sans TC</string>' \
-    '    </edit>' \
-    '</match>' \
+    '  <alias>' \
+    '    <family>sans-serif</family>' \
+    '    <prefer>' \
+    '      <family>UbuntuMono Nerd Font Mono</family>' \
+    '      <family>HarmonyOS Sans SC</family>' \
+    '      <family>HarmonyOS Sans TC</family>' \
+    '    </prefer>' \
+    '  </alias>' \
+    '  <alias>' \
+    '    <family>serif</family>' \
+    '    <prefer>' \
+    '      <family>UbuntuMono Nerd Font Mono</family>' \
+    '      <family>HarmonyOS Sans SC</family>' \
+    '      <family>HarmonyOS Sans TC</family>' \
+    '    </prefer>' \
+    '  </alias>' \
+    '  <alias>' \
+    '    <family>monospace</family>' \
+    '    <prefer>' \
+    '      <family>UbuntuMono Nerd Font Mono</family>' \
+    '      <family>HarmonyOS Sans SC</family>' \
+    '      <family>HarmonyOS Sans TC</family>' \
+    '    </prefer>' \
+    '  </alias>' \
     '</fontconfig>' | sudo tee /etc/fonts/local.conf > /dev/null
     sudo fc-cache -fv
     if pacman -Qq | grep -q "^fcitx"; then
