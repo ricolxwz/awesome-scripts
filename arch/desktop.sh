@@ -2,6 +2,28 @@ read -p "Install desktop env? (y/n, default n): " answer
 if [ "$answer" = "y" ]; then
     cd ~
     sudo pacman -S --needed unzip wget wqy-zenhei --noconfirm
+    yay -S --needed --noconfirm ttf-harmonyos-sans
+    mkdir -p ~/.config/fontconfig
+    printf '%s\n' '<?xml version="1.0"?>' \
+    '<!DOCTYPE fontconfig SYSTEM "fonts.dtd">' \
+    '<fontconfig>' \
+    '<match>' \
+    '    <test name="lang" compare="contains">' \
+    '      <string>zh-cn</string>' \
+    '    </test>' \
+    '    <edit name="family" mode="prepend" binding="same">' \
+    '      <string>HarmonyOS Sans SC</string>' \
+    '    </edit>' \
+    '</match>' \
+    '<match>' \
+    '    <test name="lang" compare="contains">' \
+    '      <string>zh-tw</string>' \
+    '    </test>' \
+    '    <edit name="family" mode="prepend" binding="same">' \
+    '      <string>HarmonyOS Sans TC</string>' \
+    '    </edit>' \
+    '</match>' \
+    '</fontconfig>' > ~/.config/fontconfig/fonts.conf
     if pacman -Qq | grep -q "^fcitx"; then
         sudo pacman -Rns $(pacman -Qq | grep "^fcitx") --noconfirm
     fi
