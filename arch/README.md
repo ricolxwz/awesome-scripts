@@ -192,6 +192,12 @@ mkswap /swapfile #格式化swap文件
 swapon /swapfile #启用swap文件
 ```
 
+在`/etc/fstab`文件中添加: 
+
+```
+/swapfile none swap defaults 0 0
+```
+
 ### 声卡不稳定
 
 ```sh
