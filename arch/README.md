@@ -185,6 +185,7 @@ chmod a+x setup.sh
 ### 设置交换文件
 
 ```sh
+sudo -i
 dd if=/dev/zero of=/swapfile bs=1M count=4096 status=progress #创建4G的交换空间 大小根据需要自定
 chmod 600 /swapfile #设置正确的权限
 mkswap /swapfile #格式化swap文件
