@@ -45,7 +45,7 @@ if [ "$answer" = "y" ]; then
     read -p "Desktop distribution? (gnome/kde/xfce/cinnamon): " desktop_version
     read -p "GUI backend? (wayland/x11): " gui_backend
     if [ "$desktop_version" = "gnome" ]; then
-        sudo pacman -S --needed gnome-tweaks gnome-shell-extensions gnome-software --noconfirm
+        sudo pacman -S --needed gnome-tweaks gnome-shell-extensions gnome-software gnome-terminal --noconfirm
         read -p "Scale? (0-infty): " scale_factor
         gsettings set org.gnome.desktop.interface scaling-factor $scale_factor
     fi
