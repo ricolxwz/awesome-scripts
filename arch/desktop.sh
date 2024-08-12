@@ -182,7 +182,7 @@ if [ "$answer" = "y" ]; then
         if [ "$arm_answer" = "y" ]; then
             sudo pacman -S --needed --noconfirm ksnip okular
         else
-            yay -S --needed --noconfirm picgo zotero
+            yay -S --needed --noconfirm picgo
             sudo pacman -S --needed --noconfirm ksnip okular
             # sudo pacman -S --needed --noconfirm imwheel
             # echo "\".*\"
@@ -194,6 +194,12 @@ if [ "$answer" = "y" ]; then
             # Shift_L,   Down, Shift_L|Button5" > ~/.imwheelrc
             # sudo touch /etc/profile.d/imwheeld.sh
             # sudo sh -c 'echo -e "#!/bin/sh\nimwheel -b \"45\"" > /etc/profile.d/imwheeld.sh && chmod +x /etc/profile.d/imwheeld.sh'
+            cd ~
+            curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
+            git clone https://aur.archlinux.org/1password.git
+            cd 1password
+            makepkg -si
+            cd ~
         fi
     fi
 else
