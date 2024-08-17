@@ -180,10 +180,10 @@ if [ "$answer" = "y" ]; then
     if [ "$extra_programs" = "y" ]; then
         read -p "ARM? (y/n, default amd64) " arm_answer
         if [ "$arm_answer" = "y" ]; then
-            sudo pacman -S --needed --noconfirm okular
+            sudo pacman -S --needed --noconfirm spectacle okular
         else
             yay -S --needed --noconfirm picgo
-            sudo pacman -S --needed --noconfirm okular
+            sudo pacman -S --needed --noconfirm spectacle okular
             # sudo pacman -S --needed --noconfirm imwheel
             # echo "\".*\"
             # None,      Up,   Button4, 1
