@@ -183,7 +183,7 @@ if [ "$answer" = "y" ]; then
             sudo pacman -S --needed --noconfirm ksnip okular
         else
             yay -S --needed --noconfirm picgo
-            sudo pacman -S --needed --noconfirm ksnip okular
+            sudo pacman -S --needed --noconfirm okular
             # sudo pacman -S --needed --noconfirm imwheel
             # echo "\".*\"
             # None,      Up,   Button4, 1
