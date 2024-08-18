@@ -17,6 +17,7 @@ chmod a+x *.sh
 ./conda.sh
 ./sing-box.sh
 ./desktop.sh
+./alist.sh
 read -p "Bare Metal Arch? (y/n, default to y): " bare_metal
 if [ "$bare_metal" = "n" ]; then
     ./network.sh
