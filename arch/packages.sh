@@ -23,14 +23,12 @@ sudo pacman -S --needed --noconfirm \
   httpie \
   fuse2 \
   sof-firmware alsa-firmware alsa-ucm-conf \
-  ntfs-3g \
-  adobe-source-han-serif-cn-fonts wqy-zenhei \
-  noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra \
   firefox \
   ark \
   packagekit-qt6 packagekit appstream-qt appstream \
   gwenview \
-  base-devel
+  base-devel \
+  timeshift
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si --noconfirm
@@ -44,7 +42,7 @@ cargo install \
   du-dust \
   eza \
   ripgrep
-paru -S --needed --noconfirm nvm
+yay -S --needed --noconfirm nvm
 echo 'source /usr/share/nvm/init-nvm.sh' >> ~/.bashrc
 source /usr/share/nvm/init-nvm.sh
 nvm install --lts
