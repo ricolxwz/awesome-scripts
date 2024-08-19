@@ -172,10 +172,10 @@ if [ "$answer" = "y" ]; then
     rm UbuntuMono.zip
     fc-cache -v
     yay -S --noconfirm --needed \
-        visual-studio-code-insiders-bin
-        # visual-studio-code-bin
-    # sudo chown -R $(whoami) /opt/visual-studio-code
-    sudo chown -R $(whoami) /opt/visual-studio-code-insiders
+        visual-studio-code-bin
+        # visual-studio-code-insiders-bin
+    sudo chown -R $(whoami) /opt/visual-studio-code
+    # sudo chown -R $(whoami) /opt/visual-studio-code-insiders
     read -p "Install other useful programs? (y/n, default n): " extra_programs
     if [ "$extra_programs" = "y" ]; then
         read -p "ARM? (y/n, default amd64) " arm_answer
