@@ -28,7 +28,8 @@ sudo pacman -S --needed --noconfirm \
   packagekit-qt6 packagekit appstream-qt appstream \
   gwenview \
   base-devel \
-  timeshift
+  timeshift \
+  xclip
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si --noconfirm
