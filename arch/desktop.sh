@@ -182,7 +182,7 @@ if [ "$answer" = "y" ]; then
         if [ "$arm_answer" = "y" ]; then
             sudo pacman -S --needed --noconfirm spectacle okular
         else
-            # yay -S --needed --noconfirm picgo
+            yay -S --needed --noconfirm zoom wechat-uos-qt
             sudo pacman -S --needed --noconfirm spectacle okular kate ktorrent kget yakuake kfind ksystemlog partitionmanager isoimagewriter filelight sweeper
             # sudo pacman -S --needed --noconfirm imwheel
             # echo "\".*\"
