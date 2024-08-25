@@ -41,7 +41,6 @@ gateway=${gateway:-$DEFAULT_GATEWAY}
 read -p "Nameserver [default: $DEFAULT_DNS]: " dns
 dns=${dns:-$DEFAULT_DNS}
 
-sudo pacman -S --needed --noconfirm openssh
 sudo systemctl enable sshd
 sudo systemctl start sshd
 
