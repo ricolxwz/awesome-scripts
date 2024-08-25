@@ -23,25 +23,52 @@ source ~/.bashrc
 ip r
 ip a
 
-sudo pacman -S --needed --noconfirm openssh
 sudo systemctl enable sshd
 sudo systemctl start sshd
 
 mkdir -p ~/.ssh
 
-echo "Github private key (using ed25519 encryption, enter EOF to execute): "
-ssh_private_key=""
+echo "1: Github private key (using ed25519 encryption, enter EOF to execute): "
+ssh_private_key_1=""
 while IFS= read -r line; do
     if [ "$line" == "EOF" ]; then
         break
     fi
-    ssh_private_key+="$line"$'\n'
+    ssh_private_key_1+="$line"$'\n'
 done
-if [ -n "$ssh_private_key" ]; then
-    echo "$ssh_private_key" > ~/.ssh/id_ed25519
-    chmod 600 ~/.ssh/id_ed25519
+if [ -n "$ssh_private_key_1" ]; then
+    echo "$ssh_private_key_1" > ~/.ssh/id_ed25519_1
+    chmod 400 ~/.ssh/id_ed25519_1
 else
     echo "Pass."
 fi
+
+echo "2: Github private key (using ed25519 encryption, enter EOF to execute): "
+ssh_private_key_2=""
+while IFS= read -r line; do
+    if [ "$line" == "EOF" ]; then
+        break
+    fi
+    ssh_private_key_2+="$line"$'\n'
+done
+if [ -n "$ssh_private_key_2" ]; then
+    echo "$ssh_private_key_2" > ~/.ssh/id_ed25519_2
+    chmod 400 ~/.ssh/id_ed25519_2
+else
+    echo "Pass."
+fi
+
+echo "[user]
+name = wenzexu" > ~/.gitconfig
+
+echo "Host gh1
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_ed25519_1
+
+Host gh2
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_ed25519_2" > ~/.ssh/config
 
 sudo systemctl restart sshd
