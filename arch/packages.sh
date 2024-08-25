@@ -14,7 +14,6 @@ sudo pacman -S --needed --noconfirm \
   trash-cli \
   duf \
   github-cli \
-  bat \
   htop \
   httping \
   aria2 \
