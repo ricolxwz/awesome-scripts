@@ -29,7 +29,8 @@ sudo pacman -S --needed --noconfirm \
   gwenview \
   base-devel \
   timeshift \
-  xclip
+  xclip \
+  openssh
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si --noconfirm
