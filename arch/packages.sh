@@ -30,15 +30,15 @@ sudo pacman -S --needed --noconfirm \
   timeshift \
   xclip \
   openssh
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si --noconfirm
 cd ~
-sudo pacman -S --needed --noconfirm base-devel
-git clone https://aur.archlinux.org/paru.git
-cd paru
+git clone https://aur.archlinux.org/yay-bin.git
+cd yay-bin
 makepkg -si --noconfirm
-cd ~
+# cd ~
+# git clone https://aur.archlinux.org/paru.git
+# cd paru
+# makepkg -si --noconfirm
+# cd ~
 cargo install \
   du-dust \
   eza \
