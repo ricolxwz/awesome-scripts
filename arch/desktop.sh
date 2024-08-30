@@ -222,7 +222,7 @@ if [ "$answer" = "y" ]; then
             sudo pacman -S --needed --noconfirm spectacle okular
         else
             yay -S --needed --noconfirm zoom wechat-uos-qt
-            sudo pacman -S --needed --noconfirm spectacle okular kate ktorrent kget yakuake kfind ksystemlog partitionmanager isoimagewriter filelight sweeper libreoffice-still flatpak
+            sudo pacman -S --needed --noconfirm spectacle okular kate ktorrent kget yakuake kfind ksystemlog partitionmanager isoimagewriter filelight sweeper libreoffice-still flatpak kdeconnect
             # sudo pacman -S --needed --noconfirm imwheel
             # echo "\".*\"
             # None,      Up,   Button4, 1
