@@ -21,8 +21,6 @@ services:
     environment:
       XRAY_VMESS_AEAD_FORCED: "false"
     tty: true
-    ports:
-      - '2053:2053'
     networks:
       - app
   alist:
@@ -35,10 +33,21 @@ services:
       - PGID=0
       - UMASK=022
       - TZ=UTC
-    ports:
-      - '5244:5244'
     networks:
       - app
+  chatgpt-next-web:
+    image: yidadaa/chatgpt-next-web
+    environment:
+      - OPENAI_API_KEY=$OPENAI_API_KEY
+      - GOOGLE_API_KEY=$GOOGLE_API_KEY
+      - CODE=$CODE
+      - BASE_URL=$BASE_URL
+      - OPENAI_ORG_ID=$OPENAI_ORG_ID
+      - HIDE_USER_API_KEY=$HIDE_USER_API_KEY
+      - DISABLE_GPT4=$DISABLE_GPT4
+      - ENABLE_BALANCE_QUERY=$ENABLE_BALANCE_QUERY
+      - DISABLE_FAST_LINK=$DISABLE_FAST_LINK
+      - OPENAI_SB=$OPENAI_SB
 networks:
   app:
     driver: bridge
