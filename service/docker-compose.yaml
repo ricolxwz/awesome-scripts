@@ -15,7 +15,7 @@ services:
       - app
   alist: # 5244
     image: 'xhofe/alist:latest'
-    restart: always
+    restart: unless-stopped
     volumes:
       - './alist:/opt/alist/data'
     environment:
@@ -32,6 +32,7 @@ services:
       - GOOGLE_API_KEY=$GOOGLE_API_KEY
       - ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY
       - CODE=$CODE
+    restart: unless-stopped
     networks:
       - app
   umami: # 3000
@@ -43,7 +44,7 @@ services:
     depends_on:
       umami-db:
         condition: service_healthy
-    restart: always
+    restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "curl http://localhost:3000/api/heartbeat"]
       interval: 5s
@@ -59,7 +60,7 @@ services:
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
     volumes:
       - ./umami-db:/var/lib/postgresql/data
-    restart: always
+    restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 5s
@@ -78,6 +79,7 @@ services:
     image: neosmemo/memos:stable
     volumes:
       - ./memos:/var/opt/memos
+    restart: unless-stopped
     networks:
       - app
 networks:
