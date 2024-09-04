@@ -13,16 +13,6 @@ services:
       - ./nginx/letsencrypt:/etc/letsencrypt
     networks:
       - app
-  3x-ui: # 2053
-    image: ghcr.io/mhsanaei/3x-ui:latest
-    restart: unless-stopped
-    volumes:
-      - ./3x-ui/:/etc/x-ui/
-    environment:
-      XRAY_VMESS_AEAD_FORCED: "false"
-    tty: true
-    networks:
-      - app
   alist: # 5244
     image: 'xhofe/alist:latest'
     restart: always
