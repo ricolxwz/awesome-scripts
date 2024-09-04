@@ -8,8 +8,8 @@ services:
       - '81:81'
       - '443:443'
     volumes:
-      - ./data:/data
-      - ./letsencrypt:/etc/letsencrypt
+      - ./nginx/data:/data
+      - ./nginx/letsencrypt:/etc/letsencrypt
     networks:
       - app
   3x-ui:
