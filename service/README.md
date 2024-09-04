@@ -21,3 +21,8 @@ docker compose exec -it alist ./alist admin set <密码>
 
 - Username:    admin
 - Password: admin
+
+## Umami
+
+- Username: admin
+- Password: umami
