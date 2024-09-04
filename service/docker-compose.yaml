@@ -74,6 +74,12 @@ services:
     restart: unless-stopped
     networks:
       - app
+  memos: # 5230
+    image: neosmemo/memos:stable
+    volumes:
+      - ./memos:/var/opt/memos
+    networks:
+      - app
 networks:
   app:
     driver: bridge
