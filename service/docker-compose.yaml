@@ -1,3 +1,5 @@
+---
+
 services:
   nginx-proxy-manager:
     image: 'jc21/nginx-proxy-manager:latest'
@@ -19,6 +21,8 @@ services:
     environment:
       XRAY_VMESS_AEAD_FORCED: "false"
     tty: true
+    ports:
+      - '2053:2053'
     networks:
       - app
   alist:
@@ -31,6 +35,8 @@ services:
       - PGID=0
       - UMASK=022
       - TZ=UTC
+    ports:
+      - '5244:5244'
     networks:
       - app
 networks:
