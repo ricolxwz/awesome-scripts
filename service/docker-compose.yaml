@@ -67,6 +67,13 @@ services:
       retries: 5
     networks:
       - app
+  uptime-kuma: # 3001
+    image: louislam/uptime-kuma:1
+    volumes:
+      - ./uptime-kuma:/app/data
+    restart: unless-stopped
+    networks:
+      - app
 networks:
   app:
     driver: bridge
