@@ -51,7 +51,8 @@ Gitlab容器启动大概需要5-6分钟, 请耐心等待. SSH端口在Nginx Prox
 3. 输入runner的名字, 随便写
 4. 输入executor, 选择docker
 5. 输入默认的docker image: ubuntu:latest
-6. 配置完成会生成配置文件, 在`./app/gitlab-runner/config`文件夹下
+6. 配置完成会生成配置文件, 在`./app/gitlab-runner/config/config.toml`中, 以后可以自行修改
+7. 可以通过`docker compose exec -it gitlab-runner gitlab-runner unregister`取消注册
 
 ## Easyimage
 
