@@ -13,7 +13,7 @@ echo -e "{
       \x22zone_id\x22: \x22$zone\x22,
       \x22subdomains\x22: [
         {
-          \x22name\x22: \x22\x22,
+          \x22name\x22: \x22npm\x22,
           \x22proxied\x22: false
         },
       ]
