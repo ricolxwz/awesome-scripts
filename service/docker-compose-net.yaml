@@ -9,15 +9,15 @@ services:
       - '81:81'
       - '443:443'
     volumes:
-      - ./nginx/data:/data
-      - ./nginx/letsencrypt:/etc/letsencrypt
+      - ./app/nginx/data:/data
+      - ./app/nginx/letsencrypt:/etc/letsencrypt
     networks:
       - app
   3x-ui: # 2053
     image: ghcr.io/mhsanaei/3x-ui:latest
     restart: unless-stopped
     volumes:
-      - ./3x-ui/:/etc/x-ui/
+      - ./app/3x-ui/:/etc/x-ui/
     environment:
       XRAY_VMESS_AEAD_FORCED: "false"
     tty: true
