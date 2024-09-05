@@ -128,7 +128,7 @@ services:
       - app
 
   gitlab: # 8929, 7750
-    image: gitlab/gitlab-ee:<version>-ee.0
+    image: gitlab/gitlab-ce:latest
     restart: unless-stopped
     environment:
       GITLAB_OMNIBUS_CONFIG: |
