@@ -45,6 +45,14 @@ Gitlab容器启动大概需要5-6分钟, 请耐心等待. SSH端口在Nginx Prox
 
 `docker compose exec -it gitlab-runner gitlab-runner register`
 
+0. 取gitlab界面注册一个runner, 保存好token
+1. 输入Gitlab的URL: https://git.ricolxwz.io
+2. 输入刚才的token
+3. 输入runner的名字, 随便写
+4. 输入executor, 选择docker
+5. 输入默认的docker image: ubuntu:latest
+6. 配置完成会生成配置文件, 在`./app/gitlab-runner/config`文件夹下
+
 ## Easyimage
 
 到配置目录, 编辑config.php, 里面的domain和imgurl改成自己的域名, 记得加s, 然后重启容器
