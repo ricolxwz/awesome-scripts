@@ -37,4 +37,10 @@ docker compose exec -it alist ./alist admin set <密码>
 
 ## Gitlab
 
+Gitlab容器启动大概需要5-6分钟, 请耐心等待. SSH端口在Nginx Proxy Manager里面设置stream, 转发7750端口到gitlab:22
+
 ![image](https://github.com/user-attachments/assets/087aaf26-c723-42d1-912d-5e46940ef0fa)
+
+## Easyimage
+
+到配置目录, 编辑config.php, 里面的domain和imgurl改成自己的域名, 记得加s, 然后重启容器
