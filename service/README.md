@@ -65,13 +65,13 @@ Gitlab容器启动大概需要5-6分钟, 请耐心等待. SSH端口在Nginx Prox
   ```
   mkdir ./gitlab-bak
   docker compose exec -t gitlab gitlab-backup create
-  docker compose cp gitlab:/var/opt/gitlab/backups/*backup.tar  ./gitlab-bak/
+  docker compose cp gitlab:/var/opt/gitlab/backups/<_gitlab_backup.tar文件>  ./gitlab-bak/
   docker compose cp gitlab:/etc/gitlab/gitlab.rb  ./gitlab-bak/
   docker compose cp gitlab:/etc/gitlab/gitlab-secrets.json  ./gitlab-bak/
   ```
 3. 恢复: 在新机器上将gitlab-bak文件夹解压
   ```
-  docker compose cp ./gitlab-bak/*backup.tar  gitlab:/var/opt/gitlab/backups/
+  docker compose cp ./gitlab-bak/<_gitlab_backup.tar文件>  gitlab:/var/opt/gitlab/backups/
   docker compose cp ./gitlab-bak/gitlab-secrets.json   gitlab:/etc/gitlab/
   docker compose cp ./gitlab-bak/gitlab.rb   gitlab:/etc/gitlab/
   docker exec -it gitlab bash
