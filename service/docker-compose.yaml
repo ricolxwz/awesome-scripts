@@ -126,6 +126,39 @@ services:
       - ./app/nav:/usr/share/nginx/html:ro
     networks:
       - app
+
+  coder: # 7080
+    image: ghcr.io/coder/coder:${CODER_VERSION:-latest}
+    restart: unless-stopped
+    networks:
+      - app
+    environment:
+      CODER_PG_CONNECTION_URL: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@database/${POSTGRES_DB:-coder}?sslmode=disable"
+      CODER_HTTP_ADDRESS: "0.0.0.0:7080"
+      CODER_ACCESS_URL: "${CODER_ACCESS_URL}"
+    depends_on:
+      coder-db:
+        condition: service_healthy
+  coder-db: # 5432
+    image: "postgres:16"
+    restart: unless-stopped
+    networks:
+      - app
+    environment:
+      POSTGRES_USER: coder
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: coder
+    volumes:
+      - ./app/coder:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${POSTGRES_USER:-username} -d ${POSTGRES_DB:-coder}",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
   
 networks:
   app:
