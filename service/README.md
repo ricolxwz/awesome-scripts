@@ -34,3 +34,7 @@ docker compose exec -it alist ./alist admin set <密码>
 
 - Username: admin
 - Password: umami
+
+## Gitlab
+
+![image](https://github.com/user-attachments/assets/087aaf26-c723-42d1-912d-5e46940ef0fa)
