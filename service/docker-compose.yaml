@@ -134,6 +134,8 @@ services:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'https://git.ricolxwz.io'
         gitlab_rails['gitlab_shell_ssh_port'] = 7750
+        nginx['listen_port'] = 80
+        nginx['listen_https'] = false
     ports:
       - '7750:22'
     volumes:
