@@ -15,7 +15,7 @@ echo -e "{
         {
           \x22name\x22: \x22npm\x22,
           \x22proxied\x22: false
-        },
+        }
       ]
     }
   ],
