@@ -133,7 +133,7 @@ services:
     networks:
       - app
     environment:
-      CODER_PG_CONNECTION_URL: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@database/${POSTGRES_DB:-coder}?sslmode=disable"
+      CODER_PG_CONNECTION_URL: "postgresql://${POSTGRES_USER_CODER}:${POSTGRES_PASSWORD_CODER}@database/${POSTGRES_DB_CODER}?sslmode=disable"
       CODER_HTTP_ADDRESS: "0.0.0.0:7080"
       CODER_ACCESS_URL: "${CODER_ACCESS_URL}"
     depends_on:
@@ -145,9 +145,9 @@ services:
     networks:
       - app
     environment:
-      POSTGRES_USER: coder
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: coder
+      POSTGRES_USER: $POSTGRES_USER_CODER
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD_CODER
+      POSTGRES_DB: $POSTGRES_DB_CODER
     volumes:
       - ./app/coder:/var/lib/postgresql/data
     healthcheck:
