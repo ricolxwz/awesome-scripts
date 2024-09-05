@@ -63,6 +63,7 @@ Gitlab容器启动大概需要5-6分钟, 请耐心等待. SSH端口在Nginx Prox
 为了确保完整的备份和恢复过程，请务必手动备份 `gitlab.rb` 和 `gitlab-secrets.json` 文件。
 2. 备份:
   ```
+  mkdir ./gitlab-bak
   docker compose exec -t gitlab gitlab-backup create
   docker compose cp gitlab:/var/opt/gitlab/backups/*backup.tar  ./gitlab-bak/
   docker compose cp gitlab:/etc/gitlab/gitlab.rb  ./gitlab-bak/
