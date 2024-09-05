@@ -127,12 +127,12 @@ services:
     networks:
       - app
 
-  gitlab: # 8929, 7750
+  gitlab: # 7750
     image: gitlab/gitlab-ce:latest
     restart: unless-stopped
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://localhost:8929'
+        external_url 'http://git.ricolxwz.io'
         gitlab_rails['gitlab_shell_ssh_port'] = 7750
     ports:
       - '7750:22'
