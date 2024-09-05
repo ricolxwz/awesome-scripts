@@ -1,6 +1,7 @@
 ---
 
 services:
+
   nginx-proxy-manager:
     image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
@@ -13,6 +14,7 @@ services:
       - ./nginx/letsencrypt:/etc/letsencrypt
     networks:
       - app
+
   alist: # 5244
     image: 'xhofe/alist:latest'
     restart: unless-stopped
@@ -25,6 +27,7 @@ services:
       - TZ=UTC
     networks:
       - app
+
   chatgpt-next-web: # 3000
     image: yidadaa/chatgpt-next-web
     environment:
@@ -35,6 +38,7 @@ services:
     restart: unless-stopped
     networks:
       - app
+
   umami: # 3000
     image: ghcr.io/umami-software/umami:postgresql-latest
     environment:
@@ -68,6 +72,7 @@ services:
       retries: 5
     networks:
       - app
+      
   uptime-kuma: # 3001
     image: louislam/uptime-kuma:1
     volumes:
@@ -75,6 +80,7 @@ services:
     restart: unless-stopped
     networks:
       - app
+      
   memos: # 5230
     image: neosmemo/memos:stable
     volumes:
@@ -82,6 +88,37 @@ services:
     restart: unless-stopped
     networks:
       - app
+
+  yourls-db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE=yourls
+      - MYSQL_USER=yourls
+      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+    volumes:
+      - ./yourls-db/db:/var/lib/mysql
+      - ./yourls-db/conf:/etc/mysql/conf.d
+    restart: unless-stopped
+    networks:
+      - app
+  yourls: # 80
+    image: yourls
+    restart: unless-stopped
+    environment:
+      YOURLS_DB_HOST: yourls-db
+      YOURLS_DB_USER: yourls
+      YOURLS_DB_PASS: $MYSQL_PASSWORD
+      YOURLS_DB_NAME: yourls
+      YOURLS_USER: $YOURLS_USER
+      YOURLS_PASS: $YOURLS_PASS
+      YOURLS_SITE: $YOURLS_SITE
+      YOURLS_HOURS_OFFSET: 8
+    volumes:
+      - ./yourls/:/var/www/html   
+    networks:
+      - app
+
 networks:
   app:
     driver: bridge
