@@ -127,38 +127,22 @@ services:
     networks:
       - app
 
-  # coder: # 7080
-  #   image: ghcr.io/coder/coder:${CODER_VERSION:-latest}
-  #   restart: unless-stopped
-  #   networks:
-  #     - app
-  #   environment:
-  #     CODER_PG_CONNECTION_URL: "postgresql://${POSTGRES_USER_CODER}:${POSTGRES_PASSWORD_CODER}@coder-db/${POSTGRES_DB_CODER}?sslmode=disable"
-  #     CODER_HTTP_ADDRESS: "0.0.0.0:7080"
-  #     CODER_ACCESS_URL: "${CODER_ACCESS_URL}"
-  #   depends_on:
-  #     coder-db:
-  #       condition: service_healthy
-  # coder-db: # 5432
-  #   image: "postgres:16"
-  #   restart: unless-stopped
-  #   networks:
-  #     - app
-  #   environment:
-  #     POSTGRES_USER: $POSTGRES_USER_CODER
-  #     POSTGRES_PASSWORD: $POSTGRES_PASSWORD_CODER
-  #     POSTGRES_DB: $POSTGRES_DB_CODER
-  #   volumes:
-  #     - ./app/coder:/var/lib/postgresql/data
-  #   healthcheck:
-  #     test:
-  #       [
-  #         "CMD-SHELL",
-  #         "pg_isready -U ${POSTGRES_USER:-username} -d ${POSTGRES_DB:-coder}",
-  #       ]
-  #     interval: 5s
-  #     timeout: 5s
-  #     retries: 5
+  gitlab: # 8929, 7750
+    image: gitlab/gitlab-ee:<version>-ee.0
+    restart: unless-stopped
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://git.ricolxwz.io:8929'
+        gitlab_rails['gitlab_shell_ssh_port'] = 7750
+    ports:
+      - '7750:22'
+    volumes:
+      - './app/gitlab/config:/etc/gitlab'
+      - './app/gitlab/logs:/var/log/gitlab'
+      - './app/gitlab/data:/var/opt/gitlab'
+    shm_size: '256m'
+    networks:
+      - app
   
 networks:
   app:
