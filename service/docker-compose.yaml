@@ -138,8 +138,6 @@ services:
         nginx['enable'] = true
         nginx['listen_port'] = 80
         nginx['listen_https'] = false
-    ports:
-      - '7750:22'
     volumes:
       - './app/gitlab/config:/etc/gitlab'
       - './app/gitlab/logs:/var/log/gitlab'
