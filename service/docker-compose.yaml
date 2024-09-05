@@ -146,6 +146,16 @@ services:
     shm_size: '256m'
     networks:
       - app
+  gitlab-runner:
+    image: gitlab/gitlab-runner:alpine
+    restart: unless-stopped
+    depends_on:
+      - gitlab
+    volumes:
+     - ./app/gitlab-runner/config:/etc/gitlab-runner
+     - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+        - app
 
   easyimage: # 80
     image: ddsderek/easyimage:latest
