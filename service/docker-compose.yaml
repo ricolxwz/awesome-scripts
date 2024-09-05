@@ -10,8 +10,8 @@ services:
       - '81:81'
       - '443:443'
     volumes:
-      - ./nginx/data:/data
-      - ./nginx/letsencrypt:/etc/letsencrypt
+      - ./app/nginx/data:/data
+      - ./app/nginx/letsencrypt:/etc/letsencrypt
     networks:
       - app
 
@@ -19,7 +19,7 @@ services:
     image: 'xhofe/alist:latest'
     restart: unless-stopped
     volumes:
-      - './alist:/opt/alist/data'
+      - ./app/alist:/opt/alist/data
     environment:
       - PUID=0
       - PGID=0
@@ -63,7 +63,7 @@ services:
       POSTGRES_USER: umami
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
     volumes:
-      - ./umami-db:/var/lib/postgresql/data
+      - ./app/umami-db:/var/lib/postgresql/data
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
@@ -76,7 +76,7 @@ services:
   uptime-kuma: # 3001
     image: louislam/uptime-kuma:1
     volumes:
-      - ./uptime-kuma:/app/data
+      - ./app/uptime-kuma:/app/data
     restart: unless-stopped
     networks:
       - app
@@ -84,7 +84,7 @@ services:
   memos: # 5230
     image: neosmemo/memos:stable
     volumes:
-      - ./memos:/var/opt/memos
+      - ./app/memos:/var/opt/memos
     restart: unless-stopped
     networks:
       - app
@@ -97,8 +97,8 @@ services:
       - MYSQL_USER=yourls
       - MYSQL_PASSWORD=$MYSQL_PASSWORD
     volumes:
-      - ./yourls-db/db:/var/lib/mysql
-      - ./yourls-db/conf:/etc/mysql/conf.d
+      - ./app/yourls-db/db:/var/lib/mysql
+      - ./app/yourls-db/conf:/etc/mysql/conf.d
     restart: unless-stopped
     networks:
       - app
@@ -115,7 +115,7 @@ services:
       YOURLS_SITE: $YOURLS_SITE
       YOURLS_HOURS_OFFSET: 8
     volumes:
-      - ./yourls/:/var/www/html   
+      - ./app/yourls/:/var/www/html   
     networks:
       - app
 
