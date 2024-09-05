@@ -133,7 +133,7 @@ services:
     networks:
       - app
     environment:
-      CODER_PG_CONNECTION_URL: "postgresql://${POSTGRES_USER_CODER}:${POSTGRES_PASSWORD_CODER}@database/${POSTGRES_DB_CODER}?sslmode=disable"
+      CODER_PG_CONNECTION_URL: "postgresql://${POSTGRES_USER_CODER}:${POSTGRES_PASSWORD_CODER}@coder-db/${POSTGRES_DB_CODER}?sslmode=disable"
       CODER_HTTP_ADDRESS: "0.0.0.0:7080"
       CODER_ACCESS_URL: "${CODER_ACCESS_URL}"
     depends_on:
