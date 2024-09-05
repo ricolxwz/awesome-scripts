@@ -27,6 +27,3 @@ echo -e "{
 apt install python3 python3-venv -y
 python3 -m venv venv
 ./start-sync.sh
-touch /var/spool/cron/crontabs/root
-echo "*/15 * * * * cd /root/cloudflare-ddns && ./start-sync.sh" > /var/spool/cron/crontabs/root
-systemctl restart cron
