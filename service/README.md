@@ -39,7 +39,11 @@ docker compose exec -it alist ./alist admin set <密码>
 
 Gitlab容器启动大概需要5-6分钟, 请耐心等待. SSH端口在Nginx Proxy Manager里面设置stream, 转发7750端口到gitlab:22
 
+`docker compose exec -it gitlab /bin/bash`
+
 ![image](https://github.com/user-attachments/assets/087aaf26-c723-42d1-912d-5e46940ef0fa)
+
+`docker compose exec -it gitlab-runner gitlab-runner register`
 
 ## Easyimage
 
