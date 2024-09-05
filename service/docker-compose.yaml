@@ -118,7 +118,15 @@ services:
       - ./app/yourls/:/var/www/html   
     networks:
       - app
-
+      
+  nav: # 80
+    image: nginx
+    restart: unless-stopped
+    volumes:
+      - ./app/nav:/usr/share/nginx/html:ro
+    networks:
+      - app
+  
 networks:
   app:
     driver: bridge
