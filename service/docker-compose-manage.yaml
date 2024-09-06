@@ -27,5 +27,6 @@ services:
       - app
 
 networks:
+
   app:
     external: true
