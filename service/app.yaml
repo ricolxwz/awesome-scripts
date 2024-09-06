@@ -4,6 +4,8 @@
 services:
 
   alist: # 5244
+    container_name: alist
+    hostname: alist
     image: 'xhofe/alist:latest'
     restart: unless-stopped
     volumes:
@@ -17,6 +19,8 @@ services:
       - app
 
   chatgpt-next-web: # 3000
+    container_name: chatgpt-next-web
+    hostname: chatgpt-next-web
     image: yidadaa/chatgpt-next-web
     environment:
       - OPENAI_API_KEY=$OPENAI_API_KEY
@@ -28,6 +32,8 @@ services:
       - app
 
   umami: # 3000
+    container_name: umami
+    hostname: umami
     image: ghcr.io/umami-software/umami:postgresql-latest
     environment:
       DATABASE_URL: postgresql://umami:${POSTGRES_PASSWORD}@umami-db:5432/umami
@@ -45,6 +51,8 @@ services:
     networks:
       - app
   umami-db: # 5432
+    container_name: umami-db
+    hostname: umami-db
     image: postgres:15-alpine
     environment:
       POSTGRES_DB: umami
@@ -62,6 +70,8 @@ services:
       - app
       
   uptime-kuma: # 3001
+    container_name: uptime-kuma
+    hostname: uptime-kuma
     image: louislam/uptime-kuma:1
     volumes:
       - /root/app/uptime-kuma:/app/data
@@ -70,6 +80,8 @@ services:
       - app
       
   memos: # 5230
+    container_name: memos
+    hostname: memos
     image: neosmemo/memos:stable
     volumes:
       - /root/app/memos:/var/opt/memos
@@ -77,20 +89,9 @@ services:
     networks:
       - app
 
-  yourls-db:
-    image: mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
-      - MYSQL_DATABASE=yourls
-      - MYSQL_USER=yourls
-      - MYSQL_PASSWORD=$MYSQL_PASSWORD
-    volumes:
-      - /root/app/yourls-db/db:/var/lib/mysql
-      - /root/app/yourls-db/conf:/etc/mysql/conf.d
-    restart: unless-stopped
-    networks:
-      - app
   yourls: # 80
+    container_name: yourls
+    hostname: yourls
     image: yourls
     restart: unless-stopped
     environment:
@@ -106,8 +107,25 @@ services:
       - /root/app/yourls/:/var/www/html   
     networks:
       - app
+  yourls-db:
+    container_name: yourls-db
+    hostname: yourls-db
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE=yourls
+      - MYSQL_USER=yourls
+      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+    volumes:
+      - /root/app/yourls-db/db:/var/lib/mysql
+      - /root/app/yourls-db/conf:/etc/mysql/conf.d
+    restart: unless-stopped
+    networks:
+      - app
       
   nav: # 80
+    container_name: nav
+    hostname: nav
     image: nginx
     restart: unless-stopped
     volumes:
@@ -116,6 +134,8 @@ services:
       - app
 
   gitlab: # 7750 GIT
+    container_name: gitlab
+    hostname: gitlab
     image: gitlab/gitlab-ce:17.2.1-ce.0
     restart: unless-stopped
     ports:
@@ -136,6 +156,8 @@ services:
     networks:
       - app
   gitlab-runner:
+    container_name: gitlab-runner
+    hostname: gitlab-runner
     image: gitlab/gitlab-runner:v17.2.1
     restart: unless-stopped
     depends_on:
@@ -147,6 +169,8 @@ services:
         - app
 
   easyimage: # 80
+    container_name: easyimage
+    hostname: easyimage
     image: ddsderek/easyimage:latest
     volumes:
       - '/root/app/easyimage/config:/app/web/config'
@@ -156,6 +180,8 @@ services:
       - app
 
   excalidraw: # 80
+    container_name: excalidraw
+    hostname: excalidraw
     image: excalidraw/excalidraw:latest
     restart: unless-stopped
     networks:
