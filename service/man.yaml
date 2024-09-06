@@ -13,8 +13,8 @@ services:
         - '443:443'
         # - '81:81'
       volumes:
-        - /root/nginx/data:/data
-        - /root/nginx/letsencrypt:/etc/letsencrypt
+        - /root/man/nginx/data:/data
+        - /root/man/nginx/letsencrypt:/etc/letsencrypt
       networks:
         - app
         
@@ -23,7 +23,7 @@ services:
   #   hostname: portainer
   #   image: portainer/portainer-ce:latest
   #   volumes:
-  #     - /root/portainer:/data
+  #     - /root/man/portainer:/data
   #     - /var/run/docker.sock:/var/run/docker.sock
   #   restart: always
   #   networks:
