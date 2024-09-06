@@ -2,7 +2,7 @@
 
 ## 迁移
 
-升级Gitlab, 记录版本号, 如何升级: https://blog.csdn.net/weixin_45623111/article/details/135593376
+(已经保持compose文件中版本固定, 无需升级)升级Gitlab, 直接修改容器的image版本, 大版本要拆分成小版本升级, 如何升级: https://blog.csdn.net/weixin_45623111/article/details/135593376
 
 0. 备份Gitlab, 手动备份 `gitlab.rb` 和 `gitlab-secrets.json` 文件, 详情见gitlab
 1. 下载.env文件: 非常重要! 包含数据库的密码之类的信息, 不然在新机器上无法恢复
@@ -60,7 +60,7 @@ Gitlab容器启动大概需要5-6分钟, 请耐心等待. SSH端口在Nginx Prox
 
 ### 备份
 
-0. 记录当前gitlab的版本号, 因为版本号不一样可能导致恢复失败, 或者直接升级当前的gitlab
+0. (已经保持compose文件中版本固定, 无需升级)直接升级当前的gitlab, 直接修改容器的image版本, 大版本要拆分成小版本升级, 如何升级: https://blog.csdn.net/weixin_45623111/article/details/135593376
 1. 手动备份:
   ```
   mkdir ./gitlab-bak
