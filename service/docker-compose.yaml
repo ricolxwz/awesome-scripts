@@ -172,13 +172,11 @@ services:
     networks:
       - app
 
-  portainer:
+  portainer: # 9443 TLS
     image: portainer/portainer-ce:latest
     restart: unless-stopped
     networks:
       - app
-    ports:
-      - 9443:9443
     volumes:
       - ./app/portainer:/data
       - /var/run/docker.sock:/var/run/docker.sock
