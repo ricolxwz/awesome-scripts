@@ -4,6 +4,8 @@
 services:
 
   3x-ui: # 2053
+    container_name: 3x-ui
+    hostname: 3x-ui
     image: ghcr.io/mhsanaei/3x-ui:latest
     restart: unless-stopped
     volumes:
