@@ -19,9 +19,9 @@ services:
         
   portainer: # 9443
     image: portainer/portainer-ce:latest
-      volumes:
-        - /root/portainer:/data
-        - /var/run/docker.sock:/var/run/docker.sock
+    volumes:
+      - /root/portainer:/data
+      - /var/run/docker.sock:/var/run/docker.sock
     restart: always
     networks:
       - app
