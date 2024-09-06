@@ -2,14 +2,15 @@
 
 ## 迁移
 
-*. 升级Gitlab, 记录版本号, 如何升级: https://blog.csdn.net/weixin_45623111/article/details/135593376
-0. (整体备份app文件夹就好了没必要搞这个)备份Gitlab, 手动备份 `gitlab.rb` 和 `gitlab-secrets.json` 文件, 详情见gitlab
+升级Gitlab, 记录版本号, 如何升级: https://blog.csdn.net/weixin_45623111/article/details/135593376
+
+0. 备份Gitlab, 手动备份 `gitlab.rb` 和 `gitlab-secrets.json` 文件, 详情见gitlab
 1. 下载.env文件: 非常重要! 包含数据库的密码之类的信息, 不然在新机器上无法恢复
 2. 压缩app文件夹: `tar -czvf app.tar.gz app`, 下载文件夹
 3. 在新机器上, 上传app文件夹, 解压app文件夹: ``tar -xzvf app.tar.gz`
 4. 新建`docker-compose.yaml`文件
 5. 新建`.env`文件
-6. (整体备份app文件夹就好了没必要搞这个)恢复gitlab文件夹, 详情见gitlab
+6. 恢复gitlab文件夹, 详情见gitlab
 
 ## Nginx Proxy Manager
 
