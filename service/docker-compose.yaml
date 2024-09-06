@@ -129,7 +129,7 @@ services:
       - app
 
   gitlab: # 7750
-    image: gitlab/gitlab-ce:latest
+    image: gitlab/gitlab-ce:17.2.4-ce.0
     restart: unless-stopped
     environment:
       GITLAB_OMNIBUS_CONFIG: |
