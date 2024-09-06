@@ -6,8 +6,8 @@
 
 1. 执行gitlab迁移教程中的1-5步, 备份alist
 2. 下载.env文件: 非常重要! 包含数据库的密码之类的信息, 不然在新机器上无法恢复
-3. 压缩app文件夹: 删去gitlab文件夹, `tar -czvf app.tar.gz app`, 下载文件夹
-4. 在新机器上, 上传app文件夹, 解压app文件夹: ``tar -xzvf app.tar.gz`
+3. 压缩app文件夹: 单独备份gitlab文件夹, `tar -czvf gitlab-aux.tar.gz ./app/gitlab`, 然后`rm -rf ./app/gitlab`, 最后`tar -czvf app.tar.gz app`, 下载两个文件夹
+4. 在新机器上, 上传app文件夹, 解压app文件夹: ``tar -xzvf app.tar.gz`, gitlab-aux暂时不需要, 是以防万一用的
 5. 新建`docker-compose.yaml`文件
 6. 新建`.env`文件
 7. 执行gitlab迁移教程中的6-8步
