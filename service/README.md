@@ -8,17 +8,17 @@
 
 简单直接的方法: 备份app文件夹, man文件夹, .env文件. 
 
-1. 执行gitlab迁移教程中的1-5步, 备份alist
+1. `/root/gitlab-backup.sh`
 2. 下载.env文件: 非常重要! 包含数据库的密码之类的信息, 不然在新机器上无法恢复
-3. 压缩app文件夹: 单独备份gitlab文件夹, `tar -czvf gitlab-aux.tar.gz ./app/gitlab`, 然后`rm -rf ./app/gitlab`, 最后`tar -czvf app.tar.gz app`, 下载两个文件夹
+3. 压缩app文件夹: 单独备份gitlab文件夹, `tar -czvf gitlab-aux.tar.gz /root/app/gitlab`, 然后`rm -rf /root/app/gitlab`, 最后`tar -czvf app.tar.gz app`, 下载两个文件夹
 4. 压缩man文件夹: `tar -czvf man.tar.gz man`
 6. 在新机器上, 上传app文件夹, 解压app文件夹: `tar -xzvf app.tar.gz`, 解压man文件夹: `tar -xzvf man.tar.gz`, gitlab-aux暂时不需要, 是以防万一用的
 7. 新建`man.yaml`文件
-8. `docker compose -f man.yaml up -d`
+8. `docker compose -f /root/man.yaml up -d`
 9. 新建.env文件, 输入密钥
 10. 新建`app.yaml`文件
-11. `docker compose -f app.yaml up -d`
-12. 执行gitlab迁移教程中的6-8步
+11. `docker compose -f /root/app.yaml up -d`
+12. 执行gitlab迁移教程中的6-8步, 或者使用刚才的`gitlab-aux.tar.gz`
 
 ## Nginx Proxy Manager
 
