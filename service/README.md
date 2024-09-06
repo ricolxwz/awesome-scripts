@@ -2,6 +2,7 @@
 
 ## 迁移
 
+*. 升级Gitlab, 记录版本号
 0. (整体备份app文件夹就好了没必要搞这个)备份Gitlab, 手动备份 `gitlab.rb` 和 `gitlab-secrets.json` 文件, 详情见gitlab
 1. 下载.env文件: 非常重要! 包含数据库的密码之类的信息, 不然在新机器上无法恢复
 2. 压缩app文件夹: `tar -czvf app.tar.gz app`, 下载文件夹
@@ -58,7 +59,7 @@ Gitlab容器启动大概需要5-6分钟, 请耐心等待. SSH端口在Nginx Prox
 
 ### 备份
 
-0. 记录当前gitlab的版本号, 因为版本号不一样可能导致恢复失败
+0. 记录当前gitlab的版本号, 因为版本号不一样可能导致恢复失败, 或者直接升级当前的gitlab
 1. 手动备份:
   ```
   mkdir ./gitlab-bak
