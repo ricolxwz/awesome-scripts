@@ -77,9 +77,8 @@ Gitlab容器启动大概需要5-6分钟, 请耐心等待. SSH端口在Nginx Prox
   docker compose cp ./gitlab-bak/<_gitlab_backup.tar文件>  gitlab:/var/opt/gitlab/backups/
   docker compose cp ./gitlab-bak/gitlab-secrets.json   gitlab:/etc/gitlab/
   docker compose cp ./gitlab-bak/gitlab.rb   gitlab:/etc/gitlab/
-  docker compose exec gitlab gitlab-rake gitlab:backup:restore BACKUP=<_gitlab_backup.tar文件的前缀>
-  docker compose exec gitlab gitlab-ctl reconfigure 
-  docker compose exec gitlab gitlab-ctl restart 
+  docker compose exec gitlab gitlab-rake gitlab:backup:restore
+  docker compose exec gitlab gitlab-ctl start
   ```  
 ### 升级
 
