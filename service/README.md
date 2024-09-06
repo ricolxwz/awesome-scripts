@@ -1,5 +1,9 @@
 # 服务
 
+## 网络
+
+在使用之前, 请先建立网络`app`: `docker network create app`
+
 ## 迁移
 
 迁移教程: https://misc.ricolxwz.de/software/misc/gitlab/migrate.html
