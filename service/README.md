@@ -81,7 +81,10 @@ Gitlab容器启动大概需要5-6分钟, 请耐心等待. SSH端口在Nginx Prox
   docker compose exec gitlab gitlab-ctl reconfigure 
   docker compose exec gitlab gitlab-ctl restart 
   ```  
+### 升级
 
+升级路线: https://docs.gitlab.com/ee/update/index.html#upgrade-paths
+升级就是移除掉原先的容器(不要移除volume), 然后再根据升级路线一步一步创建新的容器, 删除, 创建, 直到最后的版本. https://blog.csdn.net/weixin_45623111/article/details/135593376
 
 ## Easyimage
 
