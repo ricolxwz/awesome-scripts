@@ -17,7 +17,7 @@ services:
       networks:
         - app
         
-  portainer:
+  portainer: # 9443
     image: portainer/portainer-ce:latest
       volumes:
         - /root/portainer:/data
