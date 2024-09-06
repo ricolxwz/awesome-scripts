@@ -58,10 +58,7 @@ Gitlab容器启动大概需要5-6分钟, 请耐心等待. SSH端口在Nginx Prox
 
 ### 备份
 
-0. (可选)配置对象存储服务, 自动上传: 
-1. 备份文件中不包含 `gitlab.rb` 和 `gitlab-secrets.json` 这两个文件，这两个文件包含了敏感数据，例如配置信息和加密密钥，因此在恢复备份时需要手动备份这两个文件。
-为了确保完整的备份和恢复过程，请务必手动备份 `gitlab.rb` 和 `gitlab-secrets.json` 文件。
-2. 备份:
+1. 手动备份:
   ```
   mkdir ./gitlab-bak
   docker compose exec -t gitlab gitlab-backup create
@@ -69,7 +66,7 @@ Gitlab容器启动大概需要5-6分钟, 请耐心等待. SSH端口在Nginx Prox
   docker compose cp gitlab:/etc/gitlab/gitlab.rb  ./gitlab-bak/
   docker compose cp gitlab:/etc/gitlab/gitlab-secrets.json  ./gitlab-bak/
   ```
-3. 恢复: 在新机器上将gitlab-bak文件夹解压
+2. 恢复: 在新机器上将gitlab-bak文件夹解压
   ```
   docker compose cp ./gitlab-bak/<_gitlab_backup.tar文件>  gitlab:/var/opt/gitlab/backups/
   docker compose cp ./gitlab-bak/gitlab-secrets.json   gitlab:/etc/gitlab/
