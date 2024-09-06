@@ -171,15 +171,6 @@ services:
     restart: unless-stopped
     networks:
       - app
-
-  portainer: # 9443 TLS
-    image: portainer/portainer-ce:latest
-    restart: unless-stopped
-    networks:
-      - app
-    volumes:
-      - /root/app/portainer:/data
-      - /var/run/docker.sock:/var/run/docker.sock
   
 networks:
   app:
