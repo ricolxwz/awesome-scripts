@@ -4,6 +4,8 @@
 services:
 
   nginx-proxy-manager:
+      container_name: npm
+      hostname: npm
       image: 'jc21/nginx-proxy-manager:latest'
       restart: always
       ports:
@@ -16,14 +18,16 @@ services:
       networks:
         - app
         
-  portainer: # 9443
-    image: portainer/portainer-ce:latest
-    volumes:
-      - /root/portainer:/data
-      - /var/run/docker.sock:/var/run/docker.sock
-    restart: always
-    networks:
-      - app
+  # portainer: # 9443
+  #   container_name: portainer
+  #   hostname: portainer
+  #   image: portainer/portainer-ce:latest
+  #   volumes:
+  #     - /root/portainer:/data
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   restart: always
+  #   networks:
+  #     - app
 
 networks:
 
