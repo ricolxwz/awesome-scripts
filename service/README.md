@@ -14,10 +14,10 @@
 4. 压缩man文件夹: `tar -czvf man.tar.gz man`
 6. 在新机器上, 上传app文件夹, 解压app文件夹: `tar -xzvf app.tar.gz`, 解压man文件夹: `tar -xzvf man.tar.gz`, gitlab-aux暂时不需要, 是以防万一用的
 7. 新建`man.yaml`文件
-8. `docker compose up -f man.yaml -d`
+8. `docker compose -f man.yaml up -d`
 9. 新建.env文件, 输入密钥
 10. 新建`app.yaml`文件
-11. `docker compose up -f app.yaml -d`
+11. `docker compose -f app.yaml up -d`
 12. 执行gitlab迁移教程中的6-8步
 
 ## Nginx Proxy Manager
