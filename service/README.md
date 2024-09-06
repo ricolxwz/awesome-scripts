@@ -6,7 +6,7 @@
 
 ## 迁移
 
-迁移教程: https://misc.ricolxwz.de/software/misc/gitlab/migrate.html
+简单直接的方法: 备份app文件夹, nginx文件夹, .env文件, portainer文件夹. 
 
 1. 执行gitlab迁移教程中的1-5步, 备份alist
 2. 下载.env文件: 非常重要! 包含数据库的密码之类的信息, 不然在新机器上无法恢复
