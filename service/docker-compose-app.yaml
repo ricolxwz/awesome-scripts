@@ -118,6 +118,8 @@ services:
   gitlab: # 7750
     image: gitlab/gitlab-ce:17.2.1-ce.0
     restart: unless-stopped
+    ports:
+      - '7750:7750'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'https://git.ricolxwz.io'
