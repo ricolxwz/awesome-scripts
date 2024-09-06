@@ -2,15 +2,16 @@
 
 ## 迁移
 
-(已经保持compose文件中版本固定, 无需升级)升级Gitlab, 直接修改容器的image版本, 大版本要拆分成小版本升级, 如何升级: https://blog.csdn.net/weixin_45623111/article/details/135593376
+迁移教程: https://misc.ricolxwz.de/software/misc/gitlab/migrate.html
 
-0. 备份Gitlab, 手动备份 `gitlab.rb` 和 `gitlab-secrets.json` 文件, 详情见gitlab
-1. 下载.env文件: 非常重要! 包含数据库的密码之类的信息, 不然在新机器上无法恢复
-2. 压缩app文件夹: `tar -czvf app.tar.gz app`, 下载文件夹
-3. 在新机器上, 上传app文件夹, 解压app文件夹: ``tar -xzvf app.tar.gz`
-4. 新建`docker-compose.yaml`文件
-5. 新建`.env`文件
-6. 恢复gitlab文件夹, 详情见gitlab
+1. 执行gitlab迁移教程中的1-4步
+2. 下载.env文件: 非常重要! 包含数据库的密码之类的信息, 不然在新机器上无法恢复
+3. 压缩app文件夹: 删去gitlab文件夹, `tar -czvf app.tar.gz app`, 下载文件夹
+4. 在新机器上, 上传app文件夹, 解压app文件夹: ``tar -xzvf app.tar.gz`
+5. 新建`docker-compose.yaml`文件
+6. 新建`.env`文件
+7. 执行gitlab迁移教程中的6-7步
+8. `docker compose up -d`
 
 ## Nginx Proxy Manager
 
@@ -43,47 +44,7 @@ docker compose exec -it alist ./alist admin set <密码>
 
 Gitlab容器启动大概需要5-6分钟, 请耐心等待. SSH端口在Nginx Proxy Manager里面设置stream, 转发7750端口到gitlab:22
 
-`docker compose exec -it gitlab /bin/bash`
-
-![image](https://github.com/user-attachments/assets/087aaf26-c723-42d1-912d-5e46940ef0fa)
-
-`docker compose exec -it gitlab-runner gitlab-runner register`
-
-0. 取gitlab界面注册一个runner, 保存好token
-1. 输入Gitlab的URL: https://git.ricolxwz.io
-2. 输入刚才的token
-3. 输入runner的名字, 随便写
-4. 输入executor, 选择docker
-5. 输入默认的docker image: ubuntu:latest
-6. 配置完成会生成配置文件, 在`./app/gitlab-runner/config/config.toml`中, 以后可以自行修改
-7. 可以通过`docker compose exec -it gitlab-runner gitlab-runner unregister`取消注册
-
-### 备份
-
-0. (已经保持compose文件中版本固定, 无需升级)直接升级当前的gitlab, 直接修改容器的image版本, 大版本要拆分成小版本升级, 如何升级: https://blog.csdn.net/weixin_45623111/article/details/135593376
-1. 手动备份:
-  ```
-  mkdir ./gitlab-bak
-  docker compose exec gitlab gitlab-backup create
-  docker compose cp gitlab:/var/opt/gitlab/backups/<_gitlab_backup.tar文件>  ./gitlab-bak/
-  docker compose cp gitlab:/etc/gitlab/gitlab.rb  ./gitlab-bak/
-  docker compose cp gitlab:/etc/gitlab/gitlab-secrets.json  ./gitlab-bak/
-  ```
-2. 恢复: 在新机器上将gitlab-bak文件夹解压
-  ```
-  chmod 777 ./gitlab-bak/<_gitlab_backup.tar文件>
-  docker compose exec gitlab gitlab-ctl stop unicorn
-  docker compose exec gitlab gitlab-ctl stop sidekiq
-  docker compose cp ./gitlab-bak/<_gitlab_backup.tar文件>  gitlab:/var/opt/gitlab/backups/
-  docker compose cp ./gitlab-bak/gitlab-secrets.json   gitlab:/etc/gitlab/
-  docker compose cp ./gitlab-bak/gitlab.rb   gitlab:/etc/gitlab/
-  docker compose exec gitlab gitlab-rake gitlab:backup:restore
-  docker compose exec gitlab gitlab-ctl start
-  ```  
-### 升级
-
-升级路线: https://docs.gitlab.com/ee/update/index.html#upgrade-paths
-升级就是移除掉原先的容器(不要移除volume), 然后再根据升级路线一步一步创建新的容器, 删除, 创建, 直到最后的版本. https://blog.csdn.net/weixin_45623111/article/details/135593376
+其他, 请参考https://misc.ricolxwz.de/
 
 ## Easyimage
 
