@@ -4,7 +4,7 @@
 
 迁移教程: https://misc.ricolxwz.de/software/misc/gitlab/migrate.html
 
-1. 执行gitlab迁移教程中的1-5步
+1. 执行gitlab迁移教程中的1-5步, 备份alist
 2. 下载.env文件: 非常重要! 包含数据库的密码之类的信息, 不然在新机器上无法恢复
 3. 压缩app文件夹: 删去gitlab文件夹, `tar -czvf app.tar.gz app`, 下载文件夹
 4. 在新机器上, 上传app文件夹, 解压app文件夹: ``tar -xzvf app.tar.gz`
