@@ -58,6 +58,7 @@ Gitlab容器启动大概需要5-6分钟, 请耐心等待. SSH端口在Nginx Prox
 
 ### 备份
 
+0. 记录当前gitlab的版本号, 因为版本号不一样可能导致恢复失败
 1. 手动备份:
   ```
   mkdir ./gitlab-bak
