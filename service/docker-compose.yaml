@@ -147,7 +147,7 @@ services:
     networks:
       - app
   gitlab-runner:
-    image: gitlab/gitlab-runner:alpine
+    image: gitlab/gitlab-runner:v17.2.1
     restart: unless-stopped
     depends_on:
       - gitlab
