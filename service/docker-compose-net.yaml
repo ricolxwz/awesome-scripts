@@ -1,18 +1,8 @@
 ---
+# 请先确保app桥接网络已经创建
 
 services:
-  nginx-proxy-manager:
-    image: 'jc21/nginx-proxy-manager:latest'
-    restart: unless-stopped
-    ports:
-      - '80:80'
-      - '81:81'
-      - '443:443'
-    volumes:
-      - ./app/nginx/data:/data
-      - ./app/nginx/letsencrypt:/etc/letsencrypt
-    networks:
-      - app
+
   3x-ui: # 2053
     image: ghcr.io/mhsanaei/3x-ui:latest
     restart: unless-stopped
@@ -23,6 +13,7 @@ services:
     tty: true
     networks:
       - app
+      
 networks:
   app:
-    driver: bridge
+    external: true
