@@ -2,20 +2,6 @@
 
 services:
 
-  nginx-proxy-manager:
-    image: 'jc21/nginx-proxy-manager:latest'
-    restart: unless-stopped
-    ports:
-      - '80:80'
-      - '443:443'
-      - '7750:7750'
-      # - '81:81'
-    volumes:
-      - /root/app/nginx/data:/data
-      - /root/app/nginx/letsencrypt:/etc/letsencrypt
-    networks:
-      - app
-
   alist: # 5244
     image: 'xhofe/alist:latest'
     restart: unless-stopped
