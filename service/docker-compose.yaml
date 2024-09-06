@@ -171,6 +171,17 @@ services:
     restart: unless-stopped
     networks:
       - app
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    restart: unless-stopped
+    networks:
+      - app
+    ports:
+      - 9443:9443
+    volumes:
+      - ./app/portainer:/data
+      - /var/run/docker.sock:/var/run/docker.sock
   
 networks:
   app:
