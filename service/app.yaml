@@ -144,6 +144,7 @@ services:
       GITLAB_OMNIBUS_CONFIG: |
         gitlab_rails['gitlab_shell_ssh_port'] = 7750
         letsencrypt['enabled'] = false
+        gitlab_pages['enable'] = true
         nginx['enable'] = true
         nginx['listen_port'] = 80
         nginx['listen_https'] = false
