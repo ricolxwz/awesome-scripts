@@ -133,42 +133,40 @@ services:
     networks:
       - app
 
-  gitlab: # 7750 GIT
-    container_name: gitlab
-    hostname: gitlab
-    image: gitlab/gitlab-ce:17.2.1-ce.0
-    restart: unless-stopped
-    ports:
-      - '7750:22'
-    environment:
-      GITLAB_OMNIBUS_CONFIG: |
-        external_url 'https://git.ricolxwz.io'
-        pages_external_url "http://pages.ricolxwz.io"
-        gitlab_rails['gitlab_shell_ssh_port'] = 7750
-        letsencrypt['enabled'] = false
-        gitlab_pages['enable'] = true
-        nginx['enable'] = true
-        nginx['listen_port'] = 80
-        nginx['listen_https'] = false
-    volumes:
-      - '/root/app/gitlab/config:/etc/gitlab'
-      - '/root/app/gitlab/logs:/var/log/gitlab'
-      - '/root/app/gitlab/data:/var/opt/gitlab'
-    shm_size: '256m'
-    networks:
-      - app
-  gitlab-runner:
-    container_name: gitlab-runner
-    hostname: gitlab-runner
-    image: gitlab/gitlab-runner:v17.2.1
-    restart: unless-stopped
-    depends_on:
-      - gitlab
-    volumes:
-     - /root/app/gitlab-runner/config:/etc/gitlab-runner
-     - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-        - app
+  # gitlab: # 7750 GIT
+  #   container_name: gitlab
+  #   hostname: gitlab
+  #   image: gitlab/gitlab-ce:17.2.1-ce.0
+  #   restart: unless-stopped
+  #   ports:
+  #     - '7750:22'
+  #   environment:
+  #     GITLAB_OMNIBUS_CONFIG: |
+  #       external_url 'https://git.ricolxwz.io'
+  #       gitlab_rails['gitlab_shell_ssh_port'] = 7750
+  #       letsencrypt['enabled'] = false
+  #       nginx['enable'] = true
+  #       nginx['listen_port'] = 80
+  #       nginx['listen_https'] = false
+  #   volumes:
+  #     - '/root/app/gitlab/config:/etc/gitlab'
+  #     - '/root/app/gitlab/logs:/var/log/gitlab'
+  #     - '/root/app/gitlab/data:/var/opt/gitlab'
+  #   shm_size: '256m'
+  #   networks:
+  #     - app
+  # gitlab-runner:
+  #   container_name: gitlab-runner
+  #   hostname: gitlab-runner
+  #   image: gitlab/gitlab-runner:v17.2.1
+  #   restart: unless-stopped
+  #   depends_on:
+  #     - gitlab
+  #   volumes:
+  #    - /root/app/gitlab-runner/config:/etc/gitlab-runner
+  #    - /var/run/docker.sock:/var/run/docker.sock
+  #   networks:
+  #       - app
 
   easyimage: # 80
     container_name: easyimage
