@@ -143,7 +143,7 @@ services:
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'https://git.ricolxwz.io'
-        pages_external_url "https://pages.ricolxwz.io"
+        pages_external_url "https://ricolxwz.io"
         pages_nginx['redirect_http_to_https'] = false
         gitlab_rails['gitlab_shell_ssh_port'] = 7750
         letsencrypt['enabled'] = false
