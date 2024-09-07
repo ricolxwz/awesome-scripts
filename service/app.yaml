@@ -147,6 +147,8 @@ services:
         pages_external_url 'https://pages.ricolxwz.io'
         gitlab_pages['enable'] = true
         gitlab_pages['access_control'] = false
+        nginx['listen_port'] = 80
+        nginx['listen_https'] = false
     volumes:
       - '/root/app/gitlab/config:/etc/gitlab'
       - '/root/app/gitlab/logs:/var/log/gitlab'
