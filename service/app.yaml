@@ -144,6 +144,9 @@ services:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'https://git.ricolxwz.io'
         gitlab_rails['gitlab_shell_ssh_port'] = 7750
+        pages_external_url 'https://pages.ricolxwz.io'
+        gitlab_pages['enable'] = true
+        gitlab_pages['access_control'] = false
     volumes:
       - '/root/app/gitlab/config:/etc/gitlab'
       - '/root/app/gitlab/logs:/var/log/gitlab'
