@@ -142,6 +142,7 @@ services:
       - '7750:22'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://git.ricolxwz.io'
         gitlab_rails['gitlab_shell_ssh_port'] = 7750
         letsencrypt['enabled'] = false
         gitlab_pages['enable'] = true
