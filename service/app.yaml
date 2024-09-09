@@ -177,7 +177,7 @@ services:
     restart: unless-stopped
     networks:
       - app
-  nextcloud: # 7720
+  nextcloud: # 7720, 注意管理界面反代要设置为https, 端口8080
     container_name: nextcloud-aio-mastercontainer
     hostname: nextcloud
     image: nextcloud/all-in-one:latest
