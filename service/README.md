@@ -1,5 +1,30 @@
 # 服务
 
+## 备份
+
+```bash
+date=$(date +%Y)-$(date +%m)-$(date +%d)
+tar -czvf /root/npm.tar.gz /root/nginx
+tar -czvf /root/memos.tar.gz /root/app/memos
+tar -czvf /root/umami.tar.gz /root/app/umami
+tar -czvf /root/umami-db.tar.gz /root/app/umami-db
+tar -czvf /root/uptime-kuma.tar.gz /root/app/uptime-kuma
+tar -czvf /root/yourls.tar.gz /root/app/yourls
+tar -czvf /root/yourls-db.tar.gz /root/app/yourls-db
+tar -czvf /root/nav.tar.gz /root/app/nav
+tar -czvf /root/easyimage.tar.gz /root/app/easyimage
+aws s3 cp /root/npm.tar.gz s3://ricolxwz-backup/$(date)
+aws s3 cp /root/memos.tar.gz s3://ricolxwz-backup/$(date)
+aws s3 cp /root/umami.tar.gz s3://ricolxwz-backup/$(date)
+aws s3 cp /root/umami-db.tar.gz s3://ricolxwz-backup/$(date)
+aws s3 cp /root/uptime-kuma.tar.gz s3://ricolxwz-backup/$(date)
+aws s3 cp /root/yours.tar.gz s3://ricolxwz-backup/$(date)
+aws s3 cp /root/yours-db.tar.gz s3://ricolxwz-backup/$(date)
+aws s3 cp /root/nav.tar.gz s3://ricolxwz-backup/$(date)
+aws s3 cp /root/easyimage.tar.gz s3://ricolxwz-backup/$(date)
+rm /root/*.tar.gz
+```
+
 ## 网络
 
 在使用之前, 请先建立网络`app`: `docker network create app`
