@@ -178,7 +178,7 @@ services:
     networks:
       - app
   nextcloud: # 80
-    container_name: nextcloud
+    container_name: nextcloud-aio-mastercontainer
     hostname: nextcloud
     image: nextcloud/all-in-one:latest
     environment:
