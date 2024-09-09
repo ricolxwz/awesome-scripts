@@ -25,6 +25,10 @@ aws s3 cp /root/easyimage.tar.gz s3://ricolxwz-backup/${timestamp}/
 rm /root/*.tar.gz
 ```
 
+```
+0 0 */5 * * /root/backup.sh
+```
+
 ## 网络
 
 在使用之前, 请先建立网络`app`: `docker network create app`
