@@ -24,7 +24,7 @@ services:
   #   image: portainer/portainer-ce:latest
   #   volumes:
   #     - /root/man/portainer:/data
-  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro
   #   restart: always
   #   networks:
   #     - app
