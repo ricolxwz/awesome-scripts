@@ -3,25 +3,25 @@
 ## 备份
 
 ```bash
-date=$(date +%Y)-$(date +%m)-$(date +%d)
-tar -czvf /root/npm.tar.gz /root/nginx
-tar -czvf /root/memos.tar.gz /root/app/memos
-tar -czvf /root/umami.tar.gz /root/app/umami
-tar -czvf /root/umami-db.tar.gz /root/app/umami-db
-tar -czvf /root/uptime-kuma.tar.gz /root/app/uptime-kuma
-tar -czvf /root/yourls.tar.gz /root/app/yourls
-tar -czvf /root/yourls-db.tar.gz /root/app/yourls-db
-tar -czvf /root/nav.tar.gz /root/app/nav
-tar -czvf /root/easyimage.tar.gz /root/app/easyimage
-aws s3 cp /root/npm.tar.gz s3://ricolxwz-backup/$(date)
-aws s3 cp /root/memos.tar.gz s3://ricolxwz-backup/$(date)
-aws s3 cp /root/umami.tar.gz s3://ricolxwz-backup/$(date)
-aws s3 cp /root/umami-db.tar.gz s3://ricolxwz-backup/$(date)
-aws s3 cp /root/uptime-kuma.tar.gz s3://ricolxwz-backup/$(date)
-aws s3 cp /root/yours.tar.gz s3://ricolxwz-backup/$(date)
-aws s3 cp /root/yours-db.tar.gz s3://ricolxwz-backup/$(date)
-aws s3 cp /root/nav.tar.gz s3://ricolxwz-backup/$(date)
-aws s3 cp /root/easyimage.tar.gz s3://ricolxwz-backup/$(date)
+timestamp=$(date +%Y)-$(date +%m)-$(date +%d)
+tar -czvf /root/npm.tar.gz /root/man/nginx --absolute-names
+tar -czvf /root/memos.tar.gz /root/app/memos --absolute-names
+tar -czvf /root/umami.tar.gz /root/app/umami --absolute-names
+tar -czvf /root/umami-db.tar.gz /root/app/umami-db --absolute-names
+tar -czvf /root/uptime-kuma.tar.gz /root/app/uptime-kuma --absolute-names
+tar -czvf /root/yourls.tar.gz /root/app/yourls --absolute-names
+tar -czvf /root/yourls-db.tar.gz /root/app/yourls-db --absolute-names
+tar -czvf /root/nav.tar.gz /root/app/nav --absolute-names
+tar -czvf /root/easyimage.tar.gz /root/app/easyimage --absolute-names
+aws s3 cp /root/npm.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /root/memos.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /root/umami.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /root/umami-db.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /root/uptime-kuma.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /root/yourls.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /root/yourls-db.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /root/nav.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /root/easyimage.tar.gz s3://ricolxwz-backup/${timestamp}/
 rm /root/*.tar.gz
 ```
 
