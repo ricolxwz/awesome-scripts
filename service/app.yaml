@@ -2,7 +2,6 @@
 # 请先确保app桥接网络已经创建
 
 services:
-
   alist: # 5244
     container_name: alist
     hostname: alist
@@ -17,7 +16,6 @@ services:
       - TZ=UTC
     networks:
       - app
-
   chatgpt-next-web: # 3000
     container_name: chatgpt-next-web
     hostname: chatgpt-next-web
@@ -30,7 +28,6 @@ services:
     restart: unless-stopped
     networks:
       - app
-
   umami: # 3000
     container_name: umami
     hostname: umami
@@ -68,7 +65,6 @@ services:
       retries: 5
     networks:
       - app
-      
   uptime-kuma: # 3001
     container_name: uptime-kuma
     hostname: uptime-kuma
@@ -78,7 +74,6 @@ services:
     restart: unless-stopped
     networks:
       - app
-      
   memos: # 5230
     container_name: memos
     hostname: memos
@@ -88,7 +83,6 @@ services:
     restart: unless-stopped
     networks:
       - app
-
   yourls: # 80
     container_name: yourls
     hostname: yourls
@@ -122,7 +116,6 @@ services:
     restart: unless-stopped
     networks:
       - app
-      
   nav: # 80
     container_name: nav
     hostname: nav
@@ -132,7 +125,6 @@ services:
       - /root/app/nav:/usr/share/nginx/html:ro
     networks:
       - app
-
   # gitlab: # 7750 GIT
   #   container_name: gitlab
   #   hostname: gitlab
@@ -167,7 +159,6 @@ services:
   #    - /var/run/docker.sock:/var/run/docker.sock
   #   networks:
   #       - app
-
   easyimage: # 80
     container_name: easyimage
     hostname: easyimage
@@ -178,27 +169,31 @@ services:
     restart: unless-stopped
     networks:
       - app
-
   excalidraw: # 80
+    init: true
     container_name: excalidraw
     hostname: excalidraw
     image: excalidraw/excalidraw:latest
     restart: unless-stopped
     networks:
       - app
-
   nextcloud: # 80
     container_name: nextcloud
     hostname: nextcloud
     image: nextcloud/all-in-one:latest
+    # ports:
+    #   - 8080:8080
     volumes:
       - nextcloud_aio_mastercontainer:/mnt/docker-aio-config
       - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: unless-stopped
     networks:
       - app
-  
-networks:
 
+networks:
   app:
     external: true
+
+volumes:
+  nextcloud_aio_mastercontainer:
+    name: nextcloud_aio_mastercontainer
