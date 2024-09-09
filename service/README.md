@@ -4,15 +4,18 @@
 
 ```bash
 timestamp=$(date +%Y)-$(date +%m)-$(date +%d)
-tar -czvf /root/npm.tar.gz /root/man/nginx --absolute-names
-tar -czvf /root/memos.tar.gz /root/app/memos --absolute-names
-tar -czvf /root/umami.tar.gz /root/app/umami --absolute-names
-tar -czvf /root/umami-db.tar.gz /root/app/umami-db --absolute-names
-tar -czvf /root/uptime-kuma.tar.gz /root/app/uptime-kuma --absolute-names
-tar -czvf /root/yourls.tar.gz /root/app/yourls --absolute-names
-tar -czvf /root/yourls-db.tar.gz /root/app/yourls-db --absolute-names
-tar -czvf /root/nav.tar.gz /root/app/nav --absolute-names
-tar -czvf /root/easyimage.tar.gz /root/app/easyimage --absolute-names
+cd /root/man
+tar -czvf /root/npm.tar.gz nginx --absolute-names
+cd /root/app
+tar -czvf /root/memos.tar.gz memos --absolute-names
+tar -czvf /root/umami.tar.gz umami --absolute-names
+tar -czvf /root/umami-db.tar.gz umami-db --absolute-names
+tar -czvf /root/uptime-kuma.tar.gz uptime-kuma --absolute-names
+tar -czvf /root/yourls.tar.gz yourls --absolute-names
+tar -czvf /root/yourls-db.tar.gz yourls-db --absolute-names
+tar -czvf /root/nav.tar.gz nav --absolute-names
+tar -czvf /root/easyimage.tar.gz easyimage --absolute-names
+cd /root
 aws s3 cp /root/npm.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/memos.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/umami.tar.gz s3://ricolxwz-backup/${timestamp}/
