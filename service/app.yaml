@@ -177,19 +177,6 @@ services:
     restart: unless-stopped
     networks:
       - app
-  nextcloud: # 7720, 注意管理界面反代要设置为https, 端口8080
-    container_name: nextcloud-aio-mastercontainer
-    hostname: nextcloud
-    image: nextcloud/all-in-one:latest
-    environment:
-      - APACHE_PORT=7720
-      - APACHE_IP_BINDING=0.0.0.0
-    volumes:
-      - nextcloud_aio_mastercontainer:/mnt/docker-aio-config
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    restart: unless-stopped
-    networks:
-      - app
 
 networks:
   app:
