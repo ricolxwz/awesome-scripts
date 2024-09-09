@@ -186,6 +186,17 @@ services:
     restart: unless-stopped
     networks:
       - app
+
+  nextcloud: # 80
+    container_name: nextcloud
+    hostname: nextcloud
+    image: nextcloud/all-in-one:latest
+    volumes:
+      - nextcloud_aio_mastercontainer:/mnt/docker-aio-config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
+    networks:
+      - app
   
 networks:
 
