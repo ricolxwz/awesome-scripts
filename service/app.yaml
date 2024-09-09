@@ -177,7 +177,7 @@ services:
     restart: unless-stopped
     networks:
       - app
-  nextcloud: # 80
+  nextcloud: # 7720
     container_name: nextcloud-aio-mastercontainer
     hostname: nextcloud
     image: nextcloud/all-in-one:latest
