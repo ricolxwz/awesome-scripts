@@ -187,7 +187,16 @@ services:
       - FLARE_USER=wenzexu
       - FLARE_PASS=$FLARE_PASS
     volumes:
-      - /root/flare:/app
+      - /root/app/flare:/app
+    networks:
+      - app
+  pingvin-share: # 3000
+    image: stonith404/pingvin-share
+    container_name: pingvin-share
+    hostname: pingvin-share
+    restart: unless-stopped
+    volumes:
+      - /root/app/pingvin-share:/opt/app/backend/data
     networks:
       - app
 
