@@ -2,6 +2,45 @@
 # 请先确保app桥接网络已经创建
 
 services:
+  halo: # 8090
+    image: halohub/halo
+    restart: unless-stopped
+    depends_on:
+      halo-db:
+        condition: service_healthy
+    networks:
+      - app
+    volumes:
+      - /root/app/halo:/root/.halo2
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    command:
+      - --spring.r2dbc.url=r2dbc:pool:postgresql://halo-db/halo
+      - --spring.r2dbc.username=halo
+      - --spring.r2dbc.password=openpostgresql
+      - --spring.sql.init.platform=postgresql
+      - --halo.external-url=http://localhost:8090/
+  halo-db:
+    image: postgres:15.4
+    restart: unless-stopped
+    networks:
+      - app
+    volumes:
+      - /root/app/halo-db:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+      - POSTGRES_PASSWORD=openpostgresql
+      - POSTGRES_USER=halo
+      - POSTGRES_DB=halo
+      - PGUSER=halo
   alist: # 5244
     container_name: alist
     hostname: alist
