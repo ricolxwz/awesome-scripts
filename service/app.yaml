@@ -233,6 +233,58 @@ services:
     networks:
       - app
     restart: unless-stopped
+  aria2-pro: # 6800 RPC
+    image: p3terx/aria2-pro
+    container_name: aria2-pro
+    hostname: aria2-pro
+    environment:
+      - PUID=$UID # 可以换成普通用户
+      - PGID=$GID
+      - UMASK_SET=022
+      - RPC_SECRET=$RPC_SECRET
+      - RPC_PORT=6800
+      - LISTEN_PORT=6888
+      - DISK_CACHE=64M
+      - UPDATE_TRACKERS=true
+      - TZ=Etc/UTC
+    volumes:
+      - /root/app/aria2/config:/config
+      - /root/app/aria2/downloads:/downloads
+      - /root/app/alist:/opt/alist/data
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 1m
+    networks:
+      - app
+  ariang: # 6880
+    container_name: ariang
+    image: p3terx/ariang
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 1m
+    networks:
+      - app
+  qbittorrent: # 8181
+    container_name: qbittorrent
+    hostname: qbittorrent
+    image: linuxserver/qbittorrent:latest
+    environment:
+      - PUID=$UID
+      - PGID=$GID
+      - TZ=Etc/UTC
+      - WEBUI_PORT=8080
+      - TORRENTING_PORT=6881
+    volumes:
+      - /root/app/qbittorrent/config:/config
+      - /root/app/qbittorrent/downloads:/downloads
+      - /root/app/alist:/opt/alist/data
+    restart: unless-stopped
+    networks:
+      - app
 
 networks:
   app:
