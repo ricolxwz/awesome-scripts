@@ -260,6 +260,7 @@ services:
       - app
   ariang: # 6880
     container_name: ariang
+    hostname: ariang
     image: p3terx/ariang
     restart: unless-stopped
     logging:
