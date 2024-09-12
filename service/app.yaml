@@ -16,16 +16,14 @@ services:
       - TZ=UTC
     networks:
       - app
-  chatgpt-next-web: # 3000
-    container_name: chatgpt-next-web
-    hostname: chatgpt-next-web
-    image: yidadaa/chatgpt-next-web
-    environment:
-      - OPENAI_API_KEY=$OPENAI_API_KEY
-      - GOOGLE_API_KEY=$GOOGLE_API_KEY
-      - ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY
-      - CODE=$CODE
+  lobechat: # 3210
+    image: lobehub/lobe-chat
+    container_name: lobechat
     restart: unless-stopped
+    environment:
+      OPENAI_API_KEY: $OPENAI_API_KEY
+      ACCESS_CODE: $ACCESS_CODE
+      ANTHROPIC_API_KEY: $ANTHROPIC_API_KEY
     networks:
       - app
   umami: # 3000
