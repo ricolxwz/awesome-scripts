@@ -17,6 +17,8 @@ tar -czvf /root/yourls.tar.gz yourls --absolute-names
 tar -czvf /root/yourls-db.tar.gz yourls-db --absolute-names
 tar -czvf /root/nav.tar.gz nav --absolute-names
 tar -czvf /root/easyimage.tar.gz easyimage --absolute-names
+tar -czvf /root/flare.tar.gz flare --absolute-names
+tar -czvf /root/pingvin-share.tar.gz pingvin-share --absolute-names
 cd /root
 aws s3 cp /root/env.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/npm.tar.gz s3://ricolxwz-backup/${timestamp}/
@@ -28,6 +30,8 @@ aws s3 cp /root/yourls.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/yourls-db.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/nav.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/easyimage.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /root/flare.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /root/pingvin-share.tar.gz s3://ricolxwz-backup/${timestamp}/
 rm /root/*.tar.gz
 ```
 
