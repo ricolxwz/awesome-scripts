@@ -69,7 +69,9 @@ rm /root/*.tar.gz
 11. `docker compose -f /root/app.yaml up -d`
 12. 执行gitlab迁移教程中的6-8步, 或者使用刚才的`gitlab-aux.tar.gz`
 
-## Nginx Proxy Manager
+## 默认用户名密码
+
+### Nginx Proxy Manager
 
 默认用户名密码:
 
@@ -78,7 +80,7 @@ rm /root/*.tar.gz
 
 登录之后修改.
 
-## Alist
+### Alist
 
 需要手动设置密码:
 
@@ -86,37 +88,37 @@ rm /root/*.tar.gz
 docker compose exec -it alist ./alist admin set <密码>
 ```
 
-## 3x-ui
+### 3x-ui
 
 - Username:    admin
 - Password: admin
 
-## Umami
+### Umami
 
 - Username: admin
 - Password: umami
 
-## Gitlab
+### Gitlab
 
 Gitlab容器启动大概需要5-6分钟, 请耐心等待. SSH端口在Nginx Proxy Manager里面设置stream, 转发7750端口到gitlab:22
 
 其他, 请参考https://misc.ricolxwz.de/
 
-## Easyimage
+### Easyimage
 
 到配置目录, 编辑config.php, 里面的domain和imgurl改成自己的域名, 记得加s, 然后重启容器
 
-## Nextcloud
+### Nextcloud
 
 ```
 sudo cat /var/lib/docker/volumes/nextcloud_aio_mastercontainer/_data/data/configuration.json | grep password
 ```
 
-## Moments
+### Moments
 
 admin/a123456
 
-## Qbittorrent
+### Qbittorrent
 
 - username: admin
 - password: `docker logs qbittorrent`
