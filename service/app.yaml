@@ -238,8 +238,8 @@ services:
     container_name: aria2-pro
     hostname: aria2-pro
     environment:
-      - PUID=$UID # 可以换成普通用户
-      - PGID=$GID
+      - PUID=0 # 可以换成普通用户
+      - PGID=0
       - UMASK_SET=022
       - RPC_SECRET=$RPC_SECRET
       - RPC_PORT=6800
@@ -273,8 +273,8 @@ services:
     hostname: qbittorrent
     image: linuxserver/qbittorrent:latest
     environment:
-      - PUID=$UID
-      - PGID=$GID
+      - PUID=0
+      - PGID=0
       - TZ=Etc/UTC
       - WEBUI_PORT=8080
       - TORRENTING_PORT=6881
