@@ -182,6 +182,7 @@ services:
     init: true
     restart: unless-stopped
     container_name: nextcloud-aio-mastercontainer
+    hostname: nextcloud
     volumes:
       - nextcloud_aio_mastercontainer:/mnt/docker-aio-config
       - /var/run/docker.sock:/var/run/docker.sock:ro
