@@ -18,6 +18,7 @@ tar -czvf /root/yourls-db.tar.gz yourls-db --absolute-names
 tar -czvf /root/nav.tar.gz nav --absolute-names
 tar -czvf /root/easyimage.tar.gz easyimage --absolute-names
 cd /root
+aws s3 cp /root/env.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/npm.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/memos.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/umami.tar.gz s3://ricolxwz-backup/${timestamp}/
