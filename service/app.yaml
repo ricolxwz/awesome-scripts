@@ -2,9 +2,32 @@
 # 请先确保app桥接网络已经创建
 
 services:
+  stirling-pdf: # 8080
+    image: frooodle/s-pdf:latest
+    container_name: stirling-pdf
+    hostname: stirling-pdf
+    volumes:
+      - /root/app/stirling-pdf/trainingData:/usr/share/tessdata
+      - /root/app/stirling-pdf/extraConfigs:/configs
+    environment:
+      - DOCKER_ENABLE_SECURITY=true
+      - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
+      - LANGS=zh_CN
+    restart: unless-stopped
+    networks:
+      - app
+  it-tools: # 80
+    image: corentinth/it-tools
+    restart: unless-stopped
+    container_name: it-tools
+    hostname: it-tools
+    networks:
+      - app
   halo: # 8090
     image: halohub/halo
     restart: unless-stopped
+    container_name: halo
+    hostname: halo
     depends_on:
       halo-db:
         condition: service_healthy
@@ -27,6 +50,8 @@ services:
   halo-db:
     image: postgres:15.4
     restart: unless-stopped
+    container_name: halo-db
+    hostname: halo-db
     networks:
       - app
     volumes:
