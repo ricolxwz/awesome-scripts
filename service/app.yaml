@@ -24,7 +24,7 @@ services:
     networks:
       - app
   halo: # 8090
-    image: halohub/halo
+    image: halohub/halo:2.19
     restart: unless-stopped
     container_name: halo
     hostname: halo
