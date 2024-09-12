@@ -2,14 +2,13 @@
 # 请先确保app桥接网络已经创建
 
 services:
-
   nginx-proxy-manager:
       container_name: npm
       hostname: npm
       image: 'jc21/nginx-proxy-manager:latest'
       restart: always
       extra_hosts:
-        - "host.docker.internal:host-gateway"
+        - "host.docker.internal:<app网络中主机的ip>"
       ports:
         - '80:80'
         - '443:443'
@@ -19,7 +18,6 @@ services:
         - /root/man/nginx/letsencrypt:/etc/letsencrypt
       networks:
         - app
-        
   # portainer: # 9443
   #   container_name: portainer
   #   hostname: portainer
@@ -32,6 +30,5 @@ services:
   #     - app
 
 networks:
-
   app:
     external: true
