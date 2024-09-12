@@ -175,6 +175,16 @@ services:
     restart: unless-stopped
     networks:
       - app
+  flare: # 5005
+    image: soulteary/flare
+    restart: unless-stopped
+    command: flare
+    environment:
+      - FLARE_GUIDE=1
+    volumes:
+      - /root/flare:/app
+    networks:
+      - app
 
 networks:
   app:
