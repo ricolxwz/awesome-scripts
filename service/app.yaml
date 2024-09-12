@@ -25,6 +25,7 @@ services:
       OPENAI_API_KEY: $OPENAI_API_KEY
       ACCESS_CODE: $ACCESS_CODE
       ANTHROPIC_API_KEY: $ANTHROPIC_API_KEY
+      FEATURE_FLAGS: "-welcome_suggest"
     networks:
       - app
   umami: # 3000
