@@ -22,6 +22,8 @@ tar -czvf /root/easyimage.tar.gz easyimage --absolute-names
 tar -czvf /root/flare.tar.gz flare --absolute-names
 tar -czvf /root/pingvin-share.tar.gz pingvin-share --absolute-names
 tar -czvf /root/moments.tar.gz moments --absolute-names
+tar -czvf /root/halo.tar.gz halo --absolute-names
+tar -czvf /root/halo-db.tar.gz halo-db --absolute-names
 cd /root
 aws s3 cp /root/env.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/man.tar.gz s3://ricolxwz-backup/${timestamp}/
@@ -38,6 +40,8 @@ aws s3 cp /root/easyimage.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/flare.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/pingvin-share.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/moments.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /root/halo.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /root/halo-db.tar.gz s3://ricolxwz-backup/${timestamp}/
 rm /root/*.tar.gz
 ```
 
