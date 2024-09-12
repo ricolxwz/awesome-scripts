@@ -233,7 +233,7 @@ services:
     networks:
       - app
     restart: unless-stopped
-  aria2-pro: # 6800 RPC
+  aria2-pro: # 6800 RPC, RPC地址为http://aria2-pro:6800/jsonrpc
     image: p3terx/aria2-pro
     container_name: aria2-pro
     hostname: aria2-pro
