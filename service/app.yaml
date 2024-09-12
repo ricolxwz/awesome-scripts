@@ -181,9 +181,11 @@ services:
     container_name: flare
     hostname: flare
     restart: unless-stopped
-    command: flare
+    command: flare --nologin=0
     environment:
-      - FLARE_GUIDE=1
+      - FLARE_GUIDE=0
+      - FLARE_USER=wenzexu
+      - FLARE_PASS=$FLARE_PASS
     volumes:
       - /root/flare:/app
     networks:
