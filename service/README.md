@@ -122,3 +122,7 @@ admin/a123456
 
 - username: admin
 - password: `docker logs qbittorrent`
+
+### Stirling pdf
+
+admin/stirling
