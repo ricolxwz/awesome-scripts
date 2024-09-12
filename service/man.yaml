@@ -8,7 +8,7 @@ services:
       image: 'jc21/nginx-proxy-manager:latest'
       restart: always
       extra_hosts:
-        - "host.docker.internal:<app网络中主机的ip>"
+        - "host.docker.internal:<app网络中主机的ip>" # 请修改为主机在app网络中的ip, 若要使用host.docker.internal反代主机的服务, 请确保服务监听的ip是主机在app网卡上的ip, 或者是0.0.0.0
       ports:
         - '80:80'
         - '443:443'
