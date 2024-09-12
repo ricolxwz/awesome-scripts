@@ -207,7 +207,7 @@ services:
     restart: unless-stopped
     networks:
       - app
-  cryptgeon: # 80
+  cryptgeon: # 8000
     image: cupcakearmy/cryptgeon:latest
     container_name: cryptgeon
     hostname: cryptgeon
