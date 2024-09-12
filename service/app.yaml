@@ -189,7 +189,7 @@ services:
     networks:
       - app
     environment:
-      APACHE_IP_BINDING: 172.18.0.1 # 请修改这一行为app网络中主机的ip
+      APACHE_IP_BINDING: 172.18.0.1 # 请修改这一行为app网络中主机的ip, NPM里面反代http://172.18.0.1:11000
       APACHE_PORT: 11000
 
 networks:
