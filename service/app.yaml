@@ -21,7 +21,7 @@ services:
     command:
       - --spring.r2dbc.url=r2dbc:pool:postgresql://halo-db/halo
       - --spring.r2dbc.username=halo
-      - --spring.r2dbc.password=openpostgresql
+      - --spring.r2dbc.password=$HALO_POSTGRES_PASSWORD
       - --spring.sql.init.platform=postgresql
       - --halo.external-url=http://localhost:8090/
   halo-db:
@@ -37,7 +37,7 @@ services:
       timeout: 5s
       retries: 5
     environment:
-      - POSTGRES_PASSWORD=openpostgresql
+      - POSTGRES_PASSWORD=$HALO_POSTGRES_PASSWORD
       - POSTGRES_USER=halo
       - POSTGRES_DB=halo
       - PGUSER=halo
