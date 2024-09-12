@@ -13,7 +13,7 @@ services:
       - DOCKER_ENABLE_SECURITY=true
       - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
       - LANGS=zh_CN
-      - TZ=UTC
+      - TZ=Asia/Shanghai
     restart: unless-stopped
     networks:
       - app
@@ -23,7 +23,7 @@ services:
     container_name: it-tools
     hostname: it-tools
     environment:
-      - TZ=UTC
+      - TZ=Asia/Shanghai
     networks:
       - app
   # halo: # 8090
@@ -35,7 +35,7 @@ services:
   #     halo-db:
   #       condition: service_healthy
   #   environment:
-  #     - TZ=UTC
+  #     - TZ=Asia/Shanghai
   #   networks:
   #     - app
   #   volumes:
@@ -71,7 +71,7 @@ services:
   #     - POSTGRES_USER=halo
   #     - POSTGRES_DB=halo
   #     - PGUSER=halo
-  #     - TZ=UTC
+  #     - TZ=Asia/Shanghai
   alist: # 5244
     container_name: alist
     hostname: alist
@@ -83,7 +83,7 @@ services:
       - PUID=0
       - PGID=0
       - UMASK=022
-      - TZ=UTC
+      - TZ=Asia/Shanghai
     networks:
       - app
   lobechat: # 3210
@@ -96,7 +96,7 @@ services:
       - ACCESS_CODE=$ACCESS_CODE
       - ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY
       - FEATURE_FLAGS=-welcome_suggest
-      - TZ=UTC
+      - TZ=Asia/Shanghai
     networks:
       - app
   umami: # 3000
@@ -107,7 +107,7 @@ services:
       - DATABASE_URL=postgresql://umami:${POSTGRES_PASSWORD}@umami-db:5432/umami
       - DATABASE_TYPE=postgresql
       - APP_SECRET=replace-me-with-a-random-string
-      - TZ=UTC
+      - TZ=Asia/Shanghai
     depends_on:
       umami-db:
         condition: service_healthy
@@ -126,7 +126,7 @@ services:
     environment:
       - POSTGRES_DB=umami
       - POSTGRES_USER=umami
-      - TZ=UTC
+      - TZ=Asia/Shanghai
       - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
     volumes:
       - /root/app/umami-db:/var/lib/postgresql/data
@@ -143,7 +143,7 @@ services:
     hostname: uptime-kuma
     image: louislam/uptime-kuma:1
     environment: 
-      - TZ=UTC
+      - TZ=Asia/Shanghai
     volumes:
       - /root/app/uptime-kuma:/app/data
     restart: unless-stopped
@@ -154,7 +154,7 @@ services:
     hostname: memos
     image: neosmemo/memos:stable
     environment:
-      - TZ=UTC
+      - TZ=Asia/Shanghai
     volumes:
       - /root/app/memos:/var/opt/memos
     restart: unless-stopped
@@ -174,7 +174,7 @@ services:
       - YOURLS_PASS=$YOURLS_PASS
       - YOURLS_SITE=$YOURLS_SITE
       - YOURLS_HOURS_OFFSET=8
-      - TZ=UTC
+      - TZ=Asia/Shanghai
     volumes:
       - /root/app/yourls/:/var/www/html   
     networks:
@@ -188,7 +188,7 @@ services:
       - MYSQL_DATABASE=yourls
       - MYSQL_USER=yourls
       - MYSQL_PASSWORD=$MYSQL_PASSWORD
-      - TZ=UTC
+      - TZ=Asia/Shanghai
     volumes:
       - /root/app/yourls-db/db:/var/lib/mysql
       - /root/app/yourls-db/conf:/etc/mysql/conf.d
@@ -201,7 +201,7 @@ services:
     image: nginx
     restart: unless-stopped
     environment:
-      - TZ=UTC
+      - TZ=Asia/Shanghai
     volumes:
       - /root/app/nav:/usr/share/nginx/html:ro
     networks:
@@ -245,7 +245,7 @@ services:
     hostname: easyimage
     image: ddsderek/easyimage:latest
     environment:
-      - TZ=UTC
+      - TZ=Asia/Shanghai
     volumes:
       - '/root/app/easyimage/config:/app/web/config'
       - '/root/app/easyimage/i:/app/web/i'
@@ -258,7 +258,7 @@ services:
     hostname: excalidraw
     image: excalidraw/excalidraw:latest
     environment:
-      - TZ=UTC
+      - TZ=Asia/Shanghai
     restart: unless-stopped
     networks:
       - app
@@ -272,7 +272,7 @@ services:
       - FLARE_GUIDE=0
       - FLARE_USER=wenzexu
       - FLARE_PASS=$FLARE_PASS
-      - TZ=UTC
+      - TZ=Asia/Shanghai
     volumes:
       - /root/app/flare:/app
     networks:
@@ -283,7 +283,7 @@ services:
     hostname: pingvin-share
     restart: unless-stopped
     environment:
-      - TZ=UTC
+      - TZ=Asia/Shanghai
     volumes:
       - /root/app/pingvin-share:/opt/app/backend/data
     networks:
@@ -293,7 +293,7 @@ services:
     command: redis-server --maxmemory 1gb --maxmemory-policy allkeys-lru
     container_name: cryptgeon-redis
     environment:
-      - TZ=UTC
+      - TZ=Asia/Shanghai
     hostname: cryptgeon-redis
     restart: unless-stopped
     networks:
@@ -307,7 +307,7 @@ services:
     environment:
       - SIZE_LIMIT=4 MiB
       - REDIS=redis://cryptgeon-redis:6379
-      - TZ=UTC
+      - TZ=Asia/Shanghai
     restart: unless-stopped
     networks:
       - app
@@ -317,7 +317,7 @@ services:
     hostname: moments
     environment:
       - JWT_KEY=$JWT_KEY
-      - TZ=UTC
+      - TZ=Asia/Shanghai
     volumes:
       - /root/app/moments:/app/data
       - /etc/localtime:/etc/localtime:ro
@@ -338,7 +338,7 @@ services:
       - LISTEN_PORT=6888
       - DISK_CACHE=64M
       - UPDATE_TRACKERS=true
-      - TTZ=UTC
+      - TTZ=Asia/Shanghai
     volumes:
       - /root/app/aria2/config:/config
       - /root/app/aria2/downloads:/downloads
@@ -356,7 +356,7 @@ services:
     image: p3terx/ariang
     restart: unless-stopped
     environment:
-      - TZ=UTC
+      - TZ=Asia/Shanghai
     logging:
       driver: json-file
       options:
@@ -373,7 +373,7 @@ services:
       - TZ=Etc/UTC
       - WEBUI_PORT=8080
       - TORRENTING_PORT=6881
-      - TZ=UTC
+      - TZ=Asia/Shanghai
     volumes:
       - /root/app/qbittorrent/config:/config
       - /root/app/qbittorrent/downloads:/downloads
