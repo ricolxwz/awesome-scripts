@@ -231,6 +231,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
     networks:
       - app
+    restart: unless-stopped
 
 networks:
   app:
