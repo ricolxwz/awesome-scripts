@@ -219,6 +219,18 @@ services:
     restart: unless-stopped
     networks:
       - app
+  moments: # 3000
+    image: kingwrcy/moments:latest
+    container_name: moments
+    hostname: moments
+    environment:
+      JWT_KEY: $JWT_KEY
+    volumes:
+      - /root/app/moments:/app/data
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    networks:
+      - app
 
 networks:
   app:
