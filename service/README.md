@@ -4,6 +4,8 @@
 
 ```bash
 timestamp=$(date +%Y)-$(date +%m)-$(date +%d)
+cd /root
+tar -czvf /root/env.tar.gz .env --absolute-names
 cd /root/man
 tar -czvf /root/npm.tar.gz nginx --absolute-names
 cd /root/app
