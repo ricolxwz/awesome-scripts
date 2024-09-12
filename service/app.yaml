@@ -177,7 +177,7 @@ services:
     restart: unless-stopped
     networks:
       - app
-  nextcloud-aio-mastercontainer:
+  nextcloud-aio-mastercontainer: # 8080, 管理界面要用Https反代...
     image: nextcloud/all-in-one:latest
     init: true
     restart: unless-stopped
@@ -189,7 +189,7 @@ services:
     networks:
       - app
     environment:
-      APACHE_IP_BINDING: 172.18.0.1 # 请修改这一行为app网络中主机的ip, NPM里面反代http://172.18.0.1:11000
+      APACHE_IP_BINDING: 172.18.0.1 # 请修改这一行为app网络中主机的ip, NPM里面反代http://172.18.0.1:11000, 注意NPM里面的172.18.0.1是主机在app网络中的ip! 记得根据你自己的情况改!
       APACHE_PORT: 11000
 
 networks:
