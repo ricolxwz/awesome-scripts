@@ -111,3 +111,8 @@ sudo cat /var/lib/docker/volumes/nextcloud_aio_mastercontainer/_data/data/config
 ## Moments
 
 admin/a123456
+
+## Qbittorrent
+
+- username: admin
+- password: `docker logs qbittorrent`
