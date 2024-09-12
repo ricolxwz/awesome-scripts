@@ -57,7 +57,7 @@ rm /root/*.tar.gz
 
 简单直接的方法: 备份app文件夹, man文件夹, .env文件. 
 
-1. `/root/gitlab-backup.sh`
+1. `/root/gitlab-backup.sh`, 备份alist, 备份halo
 2. 下载.env文件: 非常重要! 包含数据库的密码之类的信息, 不然在新机器上无法恢复
 3. 压缩app文件夹: 单独备份gitlab文件夹, `tar -czvf gitlab-aux.tar.gz /root/app/gitlab`, 然后`rm -rf /root/app/gitlab`, 最后`tar -czvf app.tar.gz app`, 下载两个文件夹
 4. 压缩man文件夹: `tar -czvf man.tar.gz man`
