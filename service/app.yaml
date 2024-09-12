@@ -26,52 +26,52 @@ services:
       - TZ=UTC
     networks:
       - app
-  halo: # 8090
-    image: halohub/halo:2.19
-    restart: unless-stopped
-    container_name: halo
-    hostname: halo
-    depends_on:
-      halo-db:
-        condition: service_healthy
-    environment:
-      - TZ=UTC
-    networks:
-      - app
-    volumes:
-      - /root/app/halo:/root/.halo2
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
-      interval: 30s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
-    command:
-      - --spring.r2dbc.url=r2dbc:pool:postgresql://halo-db/halo
-      - --spring.r2dbc.username=halo
-      - --spring.r2dbc.password=$HALO_POSTGRES_PASSWORD
-      - --spring.sql.init.platform=postgresql
-      - --halo.external-url=http://localhost:8090/
-  halo-db:
-    image: postgres:15.4
-    restart: unless-stopped
-    container_name: halo-db
-    hostname: halo-db
-    networks:
-      - app
-    volumes:
-      - /root/app/halo-db:/var/lib/postgresql/data
-    healthcheck:
-      test: [ "CMD", "pg_isready" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    environment:
-      - POSTGRES_PASSWORD=$HALO_POSTGRES_PASSWORD
-      - POSTGRES_USER=halo
-      - POSTGRES_DB=halo
-      - PGUSER=halo
-      - TZ=UTC
+  # halo: # 8090
+  #   image: halohub/halo:2.19
+  #   restart: unless-stopped
+  #   container_name: halo
+  #   hostname: halo
+  #   depends_on:
+  #     halo-db:
+  #       condition: service_healthy
+  #   environment:
+  #     - TZ=UTC
+  #   networks:
+  #     - app
+  #   volumes:
+  #     - /root/app/halo:/root/.halo2
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
+  #     interval: 30s
+  #     timeout: 5s
+  #     retries: 5
+  #     start_period: 30s
+  #   command:
+  #     - --spring.r2dbc.url=r2dbc:pool:postgresql://halo-db/halo
+  #     - --spring.r2dbc.username=halo
+  #     - --spring.r2dbc.password=$HALO_POSTGRES_PASSWORD
+  #     - --spring.sql.init.platform=postgresql
+  #     - --halo.external-url=http://localhost:8090/
+  # halo-db:
+  #   image: postgres:15.4
+  #   restart: unless-stopped
+  #   container_name: halo-db
+  #   hostname: halo-db
+  #   networks:
+  #     - app
+  #   volumes:
+  #     - /root/app/halo-db:/var/lib/postgresql/data
+  #   healthcheck:
+  #     test: [ "CMD", "pg_isready" ]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #   environment:
+  #     - POSTGRES_PASSWORD=$HALO_POSTGRES_PASSWORD
+  #     - POSTGRES_USER=halo
+  #     - POSTGRES_DB=halo
+  #     - PGUSER=halo
+  #     - TZ=UTC
   alist: # 5244
     container_name: alist
     hostname: alist
