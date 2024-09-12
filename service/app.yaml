@@ -181,7 +181,3 @@ services:
 networks:
   app:
     external: true
-
-volumes:
-  nextcloud_aio_mastercontainer:
-    name: nextcloud_aio_mastercontainer
