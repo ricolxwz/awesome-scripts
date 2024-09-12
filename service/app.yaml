@@ -187,7 +187,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - app
-    nvironment:
+    environment:
       - APACHE_IP_BINDING: 172.18.0.1 # 请修改这一行为app网络中主机的ip
       - APACHE_PORT: 11000
 
