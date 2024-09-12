@@ -269,7 +269,7 @@ services:
         max-size: 1m
     networks:
       - app
-  qbittorrent: # 8181
+  qbittorrent: # 8080
     container_name: qbittorrent
     hostname: qbittorrent
     image: linuxserver/qbittorrent:latest
