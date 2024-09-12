@@ -6,6 +6,8 @@
 timestamp=$(date +%Y)-$(date +%m)-$(date +%d)
 cd /root
 tar -czvf /root/env.tar.gz .env --absolute-names
+tar -czvf /root/man.tar.gz man.yaml --absolute-names
+tar -czvf /root/app.tar.gz app.yaml --absolute-names
 cd /root/man
 tar -czvf /root/npm.tar.gz nginx --absolute-names
 cd /root/app
@@ -22,6 +24,8 @@ tar -czvf /root/pingvin-share.tar.gz pingvin-share --absolute-names
 tar -czvf /root/moments.tar.gz moments --absolute-names
 cd /root
 aws s3 cp /root/env.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /root/man.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /root/app.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/npm.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/memos.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/umami.tar.gz s3://ricolxwz-backup/${timestamp}/
