@@ -7,8 +7,8 @@ services:
     container_name: stirling-pdf
     hostname: stirling-pdf
     volumes:
-      - /root/app/stirling-pdf/trainingData:/usr/share/tessdata
-      - /root/app/stirling-pdf/extraConfigs:/configs
+      - /home/wenzexu/app/stirling-pdf/trainingData:/usr/share/tessdata
+      - /home/wenzexu/app/stirling-pdf/extraConfigs:/configs
     environment:
       - DOCKER_ENABLE_SECURITY=true
       - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
@@ -39,7 +39,7 @@ services:
   #   networks:
   #     - app
   #   volumes:
-  #     - /root/app/halo:/root/.halo2
+  #     - /home/wenzexu/app/halo:/home/wenzexu/.halo2
   #   healthcheck:
   #     test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
   #     interval: 30s
@@ -60,7 +60,7 @@ services:
   #   networks:
   #     - app
   #   volumes:
-  #     - /root/app/halo-db:/var/lib/postgresql/data
+  #     - /home/wenzexu/app/halo-db:/var/lib/postgresql/data
   #   healthcheck:
   #     test: [ "CMD", "pg_isready" ]
   #     interval: 10s
@@ -78,7 +78,7 @@ services:
     image: 'xhofe/alist:latest'
     restart: unless-stopped
     volumes:
-      - /root/app/alist:/opt/alist/data
+      - /home/wenzexu/app/alist:/opt/alist/data
     environment:
       - PUID=0
       - PGID=0
@@ -129,7 +129,7 @@ services:
       - TZ=Asia/Shanghai
       - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
     volumes:
-      - /root/app/umami-db:/var/lib/postgresql/data
+      - /home/wenzexu/app/umami-db:/var/lib/postgresql/data
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
@@ -145,7 +145,7 @@ services:
     environment: 
       - TZ=Asia/Shanghai
     volumes:
-      - /root/app/uptime-kuma:/app/data
+      - /home/wenzexu/app/uptime-kuma:/app/data
     restart: unless-stopped
     networks:
       - app
@@ -156,7 +156,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     volumes:
-      - /root/app/memos:/var/opt/memos
+      - /home/wenzexu/app/memos:/var/opt/memos
     restart: unless-stopped
     networks:
       - app
@@ -176,7 +176,7 @@ services:
       - YOURLS_HOURS_OFFSET=8
       - TZ=Asia/Shanghai
     volumes:
-      - /root/app/yourls/:/var/www/html   
+      - /home/wenzexu/app/yourls/:/var/www/html   
     networks:
       - app
   yourls-db:
@@ -190,8 +190,8 @@ services:
       - MYSQL_PASSWORD=$MYSQL_PASSWORD
       - TZ=Asia/Shanghai
     volumes:
-      - /root/app/yourls-db/db:/var/lib/mysql
-      - /root/app/yourls-db/conf:/etc/mysql/conf.d
+      - /home/wenzexu/app/yourls-db/db:/var/lib/mysql
+      - /home/wenzexu/app/yourls-db/conf:/etc/mysql/conf.d
     restart: unless-stopped
     networks:
       - app
@@ -203,7 +203,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     volumes:
-      - /root/app/nav:/usr/share/nginx/html:ro
+      - /home/wenzexu/app/nav:/usr/share/nginx/html:ro
     networks:
       - app
   # gitlab: # 7750 GIT
@@ -223,9 +223,9 @@ services:
   #       nginx['listen_port'] = 80
   #       nginx['listen_https'] = false
   #   volumes:
-  #     - '/root/app/gitlab/config:/etc/gitlab'
-  #     - '/root/app/gitlab/logs:/var/log/gitlab'
-  #     - '/root/app/gitlab/data:/var/opt/gitlab'
+  #     - '/home/wenzexu/app/gitlab/config:/etc/gitlab'
+  #     - '/home/wenzexu/app/gitlab/logs:/var/log/gitlab'
+  #     - '/home/wenzexu/app/gitlab/data:/var/opt/gitlab'
   #   shm_size: '256m'
   #   networks:
   #     - app
@@ -239,7 +239,7 @@ services:
   #   depends_on:
   #     - gitlab
   #   volumes:
-  #    - /root/app/gitlab-runner/config:/etc/gitlab-runner
+  #    - /home/wenzexu/app/gitlab-runner/config:/etc/gitlab-runner
   #    - /var/run/docker.sock:/var/run/docker.sock
   #   networks:
   #       - app
@@ -250,8 +250,8 @@ services:
     environment:
       - TZ=Asia/Shanghai
     volumes:
-      - '/root/app/easyimage/config:/app/web/config'
-      - '/root/app/easyimage/i:/app/web/i'
+      - '/home/wenzexu/app/easyimage/config:/app/web/config'
+      - '/home/wenzexu/app/easyimage/i:/app/web/i'
     restart: unless-stopped
     networks:
       - app
@@ -277,7 +277,7 @@ services:
       - FLARE_PASS=$FLARE_PASS
       - TZ=Asia/Shanghai
     volumes:
-      - /root/app/flare:/app
+      - /home/wenzexu/app/flare:/app
     networks:
       - app
   pingvin-share: # 3000
@@ -288,7 +288,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     volumes:
-      - /root/app/pingvin-share:/opt/app/backend/data
+      - /home/wenzexu/app/pingvin-share:/opt/app/backend/data
     networks:
       - app
   cryptgeon-redis: # 6379
@@ -322,7 +322,7 @@ services:
       - JWT_KEY=$JWT_KEY
       - TZ=Asia/Shanghai
     volumes:
-      - /root/app/moments:/app/data
+      - /home/wenzexu/app/moments:/app/data
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     networks:
@@ -343,9 +343,9 @@ services:
       - UPDATE_TRACKERS=true
       - TTZ=Asia/Shanghai
     volumes:
-      - /root/app/aria2/config:/config
-      - /root/app/aria2/downloads:/downloads
-      - /root/app/alist:/opt/alist/data
+      - /home/wenzexu/app/aria2/config:/config
+      - /home/wenzexu/app/aria2/downloads:/downloads
+      - /home/wenzexu/app/alist:/opt/alist/data
     restart: unless-stopped
     logging:
       driver: json-file
@@ -378,9 +378,9 @@ services:
       - TORRENTING_PORT=6881
       - TZ=Asia/Shanghai
     volumes:
-      - /root/app/qbittorrent/config:/config
-      - /root/app/qbittorrent/downloads:/downloads
-      - /root/app/alist:/opt/alist/data
+      - /home/wenzexu/app/qbittorrent/config:/config
+      - /home/wenzexu/app/qbittorrent/downloads:/downloads
+      - /home/wenzexu/app/alist:/opt/alist/data
     restart: unless-stopped
     networks:
       - app
