@@ -40,6 +40,7 @@ tar -czvf /home/wenzexu/easyimage.tar.gz easyimage --absolute-names
 tar -czvf /home/wenzexu/flare.tar.gz flare --absolute-names
 tar -czvf /home/wenzexu/pingvin-share.tar.gz pingvin-share --absolute-names
 tar -czvf /home/wenzexu/moments.tar.gz moments --absolute-names
+tar -czvf /home/wenzexu/freshrss.tar.gz freshrss --absolute-names
 cd /home/wenzexu
 aws s3 cp /home/wenzexu/env.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/man.tar.gz s3://ricolxwz-backup/${timestamp}/
@@ -56,7 +57,7 @@ aws s3 cp /home/wenzexu/nav.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/easyimage.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/flare.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/pingvin-share.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /home/wenzexu/moments.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /home/wenzexu/freshrss.tar.gz s3://ricolxwz-backup/${timestamp}/
 rm /home/wenzexu/*.tar.gz
 ```
 
