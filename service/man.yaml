@@ -4,6 +4,10 @@
 services:
   watchtower:
     image: containrrr/watchtower
+    container_name: watchtower
+    hostname: watchtower
+    environment:
+      - TZ=Asia/Shanghai
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
