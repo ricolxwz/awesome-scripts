@@ -66,8 +66,6 @@ services:
     environment:
       - TZ=Asia/Shanghai
       - ATK_LOCALE=zh-CN
-      - ATK_SITE_DEFAULT=写给麦旋风超好吃的短信
-      - ATK_SITE_URL=https://comment.ricolxwz.io
     networks:
       - app
   stirling-pdf: # 8080
