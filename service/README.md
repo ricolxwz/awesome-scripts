@@ -18,47 +18,47 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 ```bash
 timestamp=$(TZ='Asia/Shanghai' date +%Y-%m-%d)
-cd /root
-tar -czvf /root/env.tar.gz .env --absolute-names
-tar -czvf /root/man.tar.gz man.yaml --absolute-names
-tar -czvf /root/app.tar.gz app.yaml --absolute-names
-tar -czvf /root/backup-script.tar.gz backup.sh --absolute-names
-cd /root/man
-tar -czvf /root/npm.tar.gz nginx --absolute-names
-cd /root/app
-tar -czvf /root/memos.tar.gz memos --absolute-names
-tar -czvf /root/umami.tar.gz umami --absolute-names
-tar -czvf /root/umami-db.tar.gz umami-db --absolute-names
-tar -czvf /root/uptime-kuma.tar.gz uptime-kuma --absolute-names
-tar -czvf /root/yourls.tar.gz yourls --absolute-names
-tar -czvf /root/yourls-db.tar.gz yourls-db --absolute-names
-tar -czvf /root/nav.tar.gz nav --absolute-names
-tar -czvf /root/easyimage.tar.gz easyimage --absolute-names
-tar -czvf /root/flare.tar.gz flare --absolute-names
-tar -czvf /root/pingvin-share.tar.gz pingvin-share --absolute-names
-tar -czvf /root/moments.tar.gz moments --absolute-names
-cd /root
-aws s3 cp /root/env.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /root/man.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /root/app.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /root/backup-script.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /root/npm.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /root/memos.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /root/umami.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /root/umami-db.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /root/uptime-kuma.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /root/yourls.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /root/yourls-db.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /root/nav.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /root/easyimage.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /root/flare.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /root/pingvin-share.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /root/moments.tar.gz s3://ricolxwz-backup/${timestamp}/
-rm /root/*.tar.gz
+cd /home/wenzexu
+tar -czvf /home/wenzexu/env.tar.gz .env --absolute-names
+tar -czvf /home/wenzexu/man.tar.gz man.yaml --absolute-names
+tar -czvf /home/wenzexu/app.tar.gz app.yaml --absolute-names
+tar -czvf /home/wenzexu/backup-script.tar.gz backup.sh --absolute-names
+cd /home/wenzexu/man
+tar -czvf /home/wenzexu/npm.tar.gz nginx --absolute-names
+cd /home/wenzexu/app
+tar -czvf /home/wenzexu/memos.tar.gz memos --absolute-names
+tar -czvf /home/wenzexu/umami.tar.gz umami --absolute-names
+tar -czvf /home/wenzexu/umami-db.tar.gz umami-db --absolute-names
+tar -czvf /home/wenzexu/uptime-kuma.tar.gz uptime-kuma --absolute-names
+tar -czvf /home/wenzexu/yourls.tar.gz yourls --absolute-names
+tar -czvf /home/wenzexu/yourls-db.tar.gz yourls-db --absolute-names
+tar -czvf /home/wenzexu/nav.tar.gz nav --absolute-names
+tar -czvf /home/wenzexu/easyimage.tar.gz easyimage --absolute-names
+tar -czvf /home/wenzexu/flare.tar.gz flare --absolute-names
+tar -czvf /home/wenzexu/pingvin-share.tar.gz pingvin-share --absolute-names
+tar -czvf /home/wenzexu/moments.tar.gz moments --absolute-names
+cd /home/wenzexu
+aws s3 cp /home/wenzexu/env.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /home/wenzexu/man.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /home/wenzexu/app.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /home/wenzexu/backup-script.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /home/wenzexu/npm.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /home/wenzexu/memos.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /home/wenzexu/umami.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /home/wenzexu/umami-db.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /home/wenzexu/uptime-kuma.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /home/wenzexu/yourls.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /home/wenzexu/yourls-db.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /home/wenzexu/nav.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /home/wenzexu/easyimage.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /home/wenzexu/flare.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /home/wenzexu/pingvin-share.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /home/wenzexu/moments.tar.gz s3://ricolxwz-backup/${timestamp}/
+rm /home/wenzexu/*.tar.gz
 ```
 
 ```
-0 0 */5 * * /root/backup.sh
+0 0 */5 * * /home/wenzexu/backup.sh
 ```
 
 ## 网络
@@ -69,16 +69,16 @@ rm /root/*.tar.gz
 
 简单直接的方法: 备份app文件夹, man文件夹, .env文件. 
 
-1. `/root/gitlab-backup.sh`, 备份alist, 备份halo
+1. `/home/wenzexu/gitlab-backup.sh`, 备份alist, 备份halo
 2. 下载.env文件: 非常重要! 包含数据库的密码之类的信息, 不然在新机器上无法恢复
-3. 压缩app文件夹: 单独备份gitlab文件夹, `tar -czvf gitlab-aux.tar.gz /root/app/gitlab`, 然后`rm -rf /root/app/gitlab`, 最后`tar -czvf app.tar.gz app`, 下载两个文件夹
+3. 压缩app文件夹: 单独备份gitlab文件夹, `tar -czvf gitlab-aux.tar.gz /home/wenzexu/app/gitlab`, 然后`rm -rf /home/wenzexu/app/gitlab`, 最后`tar -czvf app.tar.gz app`, 下载两个文件夹
 4. 压缩man文件夹: `tar -czvf man.tar.gz man`
 6. 在新机器上, 上传app文件夹, 解压app文件夹: `tar -xzvf app.tar.gz`, 解压man文件夹: `tar -xzvf man.tar.gz`, gitlab-aux暂时不需要, 是以防万一用的
 7. 新建`man.yaml`文件
-8. `docker compose -f /root/man.yaml up -d`
+8. `docker compose -f /home/wenzexu/man.yaml up -d`
 9. 新建.env文件, 输入密钥
 10. 新建`app.yaml`文件
-11. `docker compose -f /root/app.yaml up -d`
+11. `docker compose -f /home/wenzexu/app.yaml up -d`
 12. 执行gitlab迁移教程中的6-8步, 或者使用刚才的`gitlab-aux.tar.gz`
 
 ## 默认用户名密码
