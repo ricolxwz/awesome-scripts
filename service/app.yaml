@@ -308,7 +308,7 @@ services:
     depends_on:
       - cryptgeon-redis
     environment:
-      - SIZE_LIMIT=4 MiB
+      - SIZE_LIMIT=100 MiB
       - REDIS=redis://cryptgeon-redis:6379
       - TZ=Asia/Shanghai
     restart: unless-stopped
