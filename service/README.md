@@ -140,3 +140,9 @@ admin/a123456
 ### Stirling pdf
 
 admin/stirling
+
+### artalk
+
+```
+docker compose -f app.yaml exec -it artalk wenzexu <password>
+```
