@@ -1,5 +1,6 @@
 ---
 # 请先确保app桥接网络已经创建
+# 请确保将PUID, PGID改成wenzexu的
 
 services:
   rsshub: # 1200
@@ -135,8 +136,8 @@ services:
     volumes:
       - /home/wenzexu/app/alist:/opt/alist/data
     environment:
-      - PUID=0
-      - PGID=0
+      - PUID=1001
+      - PGID=1001
       - UMASK=022
       - TZ=Asia/Shanghai
     networks:
@@ -388,8 +389,8 @@ services:
     container_name: aria2-pro
     hostname: aria2-pro
     environment:
-      - PUID=0 # 可以换成普通用户
-      - PGID=0
+      - PUID=1001 # 可以换成普通用户
+      - PGID=1001
       - UMASK_SET=022
       - RPC_SECRET=$RPC_SECRET
       - RPC_PORT=6800
@@ -426,8 +427,8 @@ services:
     hostname: qbittorrent
     image: linuxserver/qbittorrent:latest
     environment:
-      - PUID=0
-      - PGID=0
+      - PUID=1001
+      - PGID=1001
       - TZ=Etc/UTC
       - WEBUI_PORT=8080
       - TORRENTING_PORT=6881
@@ -436,6 +437,23 @@ services:
       - /home/wenzexu/app/qbittorrent/config:/config
       - /home/wenzexu/app/qbittorrent/downloads:/downloads
       - /home/wenzexu/app/alist:/opt/alist/data
+    restart: unless-stopped
+    networks:
+      - app
+  transmission: # 9091
+    image: lscr.io/linuxserver/transmission:latest
+    container_name: transmission
+    hostname: transmission
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - USER=wenzexu
+      - PASS=$TRANSMISSION_PASSWORD
+      - TZ=Asia/Shanghai
+    volumes:
+      - /home/wenzexu/transmission/config:/config
+      - /home/wenzexu/transmission/downloads:/downloads
+      - /home/wenzexu/transmission/watch:/watch
     restart: unless-stopped
     networks:
       - app
