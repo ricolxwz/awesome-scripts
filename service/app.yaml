@@ -54,6 +54,20 @@ services:
         timeout: 10s
         retries: 5
         start_period: 5s
+  artalk: # 23366
+    container_name: artalk
+    hostname: artalk
+    image: artalk/artalk-go
+    restart: unless-stopped
+    volumes:
+      - /home/wenzexu/app/artalk:/data
+    environment:
+      - TZ=Asia/Shanghai
+      - ATK_LOCALE=zh-CN
+      - ATK_SITE_DEFAULT=写给麦旋风超好吃的短信
+      - ATK_SITE_URL=https://comment.ricolxwz.io
+    networks:
+      - app
   stirling-pdf: # 8080
     image: frooodle/s-pdf:latest
     container_name: stirling-pdf
