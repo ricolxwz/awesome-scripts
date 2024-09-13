@@ -3,7 +3,7 @@
 ## 备份
 
 ```bash
-timestamp=$(date +%Y)-$(date +%m)-$(date +%d)
+timestamp=$(TZ='Asia/Shanghai' date +%Y-%m-%d)
 cd /root
 tar -czvf /root/env.tar.gz .env --absolute-names
 tar -czvf /root/man.tar.gz man.yaml --absolute-names
