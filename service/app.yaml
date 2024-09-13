@@ -14,6 +14,7 @@ services:
       - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
       - LANGS=zh_CN
       - TZ=Asia/Shanghai
+      - SECURITY_ENABLE_LOGIN=true
     restart: unless-stopped
     networks:
       - app
