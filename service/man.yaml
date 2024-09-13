@@ -16,8 +16,8 @@ services:
       - '443:443'
       # - '81:81'
     volumes:
-      - /root/man/nginx/data:/data
-      - /root/man/nginx/letsencrypt:/etc/letsencrypt
+      - /home/wenzexu/man/nginx/data:/data
+      - /home/wenzexu/man/nginx/letsencrypt:/etc/letsencrypt
     networks:
       - app
   # portainer: # 9443
@@ -27,7 +27,7 @@ services:
   #   environment:
   #     - TZ=Asia/Shanghai
   #   volumes:
-  #     - /root/man/portainer:/data
+  #     - /home/wenzexu/man/portainer:/data
   #     - /var/run/docker.sock:/var/run/docker.sock:ro
   #   restart: always
   #   networks:
