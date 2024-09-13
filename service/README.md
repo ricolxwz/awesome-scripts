@@ -144,5 +144,5 @@ admin/stirling
 ### artalk
 
 ```
-docker compose -f app.yaml exec -it artalk wenzexu <password>
+docker compose -f app.yaml exec -it artalk artalk admin
 ```
