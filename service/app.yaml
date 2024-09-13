@@ -12,6 +12,7 @@ services:
       - MINIO_ROOT_PASSWORD=$MINIO_ROOT_PASSWORD
       - MINIO_DATA_DIR=/bitnami/minio/data
       - TZ=Asia/Shanghai
+      - MINIO_DOMAIN=s3.ricolxwz.io
     volumes:
       - /home/wenzexu/app/minio:/bitnami/minio/data
     networks:
