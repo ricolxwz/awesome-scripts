@@ -3,7 +3,7 @@
 ## 用户
 
 ```
-useradd -mG docker -d /home/wenzexu -s /bin/bash wenzexu
+useradd -mG sudo,docker -d /home/wenzexu -s /bin/bash wenzexu
 passwd wenzexu
 ```
 
