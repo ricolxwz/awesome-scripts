@@ -3,6 +3,19 @@
 # 请确保将PUID, PGID改成wenzexu的
 
 services:
+  minio: # 9000 UI 9001 S3
+    image: bitnami/minio
+    container_name: minio
+    hostname: minio
+    environment:
+      - MINIO_ROOT_USER=wenzexu
+      - MINIO_ROOT_PASSWORD=$MINIO_ROOT_PASSWORD
+      - TZ=Asia/Shanghai
+    volumes:
+      - /home/wenzexu/app/minio:/bitnami/minio/data
+    networks:
+      - app
+    restart: unless-stopped
   freshrss: # 80
     image: lscr.io/linuxserver/freshrss:latest
     container_name: freshrss
