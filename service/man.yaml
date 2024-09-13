@@ -11,6 +11,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
+    networks:
+      - app
   nginx-proxy-manager:
     container_name: npm
     hostname: npm
