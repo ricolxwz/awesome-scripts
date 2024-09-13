@@ -214,6 +214,7 @@ services:
   #   ports:
   #     - '7750:22'
   #   environment:
+  #     TZ: "Asia/Shanghai"
   #     GITLAB_OMNIBUS_CONFIG: |
   #       external_url 'https://git.ricolxwz.io'
   #       gitlab_rails['gitlab_shell_ssh_port'] = 7750
@@ -233,6 +234,8 @@ services:
   #   hostname: gitlab-runner
   #   image: gitlab/gitlab-runner:v17.2.1
   #   restart: unless-stopped
+  #   environment:
+  #       - TZ=Asia/Shanghai
   #   depends_on:
   #     - gitlab
   #   volumes:
