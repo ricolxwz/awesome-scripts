@@ -2,6 +2,58 @@
 # 请先确保app桥接网络已经创建
 
 services:
+  rsshub: # 1200
+    image: diygod/rsshub
+    restart: unless-stopped
+    container_name: rsshub
+    hostname: rsshub
+    environment:
+        - NODE_ENV=production
+        - CACHE_TYPE=redis
+        - REDIS_URL="redis://rsshub-redis:6379/"
+        - PUPPETEER_WS_ENDPOINT="ws://rsshub-browserless:3000"
+        - TZ=Asia/Shanghai
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:1200/healthz"]
+        interval: 30s
+        timeout: 10s
+        retries: 3
+    depends_on:
+        - rsshub-redis
+        - rsshub-browserless
+  rsshub-browserless:
+    image: browserless/chrome
+    restart: unless-stopped
+    container_name: rsshub-browserless
+    hostname: rsshub-browserless
+    networks:
+      - app
+    environment:
+      - TZ=Asia/Shanghai
+    ulimits:
+        core:
+            hard:
+            soft:
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:3000/pressure"]
+        interval: 30s
+        timeout: 10s
+        retries: 3
+  rsshub-redis:
+    image: redis:alpine
+    container_name: rsshub-redis
+    hostname: rsshub-redis
+    networks:
+      - app
+    environment:
+      - TZ=Asia/Shanghai
+    restart: unless-stopped
+    healthcheck:
+        test: ["CMD", "redis-cli", "ping"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
+        start_period: 5s
   stirling-pdf: # 8080
     image: frooodle/s-pdf:latest
     container_name: stirling-pdf
