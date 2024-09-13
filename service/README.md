@@ -4,6 +4,7 @@
 
 ```
 useradd -mG sudo,docker -d /home/wenzexu -s /bin/bash wenzexu
+passwd wenzexu
 ```
 
 ## 时区
