@@ -17,6 +17,8 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ## 备份
 
 ```bash
+# 请确保所有的路径权限都是wenzexu:wenzexu!!!
+
 timestamp=$(TZ='Asia/Shanghai' date +%Y-%m-%d)
 cd /home/wenzexu
 tar -czvf /home/wenzexu/env.tar.gz .env --absolute-names
