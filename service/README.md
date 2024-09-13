@@ -1,5 +1,11 @@
 # 服务
 
+## 用户
+
+```
+useradd -mG sudo,docker -d /home/wenzexu -s /bin/bash wenzexu
+```
+
 ## 时区
 
 ```
