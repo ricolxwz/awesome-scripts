@@ -3,7 +3,7 @@
 # 请确保将PUID, PGID改成wenzexu的
 
 services:
-  minio: # 9001 UI 9000 S3, 记得修改权限为wenzexu:wenzexu, 否则无法启动
+  minio: # 9001 UI 9000 S3, 记得修改权限为wenzexu:wenzexu, 否则无法启动; 
     image: bitnami/minio
     container_name: minio
     hostname: minio
@@ -12,7 +12,7 @@ services:
       - MINIO_ROOT_PASSWORD=$MINIO_ROOT_PASSWORD
       - MINIO_DATA_DIR=/bitnami/minio/data
       - TZ=Asia/Shanghai
-      - MINIO_DOMAIN=s3.ricolxwz.io
+      - MINIO_DOMAIN=s3.ricolxwz.io # 启用virtual host style, 一般path style已经足够, 且virtual host style需要申请三级域名通配符证书
     volumes:
       - /home/wenzexu/app/minio:/bitnami/minio/data
     networks:
