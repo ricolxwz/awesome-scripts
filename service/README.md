@@ -1,5 +1,12 @@
 # 服务
 
+## 时区
+
+```
+rm /etc/localtime
+ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+```
+
 ## 备份
 
 ```bash
