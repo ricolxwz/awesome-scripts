@@ -1,5 +1,6 @@
 ---
 # 请先确保app桥接网络已经创建
+# 请确保将host.docker.internal改为主机在app网络上的ip
 
 services:
   watchtower:
