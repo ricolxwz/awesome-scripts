@@ -8,6 +8,7 @@ cd /root
 tar -czvf /root/env.tar.gz .env --absolute-names
 tar -czvf /root/man.tar.gz man.yaml --absolute-names
 tar -czvf /root/app.tar.gz app.yaml --absolute-names
+tar -czvf /root/backup-script.tar.gz backup.sh --absolute-names
 cd /root/man
 tar -czvf /root/npm.tar.gz nginx --absolute-names
 cd /root/app
@@ -26,6 +27,7 @@ cd /root
 aws s3 cp /root/env.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/man.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/app.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /root/backup-script.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/npm.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/memos.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /root/umami.tar.gz s3://ricolxwz-backup/${timestamp}/
