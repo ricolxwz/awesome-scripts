@@ -3,7 +3,7 @@
 # 请确保将PUID, PGID改成wenzexu的
 
 services:
-  minio: # 9000 UI 9001 S3
+  minio: # 9000 UI 9001 S3, 记得修改权限为wenzexu:wenzexu, 否则无法启动
     image: bitnami/minio
     container_name: minio
     hostname: minio
