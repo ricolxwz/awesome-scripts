@@ -149,3 +149,22 @@ admin/stirling
 ```
 docker compose -f app.yaml exec -it artalk artalk admin
 ```
+
+## 配置
+
+### MinIO
+
+awscli参考:
+
+```
+[profile minio]
+s3 =
+	addressing_style = path
+endpoint_url = https://s3.ricolxwz.io
+```
+
+```
+[minio]
+aws_access_key_id = xxx
+aws_secret_access_key = xxx
+```
