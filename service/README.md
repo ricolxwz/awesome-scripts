@@ -18,7 +18,7 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 ```bash
 # 请确保所有的路径权限都是wenzexu:wenzexu!!!
-# chown wenzexu:wenzexu /home/wenzexu/.* && chown wenzexu:wenzexu /home/wenzexu/*
+# chown -R wenzexu:wenzexu /home/wenzexu/.* && chown -R wenzexu:wenzexu /home/wenzexu/*
 
 timestamp=$(TZ='Asia/Shanghai' date +%Y-%m-%d)
 cd /home/wenzexu
