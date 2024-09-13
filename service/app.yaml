@@ -10,6 +10,7 @@ services:
     environment:
       - MINIO_ROOT_USER=wenzexu
       - MINIO_ROOT_PASSWORD=$MINIO_ROOT_PASSWORD
+      - MINIO_DATA_DIR=/bitnami/minio/data
       - TZ=Asia/Shanghai
     volumes:
       - /home/wenzexu/app/minio:/bitnami/minio/data
