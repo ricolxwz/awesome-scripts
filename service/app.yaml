@@ -451,9 +451,9 @@ services:
       - PASS=$TRANSMISSION_PASSWORD
       - TZ=Asia/Shanghai
     volumes:
-      - /home/wenzexu/transmission/config:/config
-      - /home/wenzexu/transmission/downloads:/downloads
-      - /home/wenzexu/transmission/watch:/watch
+      - /home/wenzexu/app/transmission/config:/config
+      - /home/wenzexu/app/transmission/downloads:/downloads
+      - /home/wenzexu/app/transmission/watch:/watch
     restart: unless-stopped
     networks:
       - app
