@@ -21,6 +21,8 @@ services:
     depends_on:
         - rsshub-redis
         - rsshub-browserless
+    networks:
+      - app
   rsshub-browserless:
     image: browserless/chrome
     restart: unless-stopped
