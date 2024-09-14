@@ -3,6 +3,22 @@
 # 请确保将PUID, PGID改成wenzexu的
 
 services:
+  gitea: # 3000
+    image: gitea/gitea:1.22.2
+    container_name: gitea
+    hostname: gitea
+    environment:
+      - USER_UID=1001
+      - USER_GID=1001
+    restart: unless-stopped
+    networks:
+      - app
+    volumes:
+      - /home/wenzexu/app/gitea:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "222:22"
   minio: # 9001 UI 9000 S3, 记得修改权限为wenzexu:wenzexu, 否则无法启动; 记得NPM启用WebSocket支持
     image: bitnami/minio
     container_name: minio
@@ -11,10 +27,11 @@ services:
       - MINIO_ROOT_USER=wenzexu
       - MINIO_ROOT_PASSWORD=$MINIO_ROOT_PASSWORD
       - MINIO_DATA_DIR=/bitnami/minio/data
-      - TZ=Asia/Shanghai
       - MINIO_DOMAIN=s3.ricolxwz.io # 启用virtual host style, 一般path style已经足够, 且virtual host style需要申请三级域名通配符证书
     volumes:
       - /home/wenzexu/app/minio:/bitnami/minio/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     networks:
       - app
     restart: unless-stopped
@@ -22,10 +39,10 @@ services:
     image: lscr.io/linuxserver/freshrss:latest
     container_name: freshrss
     hostname: freshrss
-    environment:
-      - TZ=Asia/Shanghai
     volumes:
       - /home/wenzexu/app/freshrss:/config
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     networks:
       - app
@@ -39,7 +56,9 @@ services:
       - CACHE_TYPE=redis
       - REDIS_URL="redis://rsshub-redis:6379/"
       - PUPPETEER_WS_ENDPOINT="ws://rsshub-browserless:3000"
-      - TZ=Asia/Shanghai
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:1200/healthz"]
       interval: 30s
@@ -57,8 +76,9 @@ services:
     hostname: rsshub-browserless
     networks:
       - app
-    environment:
-      - TZ=Asia/Shanghai
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     ulimits:
       core:
           hard: 0
@@ -74,9 +94,10 @@ services:
     hostname: rsshub-redis
     networks:
       - app
-    environment:
-      - TZ=Asia/Shanghai
     restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 30s
@@ -90,11 +111,12 @@ services:
     volumes:
       - /home/wenzexu/app/stirling-pdf/trainingData:/usr/share/tessdata
       - /home/wenzexu/app/stirling-pdf/extraConfigs:/configs
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     environment:
       - DOCKER_ENABLE_SECURITY=true
       - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
       - LANGS=zh_CN
-      - TZ=Asia/Shanghai
       - SECURITY_ENABLE_LOGIN=true
     restart: unless-stopped
     networks:
@@ -104,8 +126,9 @@ services:
     restart: unless-stopped
     container_name: it-tools
     hostname: it-tools
-    environment:
-      - TZ=Asia/Shanghai
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     networks:
       - app
   # halo: # 8090
@@ -117,12 +140,13 @@ services:
   #     halo-db:
   #       condition: service_healthy
   #   environment:
-  #     - TZ=Asia/Shanghai
   #     - HALO_EXTERNAL_URL=https://blog.ricolxwz.de
   #   networks:
   #     - app
   #   volumes:
   #     - /home/wenzexu/app/halo:/home/wenzexu/.halo2
+  #     - /etc/timezone:/etc/timezone:ro
+  #     - /etc/localtime:/etc/localtime:ro
   #   healthcheck:
   #     test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
   #     interval: 30s
@@ -144,6 +168,8 @@ services:
   #     - app
   #   volumes:
   #     - /home/wenzexu/app/halo-db:/var/lib/postgresql/data
+  #     - /etc/timezone:/etc/timezone:ro
+  #     - /etc/localtime:/etc/localtime:ro
   #   healthcheck:
   #     test: [ "CMD", "pg_isready" ]
   #     interval: 10s
@@ -154,7 +180,6 @@ services:
   #     - POSTGRES_USER=halo
   #     - POSTGRES_DB=halo
   #     - PGUSER=halo
-  #     - TZ=Asia/Shanghai
   alist: # 5244
     container_name: alist
     hostname: alist
@@ -162,11 +187,12 @@ services:
     restart: unless-stopped
     volumes:
       - /home/wenzexu/app/alist:/opt/alist/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     environment:
       - PUID=1001
       - PGID=1001
       - UMASK=022
-      - TZ=Asia/Shanghai
     networks:
       - app
   lobechat: # 3210
@@ -174,12 +200,14 @@ services:
     container_name: lobechat
     hostname: lobechat
     restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     environment:
       - OPENAI_API_KEY=$OPENAI_API_KEY
       - ACCESS_CODE=$ACCESS_CODE
       - ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY
       - FEATURE_FLAGS=-welcome_suggest
-      - TZ=Asia/Shanghai
     networks:
       - app
   umami: # 3000
@@ -190,11 +218,13 @@ services:
       - DATABASE_URL=postgresql://umami:${POSTGRES_PASSWORD}@umami-db:5432/umami
       - DATABASE_TYPE=postgresql
       - APP_SECRET=replace-me-with-a-random-string
-      - TZ=Asia/Shanghai
     depends_on:
       umami-db:
         condition: service_healthy
     restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     healthcheck:
       test: ["CMD-SHELL", "curl http://localhost:3000/api/heartbeat"]
       interval: 5s
@@ -209,10 +239,11 @@ services:
     environment:
       - POSTGRES_DB=umami
       - POSTGRES_USER=umami
-      - TZ=Asia/Shanghai
       - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
     volumes:
       - /home/wenzexu/app/umami-db:/var/lib/postgresql/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
@@ -225,10 +256,10 @@ services:
     container_name: uptime-kuma
     hostname: uptime-kuma
     image: louislam/uptime-kuma:1
-    environment:
-      - TZ=Asia/Shanghai
     volumes:
       - /home/wenzexu/app/uptime-kuma:/app/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     networks:
       - app
@@ -236,10 +267,10 @@ services:
     container_name: memos
     hostname: memos
     image: neosmemo/memos:stable
-    environment:
-      - TZ=Asia/Shanghai
     volumes:
       - /home/wenzexu/app/memos:/var/opt/memos
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     networks:
       - app
@@ -257,9 +288,10 @@ services:
       - YOURLS_PASS=$YOURLS_PASS
       - YOURLS_SITE=$YOURLS_SITE
       - YOURLS_HOURS_OFFSET=8
-      - TZ=Asia/Shanghai
     volumes:
       - /home/wenzexu/app/yourls/:/var/www/html   
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     networks:
       - app
   yourls-db:
@@ -271,10 +303,11 @@ services:
       - MYSQL_DATABASE=yourls
       - MYSQL_USER=yourls
       - MYSQL_PASSWORD=$MYSQL_PASSWORD
-      - TZ=Asia/Shanghai
     volumes:
       - /home/wenzexu/app/yourls-db/db:/var/lib/mysql
       - /home/wenzexu/app/yourls-db/conf:/etc/mysql/conf.d
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     networks:
       - app
@@ -283,10 +316,10 @@ services:
     hostname: nav
     image: nginx
     restart: unless-stopped
-    environment:
-      - TZ=Asia/Shanghai
     volumes:
       - /home/wenzexu/app/nav:/usr/share/nginx/html:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     networks:
       - app
   # gitlab: # 7750 GIT
@@ -297,7 +330,6 @@ services:
   #   ports:
   #     - '7750:22'
   #   environment:
-  #     TZ: "Asia/Shanghai"
   #     GITLAB_ROOT_EMAIL: $GITLAB_ROOT_EMAIL
   #     GITLAB_ROOT_PASSWORD: $GITLAB_ROOT_PASSWORD
   #     GITLAB_OMNIBUS_CONFIG: |
@@ -311,6 +343,8 @@ services:
   #     - '/home/wenzexu/app/gitlab/config:/etc/gitlab'
   #     - '/home/wenzexu/app/gitlab/logs:/var/log/gitlab'
   #     - '/home/wenzexu/app/gitlab/data:/var/opt/gitlab'
+  #     - /etc/timezone:/etc/timezone:ro
+  #     - /etc/localtime:/etc/localtime:ro
   #   shm_size: '256m'
   #   networks:
   #     - app
@@ -319,24 +353,24 @@ services:
   #   hostname: gitlab-runner
   #   image: gitlab/gitlab-runner:v17.2.1
   #   restart: unless-stopped
-  #   environment:
-  #     - TZ=Asia/Shanghai
   #   depends_on:
   #     - gitlab
   #   volumes:
-  #    - /home/wenzexu/app/gitlab-runner/config:/etc/gitlab-runner
-  #    - /var/run/docker.sock:/var/run/docker.sock
+  #     - /home/wenzexu/app/gitlab-runner/config:/etc/gitlab-runner
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro
+  #     - /etc/timezone:/etc/timezone:ro
+  #     - /etc/localtime:/etc/localtime:ro
   #   networks:
   #       - app
   easyimage: # 80
     container_name: easyimage
     hostname: easyimage
     image: ddsderek/easyimage:latest
-    environment:
-      - TZ=Asia/Shanghai
     volumes:
       - '/home/wenzexu/app/easyimage/config:/app/web/config'
       - '/home/wenzexu/app/easyimage/i:/app/web/i'
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     networks:
       - app
@@ -345,9 +379,10 @@ services:
     container_name: excalidraw
     hostname: excalidraw
     image: excalidraw/excalidraw:latest
-    environment:
-      - TZ=Asia/Shanghai
     restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     networks:
       - app
   flare: # 5005
@@ -360,9 +395,10 @@ services:
       - FLARE_GUIDE=0
       - FLARE_USER=wenzexu
       - FLARE_PASS=$FLARE_PASS
-      - TZ=Asia/Shanghai
     volumes:
       - /home/wenzexu/app/flare:/app
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     networks:
       - app
   pingvin-share: # 3000
@@ -370,18 +406,16 @@ services:
     container_name: pingvin-share
     hostname: pingvin-share
     restart: unless-stopped
-    environment:
-      - TZ=Asia/Shanghai
     volumes:
       - /home/wenzexu/app/pingvin-share:/opt/app/backend/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     networks:
       - app
   cryptgeon-redis: # 6379
     image: redis:7-alpine
     command: redis-server --maxmemory 1gb --maxmemory-policy allkeys-lru
     container_name: cryptgeon-redis
-    environment:
-      - TZ=Asia/Shanghai
     hostname: cryptgeon-redis
     restart: unless-stopped
     networks:
@@ -395,7 +429,6 @@ services:
     environment:
       - SIZE_LIMIT=20 MiB
       - REDIS=redis://cryptgeon-redis:6379
-      - TZ=Asia/Shanghai
     restart: unless-stopped
     networks:
       - app
@@ -405,7 +438,6 @@ services:
     hostname: moments
     environment:
       - JWT_KEY=$JWT_KEY
-      - TZ=Asia/Shanghai
     volumes:
       - /home/wenzexu/app/moments:/app/data
       - /etc/localtime:/etc/localtime:ro
@@ -426,11 +458,12 @@ services:
       - LISTEN_PORT=6888
       - DISK_CACHE=64M
       - UPDATE_TRACKERS=true
-      - TTZ=Asia/Shanghai
     volumes:
       - /home/wenzexu/app/aria2/config:/config
       - /home/wenzexu/app/aria2/downloads:/downloads
       - /home/wenzexu/app/alist:/opt/alist/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     logging:
       driver: json-file
@@ -443,8 +476,9 @@ services:
   #   hostname: ariang
   #   image: p3terx/ariang
   #   restart: unless-stopped
-  #   environment:
-  #     - TZ=Asia/Shanghai
+  #   volumes:
+  #     - /etc/timezone:/etc/timezone:ro
+  #     - /etc/localtime:/etc/localtime:ro
   #   logging:
   #     driver: json-file
   #     options:
@@ -459,14 +493,14 @@ services:
       - PUID=1001
       - PGID=1001
       - UMASK=022
-      - TZ=Asia/Shanghai
       - WEBUI_PORT=8080
       - TORRENTING_PORT=6881
-      - TZ=Asia/Shanghai
     volumes:
       - /home/wenzexu/app/qbittorrent/config:/config
       - /home/wenzexu/app/qbittorrent/downloads:/downloads
       - /home/wenzexu/app/alist:/opt/alist/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     networks:
       - app
@@ -480,11 +514,12 @@ services:
       - UMASK=022
       - USER=wenzexu
       - PASS=$TRANSMISSION_PASSWORD
-      - TZ=Asia/Shanghai
     volumes:
       - /home/wenzexu/app/transmission/config:/config
       - /home/wenzexu/app/transmission/downloads:/downloads
       - /home/wenzexu/app/transmission/watch:/watch
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     networks:
       - app
