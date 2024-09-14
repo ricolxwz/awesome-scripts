@@ -290,45 +290,45 @@ services:
       - /home/wenzexu/app/nav:/usr/share/nginx/html:ro
     networks:
       - app
-  gitlab: # 7750 GIT
-    container_name: gitlab
-    hostname: gitlab
-    image: gitlab/gitlab-ce:17.2.1-ce.0
-    restart: unless-stopped
-    ports:
-      - '7750:22'
-    environment:
-      TZ: "Asia/Shanghai"
-      GITLAB_ROOT_EMAIL: $GITLAB_ROOT_EMAIL
-      GITLAB_ROOT_PASSWORD: $GITLAB_ROOT_PASSWORD
-      GITLAB_OMNIBUS_CONFIG: |
-        external_url 'https://git.ricolxwz.io'
-        gitlab_rails['gitlab_shell_ssh_port'] = 7750
-        letsencrypt['enabled'] = false
-        nginx['enable'] = true
-        nginx['listen_port'] = 80
-        nginx['listen_https'] = false
-    volumes:
-      - '/home/wenzexu/app/gitlab/config:/etc/gitlab'
-      - '/home/wenzexu/app/gitlab/logs:/var/log/gitlab'
-      - '/home/wenzexu/app/gitlab/data:/var/opt/gitlab'
-    shm_size: '256m'
-    networks:
-      - app
-  gitlab-runner:
-    container_name: gitlab-runner
-    hostname: gitlab-runner
-    image: gitlab/gitlab-runner:v17.2.1
-    restart: unless-stopped
-    environment:
-        - TZ=Asia/Shanghai
-    depends_on:
-      - gitlab
-    volumes:
-     - /home/wenzexu/app/gitlab-runner/config:/etc/gitlab-runner
-     - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-        - app
+  # gitlab: # 7750 GIT
+  #   container_name: gitlab
+  #   hostname: gitlab
+  #   image: gitlab/gitlab-ce:17.2.1-ce.0
+  #   restart: unless-stopped
+  #   ports:
+  #     - '7750:22'
+  #   environment:
+  #     TZ: "Asia/Shanghai"
+  #     GITLAB_ROOT_EMAIL: $GITLAB_ROOT_EMAIL
+  #     GITLAB_ROOT_PASSWORD: $GITLAB_ROOT_PASSWORD
+  #     GITLAB_OMNIBUS_CONFIG: |
+  #       external_url 'https://git.ricolxwz.io'
+  #       gitlab_rails['gitlab_shell_ssh_port'] = 7750
+  #       letsencrypt['enabled'] = false
+  #       nginx['enable'] = true
+  #       nginx['listen_port'] = 80
+  #       nginx['listen_https'] = false
+  #   volumes:
+  #     - '/home/wenzexu/app/gitlab/config:/etc/gitlab'
+  #     - '/home/wenzexu/app/gitlab/logs:/var/log/gitlab'
+  #     - '/home/wenzexu/app/gitlab/data:/var/opt/gitlab'
+  #   shm_size: '256m'
+  #   networks:
+  #     - app
+  # gitlab-runner:
+  #   container_name: gitlab-runner
+  #   hostname: gitlab-runner
+  #   image: gitlab/gitlab-runner:v17.2.1
+  #   restart: unless-stopped
+  #   environment:
+  #       - TZ=Asia/Shanghai
+  #   depends_on:
+  #     - gitlab
+  #   volumes:
+  #    - /home/wenzexu/app/gitlab-runner/config:/etc/gitlab-runner
+  #    - /var/run/docker.sock:/var/run/docker.sock
+  #   networks:
+  #       - app
   easyimage: # 80
     container_name: easyimage
     hostname: easyimage
