@@ -539,7 +539,7 @@ services:
       - PUID=1001
       - PGID=1001
       - UMASK=022
-      - TZ=Etc/UTC
+      - TZ=Asia/Shanghai
       - WEBUI_PORT=8080
       - TORRENTING_PORT=6881
       - TZ=Asia/Shanghai
