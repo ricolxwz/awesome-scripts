@@ -28,7 +28,7 @@ services:
     restart: unless-stopped
     environment:
       CONFIG_FILE: /config.yaml
-      GITEA_INSTANCE_URL: "${GITEA_INSTANCE_URL}"
+      GITEA_INSTANCE_URL: "https://git.ricolxwz.io"
       GITEA_RUNNER_REGISTRATION_TOKEN: "${GITEA_RUNNER_REGISTRATION_TOKEN}"
       GITEA_RUNNER_NAME: "default"
       GITEA_RUNNER_LABELS: "default"
