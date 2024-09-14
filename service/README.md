@@ -18,10 +18,11 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 ```bash
 # 请使用root备份, 因为使用普通用户备份有可能无法访问由容器创建的文件夹
+# chown -R wenzexu:wenzexu /home/wenzexu/app && chown -R wenzexu:wenzexu /home/wenzexu/man && chown wenzexu:wenzexu /home/wenzexu/.env && chown wenzexu:wenzexu /home/wenzexu/app.yaml && chown wenzexu:wenzexu /home/wenzexu/man.yaml & chown wenzexu:wenzexu /home/wenzexu/backup.sh
+# chmod -R 777 /home/wenzexu/app && chmod -R 777 /home/wenzexu/man && chmod 600 /home/wenzexu/.env && chmod 600 /home/wenzexu/app.yaml && chmod 600 /home/wenzexu/man.yaml && chmod 600 /home/wenzexu/backup.sh
 timestamp=$(TZ='Asia/Shanghai' date +%Y-%m-%d)
-cd /root
-tar -czvf /root/backup-script.tar.gz backup.sh --absolute-names
 cd /home/wenzexu
+tar -czvf /home/wenzexu/backup-script.tar.gz backup.sh --absolute-names
 tar -czvf /home/wenzexu/env.tar.gz .env --absolute-names
 tar -czvf /home/wenzexu/man.tar.gz man.yaml --absolute-names
 tar -czvf /home/wenzexu/app.tar.gz app.yaml --absolute-names
@@ -40,12 +41,11 @@ tar -czvf /home/wenzexu/flare.tar.gz flare --absolute-names
 tar -czvf /home/wenzexu/pingvin-share.tar.gz pingvin-share --absolute-names
 tar -czvf /home/wenzexu/moments.tar.gz moments --absolute-names
 tar -czvf /home/wenzexu/freshrss.tar.gz freshrss --absolute-names
-cd /root
-aws s3 cp /root/backup-script.tar.gz s3://ricolxwz-backup/${timestamp}/
 cd /home/wenzexu
 aws s3 cp /home/wenzexu/env.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/man.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/app.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /home/wenzexu/backup-script.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/npm.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/memos.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/umami.tar.gz s3://ricolxwz-backup/${timestamp}/
