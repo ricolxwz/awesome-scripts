@@ -17,7 +17,7 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ## 备份
 
 ```bash
-# 重置所有权限: find /home/wenzexu -type d -exec chmod 755 {} \; && find /home/wenzexu -type f -exec chmod 644 {} \; && chmod 700 /home/wenzexu/.ssh && chmod 400 /home/wenzexu/authorized_keys
+# find /home/wenzexu -type d -exec chmod 755 {} \; && find /home/wenzexu -type f -exec chmod 644 {} \; && chmod 700 /home/wenzexu/.ssh && chmod 400 /home/wenzexu/authorized_keys
 # chown -R wenzexu:wenzexu /home/wenzexu/app && chown -R wenzexu:wenzexu /home/wenzexu/man && chown wenzexu:wenzexu /home/wenzexu/.env && chown wenzexu:wenzexu /home/wenzexu/app.yaml && chown wenzexu:wenzexu /home/wenzexu/man.yaml & chown wenzexu:wenzexu /home/wenzexu/backup.sh
 # chmod -R 777 /home/wenzexu/app && chmod -R 777 /home/wenzexu/man && chmod 600 /home/wenzexu/.env && chmod 600 /home/wenzexu/app.yaml && chmod 600 /home/wenzexu/man.yaml && chmod 600 /home/wenzexu/backup.sh
 timestamp=$(TZ='Asia/Shanghai' date +%Y-%m-%d)
