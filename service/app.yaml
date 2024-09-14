@@ -37,7 +37,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-      - type: bind # 1. download act runner binary; 2. ./act-runner generate-config > /home/wenzexu/app/gitea-runner/config/config.yaml
+      - type: bind # 1. download act runner binary https://dl.gitea.com/act_runner/; 2. ./act-runner generate-config > /home/wenzexu/app/gitea-runner/config/config.yaml
         source: /home/wenzexu/app/gitea-runner/config/config.yaml
         target: /config.yaml
   minio: # 9001 UI 9000 S3, 记得修改权限为wenzexu:wenzexu, 否则无法启动; 记得NPM启用WebSocket支持
