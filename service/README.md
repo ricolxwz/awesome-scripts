@@ -17,9 +17,7 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ## 备份
 
 ```bash
-# 请确保所有的路径权限都是wenzexu:wenzexu!!!
-# chown -R wenzexu:wenzexu /home/wenzexu/.* && chown -R wenzexu:wenzexu /home/wenzexu/*
-# chmod -R 777 /home/wenzexu/.* && chmod -R 777 /home/wenzexu/*
+# 请使用root备份, 因为使用普通用户备份有可能无法访问由容器创建的文件夹
 
 timestamp=$(TZ='Asia/Shanghai' date +%Y-%m-%d)
 cd /home/wenzexu
