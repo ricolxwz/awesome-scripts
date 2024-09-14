@@ -41,6 +41,9 @@ tar -czvf /home/wenzexu/flare.tar.gz flare --absolute-names
 tar -czvf /home/wenzexu/pingvin-share.tar.gz pingvin-share --absolute-names
 tar -czvf /home/wenzexu/moments.tar.gz moments --absolute-names
 tar -czvf /home/wenzexu/freshrss.tar.gz freshrss --absolute-names
+cd /home/wenzexu/app/gitlab
+tar -czvf /home/wenzexu/gitlab-secrets.tar.gz gitlab-secrets.json --abosolute-names
+tar -czvf /home/wenzexu/gitlab-rb.tar.gz gitlab.rb --abosolute-names
 cd /home/wenzexu
 aws s3 cp /home/wenzexu/env.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/man.tar.gz s3://ricolxwz-backup/${timestamp}/
@@ -59,7 +62,11 @@ aws s3 cp /home/wenzexu/flare.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/pingvin-share.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/moments.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/freshrss.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /home/wenzexu/gitlab-secrets.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /home/wenzexu/gitlab-rb.tar.gz s3://ricolxwz-backup/${timestamp}/
 rm /home/wenzexu/*.tar.gz
+docker compose -f /home/wenzexu/app.yaml exec gitlab gitlab-backup create STRATEGY=copy
+docker compose -f /home/wenzexu/app.yaml exec gitlab find /var/opt/gitlab/backups/ -name "*.tar" -exec rm {} \;
 ```
 
 ```
