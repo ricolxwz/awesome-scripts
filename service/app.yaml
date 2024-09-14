@@ -110,52 +110,52 @@ services:
       - TZ=Asia/Shanghai
     networks:
       - app
-  # halo: # 8090
-  #   image: halohub/halo:2.19
-  #   restart: unless-stopped
-  #   container_name: halo
-  #   hostname: halo
-  #   depends_on:
-  #     halo-db:
-  #       condition: service_healthy
-  #   environment:
-  #     - TZ=Asia/Shanghai
-  #   networks:
-  #     - app
-  #   volumes:
-  #     - /home/wenzexu/app/halo:/home/wenzexu/.halo2
-  #   healthcheck:
-  #     test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
-  #     interval: 30s
-  #     timeout: 5s
-  #     retries: 5
-  #     start_period: 30s
-  #   command:
-  #     - --spring.r2dbc.url=r2dbc:pool:postgresql://halo-db/halo
-  #     - --spring.r2dbc.username=halo
-  #     - --spring.r2dbc.password=$HALO_POSTGRES_PASSWORD
-  #     - --spring.sql.init.platform=postgresql
-  #     - --halo.external-url=http://localhost:8090/
-  # halo-db:
-  #   image: postgres:15.4
-  #   restart: unless-stopped
-  #   container_name: halo-db
-  #   hostname: halo-db
-  #   networks:
-  #     - app
-  #   volumes:
-  #     - /home/wenzexu/app/halo-db:/var/lib/postgresql/data
-  #   healthcheck:
-  #     test: [ "CMD", "pg_isready" ]
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 5
-  #   environment:
-  #     - POSTGRES_PASSWORD=$HALO_POSTGRES_PASSWORD
-  #     - POSTGRES_USER=halo
-  #     - POSTGRES_DB=halo
-  #     - PGUSER=halo
-  #     - TZ=Asia/Shanghai
+  halo: # 8090
+    image: halohub/halo:2.19
+    restart: unless-stopped
+    container_name: halo
+    hostname: halo
+    depends_on:
+      halo-db:
+        condition: service_healthy
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - app
+    volumes:
+      - /home/wenzexu/app/halo:/home/wenzexu/.halo2
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    command:
+      - --spring.r2dbc.url=r2dbc:pool:postgresql://halo-db/halo
+      - --spring.r2dbc.username=halo
+      - --spring.r2dbc.password=$HALO_POSTGRES_PASSWORD
+      - --spring.sql.init.platform=postgresql
+      - --halo.external-url=http://localhost:8090/
+  halo-db:
+    image: postgres:15.4
+    restart: unless-stopped
+    container_name: halo-db
+    hostname: halo-db
+    networks:
+      - app
+    volumes:
+      - /home/wenzexu/app/halo-db:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+      - POSTGRES_PASSWORD=$HALO_POSTGRES_PASSWORD
+      - POSTGRES_USER=halo
+      - POSTGRES_DB=halo
+      - PGUSER=halo
+      - TZ=Asia/Shanghai
   alist: # 5244
     container_name: alist
     hostname: alist
@@ -290,43 +290,43 @@ services:
       - /home/wenzexu/app/nav:/usr/share/nginx/html:ro
     networks:
       - app
-  # gitlab: # 7750 GIT
-  #   container_name: gitlab
-  #   hostname: gitlab
-  #   image: gitlab/gitlab-ce:17.2.1-ce.0
-  #   restart: unless-stopped
-  #   ports:
-  #     - '7750:22'
-  #   environment:
-  #     TZ: "Asia/Shanghai"
-  #     GITLAB_OMNIBUS_CONFIG: |
-  #       external_url 'https://git.ricolxwz.io'
-  #       gitlab_rails['gitlab_shell_ssh_port'] = 7750
-  #       letsencrypt['enabled'] = false
-  #       nginx['enable'] = true
-  #       nginx['listen_port'] = 80
-  #       nginx['listen_https'] = false
-  #   volumes:
-  #     - '/home/wenzexu/app/gitlab/config:/etc/gitlab'
-  #     - '/home/wenzexu/app/gitlab/logs:/var/log/gitlab'
-  #     - '/home/wenzexu/app/gitlab/data:/var/opt/gitlab'
-  #   shm_size: '256m'
-  #   networks:
-  #     - app
-  # gitlab-runner:
-  #   container_name: gitlab-runner
-  #   hostname: gitlab-runner
-  #   image: gitlab/gitlab-runner:v17.2.1
-  #   restart: unless-stopped
-  #   environment:
-  #       - TZ=Asia/Shanghai
-  #   depends_on:
-  #     - gitlab
-  #   volumes:
-  #    - /home/wenzexu/app/gitlab-runner/config:/etc/gitlab-runner
-  #    - /var/run/docker.sock:/var/run/docker.sock
-  #   networks:
-  #       - app
+  gitlab: # 7750 GIT
+    container_name: gitlab
+    hostname: gitlab
+    image: gitlab/gitlab-ce:17.2.1-ce.0
+    restart: unless-stopped
+    ports:
+      - '7750:22'
+    environment:
+      TZ: "Asia/Shanghai"
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://git.ricolxwz.io'
+        gitlab_rails['gitlab_shell_ssh_port'] = 7750
+        letsencrypt['enabled'] = false
+        nginx['enable'] = true
+        nginx['listen_port'] = 80
+        nginx['listen_https'] = false
+    volumes:
+      - '/home/wenzexu/app/gitlab/config:/etc/gitlab'
+      - '/home/wenzexu/app/gitlab/logs:/var/log/gitlab'
+      - '/home/wenzexu/app/gitlab/data:/var/opt/gitlab'
+    shm_size: '256m'
+    networks:
+      - app
+  gitlab-runner:
+    container_name: gitlab-runner
+    hostname: gitlab-runner
+    image: gitlab/gitlab-runner:v17.2.1
+    restart: unless-stopped
+    environment:
+        - TZ=Asia/Shanghai
+    depends_on:
+      - gitlab
+    volumes:
+     - /home/wenzexu/app/gitlab-runner/config:/etc/gitlab-runner
+     - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+        - app
   easyimage: # 80
     container_name: easyimage
     hostname: easyimage
