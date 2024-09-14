@@ -12,6 +12,7 @@ passwd wenzexu
 ```
 rm /etc/localtime
 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+echo "Asia/Shanghai" > /etc/timezone
 ```
 
 ## 备份
