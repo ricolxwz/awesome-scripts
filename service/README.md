@@ -64,7 +64,7 @@ rm /root/*.tar.gz
 ```
 
 ```
-0 0 */5 * * /home/wenzexu/backup.sh
+0 0 */5 * * /root/backup.sh
 ```
 
 ## 网络
