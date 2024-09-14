@@ -154,6 +154,10 @@ admin/stirling
 docker compose -f app.yaml exec -it artalk artalk admin
 ```
 
+### Gitea
+
+第一次创建的用户就是root
+
 ## 配置
 
 ### MinIO
