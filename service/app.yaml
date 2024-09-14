@@ -8,6 +8,9 @@ services:
     container_name: minio
     hostname: minio
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - MINIO_ROOT_USER=wenzexu
       - MINIO_ROOT_PASSWORD=$MINIO_ROOT_PASSWORD
       - MINIO_DATA_DIR=/bitnami/minio/data
@@ -25,6 +28,7 @@ services:
     environment:
       - PUID=1001
       - PGID=1001
+      - UMASK=022
       - TZ=Asia/Shanghai
     volumes:
       - /home/wenzexu/app/freshrss:/config
@@ -37,19 +41,22 @@ services:
     container_name: rsshub
     hostname: rsshub
     environment:
-        - NODE_ENV=production
-        - CACHE_TYPE=redis
-        - REDIS_URL="redis://rsshub-redis:6379/"
-        - PUPPETEER_WS_ENDPOINT="ws://rsshub-browserless:3000"
-        - TZ=Asia/Shanghai
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
+      - NODE_ENV=production
+      - CACHE_TYPE=redis
+      - REDIS_URL="redis://rsshub-redis:6379/"
+      - PUPPETEER_WS_ENDPOINT="ws://rsshub-browserless:3000"
+      - TZ=Asia/Shanghai
     healthcheck:
-        test: ["CMD", "curl", "-f", "http://localhost:1200/healthz"]
-        interval: 30s
-        timeout: 10s
-        retries: 3
+      test: ["CMD", "curl", "-f", "http://localhost:1200/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     depends_on:
-        - rsshub-redis
-        - rsshub-browserless
+      - rsshub-redis
+      - rsshub-browserless
     networks:
       - app
   rsshub-browserless:
@@ -60,6 +67,9 @@ services:
     networks:
       - app
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - TZ=Asia/Shanghai
     ulimits:
       core:
@@ -77,14 +87,17 @@ services:
     networks:
       - app
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - TZ=Asia/Shanghai
     restart: unless-stopped
     healthcheck:
-        test: ["CMD", "redis-cli", "ping"]
-        interval: 30s
-        timeout: 10s
-        retries: 5
-        start_period: 5s
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 5s
   stirling-pdf: # 8080
     image: frooodle/s-pdf:latest
     container_name: stirling-pdf
@@ -93,6 +106,9 @@ services:
       - /home/wenzexu/app/stirling-pdf/trainingData:/usr/share/tessdata
       - /home/wenzexu/app/stirling-pdf/extraConfigs:/configs
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - DOCKER_ENABLE_SECURITY=true
       - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
       - LANGS=zh_CN
@@ -107,6 +123,9 @@ services:
     container_name: it-tools
     hostname: it-tools
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - TZ=Asia/Shanghai
     networks:
       - app
@@ -119,6 +138,9 @@ services:
       halo-db:
         condition: service_healthy
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - TZ=Asia/Shanghai
     networks:
       - app
@@ -151,6 +173,9 @@ services:
       timeout: 5s
       retries: 5
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - POSTGRES_PASSWORD=$HALO_POSTGRES_PASSWORD
       - POSTGRES_USER=halo
       - POSTGRES_DB=halo
@@ -176,6 +201,9 @@ services:
     hostname: lobechat
     restart: unless-stopped
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - OPENAI_API_KEY=$OPENAI_API_KEY
       - ACCESS_CODE=$ACCESS_CODE
       - ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY
@@ -188,6 +216,9 @@ services:
     hostname: umami
     image: ghcr.io/umami-software/umami:postgresql-latest
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - DATABASE_URL=postgresql://umami:${POSTGRES_PASSWORD}@umami-db:5432/umami
       - DATABASE_TYPE=postgresql
       - APP_SECRET=replace-me-with-a-random-string
@@ -208,6 +239,9 @@ services:
     hostname: umami-db
     image: postgres:15-alpine
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - POSTGRES_DB=umami
       - POSTGRES_USER=umami
       - TZ=Asia/Shanghai
@@ -226,7 +260,10 @@ services:
     container_name: uptime-kuma
     hostname: uptime-kuma
     image: louislam/uptime-kuma:1
-    environment: 
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022 
       - TZ=Asia/Shanghai
     volumes:
       - /home/wenzexu/app/uptime-kuma:/app/data
@@ -238,6 +275,9 @@ services:
     hostname: memos
     image: neosmemo/memos:stable
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - TZ=Asia/Shanghai
     volumes:
       - /home/wenzexu/app/memos:/var/opt/memos
@@ -250,6 +290,9 @@ services:
     image: yourls
     restart: unless-stopped
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - YOURLS_DB_HOST=yourls-db
       - YOURLS_DB_USER=yourls
       - YOURLS_DB_PASS=$MYSQL_PASSWORD
@@ -268,6 +311,9 @@ services:
     hostname: yourls-db
     image: mysql
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
       - MYSQL_DATABASE=yourls
       - MYSQL_USER=yourls
@@ -285,6 +331,9 @@ services:
     image: nginx
     restart: unless-stopped
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - TZ=Asia/Shanghai
     volumes:
       - /home/wenzexu/app/nav:/usr/share/nginx/html:ro
@@ -298,6 +347,9 @@ services:
   #   ports:
   #     - '7750:22'
   #   environment:
+  #     PUID: 1001
+  #     PGID: 1001
+  #     UMASK: 022
   #     TZ: "Asia/Shanghai"
   #     GITLAB_ROOT_EMAIL: $GITLAB_ROOT_EMAIL
   #     GITLAB_ROOT_PASSWORD: $GITLAB_ROOT_PASSWORD
@@ -321,7 +373,10 @@ services:
   #   image: gitlab/gitlab-runner:v17.2.1
   #   restart: unless-stopped
   #   environment:
-  #       - TZ=Asia/Shanghai
+  #     - PUID=1001
+  #     - PGID=1001
+  #     - UMASK=022
+  #     - TZ=Asia/Shanghai
   #   depends_on:
   #     - gitlab
   #   volumes:
@@ -334,6 +389,9 @@ services:
     hostname: easyimage
     image: ddsderek/easyimage:latest
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - TZ=Asia/Shanghai
     volumes:
       - '/home/wenzexu/app/easyimage/config:/app/web/config'
@@ -347,6 +405,9 @@ services:
     hostname: excalidraw
     image: excalidraw/excalidraw:latest
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - TZ=Asia/Shanghai
     restart: unless-stopped
     networks:
@@ -358,6 +419,9 @@ services:
     restart: unless-stopped
     command: flare --nologin=0
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - FLARE_GUIDE=0
       - FLARE_USER=wenzexu
       - FLARE_PASS=$FLARE_PASS
@@ -372,6 +436,9 @@ services:
     hostname: pingvin-share
     restart: unless-stopped
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - TZ=Asia/Shanghai
     volumes:
       - /home/wenzexu/app/pingvin-share:/opt/app/backend/data
@@ -382,6 +449,9 @@ services:
     command: redis-server --maxmemory 1gb --maxmemory-policy allkeys-lru
     container_name: cryptgeon-redis
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - TZ=Asia/Shanghai
     hostname: cryptgeon-redis
     restart: unless-stopped
@@ -394,6 +464,9 @@ services:
     depends_on:
       - cryptgeon-redis
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - SIZE_LIMIT=20 MiB
       - REDIS=redis://cryptgeon-redis:6379
       - TZ=Asia/Shanghai
@@ -405,6 +478,9 @@ services:
     container_name: moments
     hostname: moments
     environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK=022
       - JWT_KEY=$JWT_KEY
       - TZ=Asia/Shanghai
     volumes:
@@ -445,6 +521,9 @@ services:
   #   image: p3terx/ariang
   #   restart: unless-stopped
   #   environment:
+  #     - PUID=1001
+  #     - PGID=1001
+  #     - UMASK=022
   #     - TZ=Asia/Shanghai
   #   logging:
   #     driver: json-file
@@ -459,6 +538,7 @@ services:
     environment:
       - PUID=1001
       - PGID=1001
+      - UMASK=022
       - TZ=Etc/UTC
       - WEBUI_PORT=8080
       - TORRENTING_PORT=6881
@@ -477,6 +557,7 @@ services:
     environment:
       - PUID=1001
       - PGID=1001
+      - UMASK=022
       - USER=wenzexu
       - PASS=$TRANSMISSION_PASSWORD
       - TZ=Asia/Shanghai
