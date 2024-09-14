@@ -9,9 +9,6 @@ services:
     hostname: watchtower
     environment:
       - TZ=Asia/Shanghai
-      - PUID=1001
-      - PGID=1001
-      - UMASK=022
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
@@ -24,9 +21,6 @@ services:
     restart: always
     environment:
       - TZ=Asia/Shanghai
-      - PUID=1001
-      - PGID=1001
-      - UMASK=022
     extra_hosts:
       - "host.docker.internal:172.18.0.1" # 请修改为主机在app网络中的ip. 若要使用host.docker.internal反代主机的服务, 请确保服务监听的ip是主机在app网卡上的ip, 或者是0.0.0.0. 如Jupyter Server服务设置监听地址为172.18.0.1:65520, 在NPM中, 要设置为反代171.18.0.1:65520, 好像无法使用host.docker.internal域名, 只能使用ip, 可能是bug, 可能直接忽略了hosts文件里面定义的host.docker.internal
     ports:
@@ -44,9 +38,6 @@ services:
   #   image: portainer/portainer-ce:latest
   #   environment:
   #     - TZ=Asia/Shanghai
-  #     - PUID=1001
-  #     - PGID=1001
-  #     - UMASK=022
   #   volumes:
   #     - /home/wenzexu/man/portainer:/data
   #     - /var/run/docker.sock:/var/run/docker.sock:ro
