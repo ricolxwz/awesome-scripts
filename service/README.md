@@ -19,11 +19,12 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```bash
 # 请使用root备份, 因为使用普通用户备份有可能无法访问由容器创建的文件夹
 timestamp=$(TZ='Asia/Shanghai' date +%Y-%m-%d)
+cd /root
+tar -czvf /root/backup-script.tar.gz backup.sh --absolute-names
 cd /home/wenzexu
 tar -czvf /home/wenzexu/env.tar.gz .env --absolute-names
 tar -czvf /home/wenzexu/man.tar.gz man.yaml --absolute-names
 tar -czvf /home/wenzexu/app.tar.gz app.yaml --absolute-names
-tar -czvf /home/wenzexu/backup-script.tar.gz backup.sh --absolute-names
 cd /home/wenzexu/man
 tar -czvf /home/wenzexu/npm.tar.gz nginx --absolute-names
 cd /home/wenzexu/app
@@ -39,11 +40,12 @@ tar -czvf /home/wenzexu/flare.tar.gz flare --absolute-names
 tar -czvf /home/wenzexu/pingvin-share.tar.gz pingvin-share --absolute-names
 tar -czvf /home/wenzexu/moments.tar.gz moments --absolute-names
 tar -czvf /home/wenzexu/freshrss.tar.gz freshrss --absolute-names
+cd /root
+aws s3 cp /root/backup-script.tar.gz s3://ricolxwz-backup/${timestamp}/
 cd /home/wenzexu
 aws s3 cp /home/wenzexu/env.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/man.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/app.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /home/wenzexu/backup-script.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/npm.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/memos.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/umami.tar.gz s3://ricolxwz-backup/${timestamp}/
@@ -58,6 +60,7 @@ aws s3 cp /home/wenzexu/pingvin-share.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/moments.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/freshrss.tar.gz s3://ricolxwz-backup/${timestamp}/
 rm /home/wenzexu/*.tar.gz
+rm /root/*.tar.gz
 ```
 
 ```
