@@ -22,25 +22,25 @@ chown -R wenzexu:wenzexu /home/wenzexu/app && chown -R wenzexu:wenzexu /home/wen
 chmod -R 777 /home/wenzexu/app && chmod -R 777 /home/wenzexu/man && chmod 600 /home/wenzexu/.env && chmod 600 /home/wenzexu/app.yaml && chmod 600 /home/wenzexu/man.yaml
 timestamp=$(TZ='Asia/Shanghai' date +%Y-%m-%d)
 cd /root
-tar -czvf /root/backup-script.tar.gz backup.sh --absolute-names
+tar -czf /root/backup-script.tar.gz backup.sh --absolute-names
 cd /home/wenzexu
-tar -czvf /home/wenzexu/env.tar.gz .env --absolute-names
-tar -czvf /home/wenzexu/man.tar.gz man.yaml --absolute-names
-tar -czvf /home/wenzexu/app.tar.gz app.yaml --absolute-names
+tar -czf /home/wenzexu/env.tar.gz .env --absolute-names
+tar -czf /home/wenzexu/man.tar.gz man.yaml --absolute-names
+tar -czf /home/wenzexu/app.tar.gz app.yaml --absolute-names
 cd /home/wenzexu/man
-tar -czvf /home/wenzexu/npm.tar.gz nginx --absolute-names
+tar -czf /home/wenzexu/npm.tar.gz nginx --absolute-names
 cd /home/wenzexu/app
-tar -czvf /home/wenzexu/memos.tar.gz memos --absolute-names
-tar -czvf /home/wenzexu/umami-db.tar.gz umami-db --absolute-names
-tar -czvf /home/wenzexu/uptime-kuma.tar.gz uptime-kuma --absolute-names
-tar -czvf /home/wenzexu/yourls.tar.gz yourls --absolute-names
-tar -czvf /home/wenzexu/yourls-db.tar.gz yourls-db --absolute-names
-tar -czvf /home/wenzexu/nav.tar.gz nav --absolute-names
-tar -czvf /home/wenzexu/easyimage.tar.gz easyimage --absolute-names
-tar -czvf /home/wenzexu/flare.tar.gz flare --absolute-names
-tar -czvf /home/wenzexu/pingvin-share.tar.gz pingvin-share --absolute-names
-tar -czvf /home/wenzexu/moments.tar.gz moments --absolute-names
-tar -czvf /home/wenzexu/freshrss.tar.gz freshrss --absolute-names
+tar -czf /home/wenzexu/memos.tar.gz memos --absolute-names
+tar -czf /home/wenzexu/umami-db.tar.gz umami-db --absolute-names
+tar -czf /home/wenzexu/uptime-kuma.tar.gz uptime-kuma --absolute-names
+tar -czf /home/wenzexu/yourls.tar.gz yourls --absolute-names
+tar -czf /home/wenzexu/yourls-db.tar.gz yourls-db --absolute-names
+tar -czf /home/wenzexu/nav.tar.gz nav --absolute-names
+tar -czf /home/wenzexu/easyimage.tar.gz easyimage --absolute-names
+tar -czf /home/wenzexu/flare.tar.gz flare --absolute-names
+tar -czf /home/wenzexu/pingvin-share.tar.gz pingvin-share --absolute-names
+tar -czf /home/wenzexu/moments.tar.gz moments --absolute-names
+tar -czf /home/wenzexu/freshrss.tar.gz freshrss --absolute-names
 cd /root
 aws s3 cp /root/backup-script.tar.gz s3://ricolxwz-backup/${timestamp}/
 cd /home/wenzexu
@@ -77,8 +77,8 @@ rm /root/*.tar.gz
 
 1. `/home/wenzexu/gitlab-backup.sh`, 备份alist, 备份halo
 2. 下载.env文件: 非常重要! 包含数据库的密码之类的信息, 不然在新机器上无法恢复
-3. 压缩app文件夹: 单独备份gitlab文件夹, `tar -czvf gitlab-aux.tar.gz /home/wenzexu/app/gitlab`, 然后`rm -rf /home/wenzexu/app/gitlab`, 最后`tar -czvf app.tar.gz app`, 下载两个文件夹
-4. 压缩man文件夹: `tar -czvf man.tar.gz man`
+3. 压缩app文件夹: 单独备份gitlab文件夹, `tar -czf gitlab-aux.tar.gz /home/wenzexu/app/gitlab`, 然后`rm -rf /home/wenzexu/app/gitlab`, 最后`tar -czf app.tar.gz app`, 下载两个文件夹
+4. 压缩man文件夹: `tar -czf man.tar.gz man`
 6. 在新机器上, 上传app文件夹, 解压app文件夹: `tar -xzvf app.tar.gz`, 解压man文件夹: `tar -xzvf man.tar.gz`, gitlab-aux暂时不需要, 是以防万一用的
 7. 新建`man.yaml`文件
 8. `docker compose -f /home/wenzexu/man.yaml up -d`
