@@ -19,7 +19,7 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```bash
 # find /home/wenzexu -type d -exec chmod 755 {} \; && find /home/wenzexu -type f -exec chmod 644 {} \; && chmod 700 /home/wenzexu/.ssh && chmod 400 /home/wenzexu/.ssh/authorized_keys
 # chown -R wenzexu:wenzexu /home/wenzexu/app && chown -R wenzexu:wenzexu /home/wenzexu/man && chown wenzexu:wenzexu /home/wenzexu/.env && chown wenzexu:wenzexu /home/wenzexu/app.yaml && chown wenzexu:wenzexu /home/wenzexu/man.yaml & chown wenzexu:wenzexu /home/wenzexu/backup.sh && chown -R wenzexu:wenzexu /home/wenzexu/.aws
-# chmod -R 777 /home/wenzexu/app && chmod -R 777 /home/wenzexu/man && chmod 600 /home/wenzexu/.env && chmod 600 /home/wenzexu/app.yaml && chmod 600 /home/wenzexu/man.yaml && chmod 600 /home/wenzexu/backup.sh && chmod -R 700 /home/wenzexu/.aws
+# chmod -R 777 /home/wenzexu/app && chmod -R 777 /home/wenzexu/man && chmod 600 /home/wenzexu/.env && chmod 600 /home/wenzexu/app.yaml && chmod 600 /home/wenzexu/man.yaml && chmod 700 /home/wenzexu/backup.sh && chmod 700 /home/wenzexu/.aws && chmod 600 /home/wenzexu/.aws/config && chmod 600 /home/wenzexu/.aws/credentials
 timestamp=$(TZ='Asia/Shanghai' date +%Y-%m-%d)
 cd /home/wenzexu
 tar -czvf /home/wenzexu/backup-script.tar.gz backup.sh --absolute-names
