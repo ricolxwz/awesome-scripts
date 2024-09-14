@@ -18,11 +18,12 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 ```bash
 # find /home/wenzexu -type d -exec chmod 755 {} \; && find /home/wenzexu -type f -exec chmod 644 {} \; && chmod 700 /home/wenzexu/.ssh && chmod 400 /home/wenzexu/.ssh/authorized_keys
-# chown -R wenzexu:wenzexu /home/wenzexu/app && chown -R wenzexu:wenzexu /home/wenzexu/man && chown wenzexu:wenzexu /home/wenzexu/.env && chown wenzexu:wenzexu /home/wenzexu/app.yaml && chown wenzexu:wenzexu /home/wenzexu/man.yaml & chown wenzexu:wenzexu /home/wenzexu/backup.sh && chown -R wenzexu:wenzexu /home/wenzexu/.aws
-# chmod -R 777 /home/wenzexu/app && chmod -R 777 /home/wenzexu/man && chmod 600 /home/wenzexu/.env && chmod 600 /home/wenzexu/app.yaml && chmod 600 /home/wenzexu/man.yaml && chmod 700 /home/wenzexu/backup.sh && chmod 700 /home/wenzexu/.aws && chmod 600 /home/wenzexu/.aws/config && chmod 600 /home/wenzexu/.aws/credentials
+# chown -R wenzexu:wenzexu /home/wenzexu/app && chown -R wenzexu:wenzexu /home/wenzexu/man && chown wenzexu:wenzexu /home/wenzexu/.env && chown wenzexu:wenzexu /home/wenzexu/app.yaml && chown wenzexu:wenzexu /home/wenzexu/man.yaml
+# chmod -R 777 /home/wenzexu/app && chmod -R 777 /home/wenzexu/man && chmod 600 /home/wenzexu/.env && chmod 600 /home/wenzexu/app.yaml && chmod 600 /home/wenzexu/man.yaml
 timestamp=$(TZ='Asia/Shanghai' date +%Y-%m-%d)
+cd /root
+tar -czvf /root/backup-script.tar.gz backup.sh --absolute-names
 cd /home/wenzexu
-tar -czvf /home/wenzexu/backup-script.tar.gz backup.sh --absolute-names
 tar -czvf /home/wenzexu/env.tar.gz .env --absolute-names
 tar -czvf /home/wenzexu/man.tar.gz man.yaml --absolute-names
 tar -czvf /home/wenzexu/app.tar.gz app.yaml --absolute-names
@@ -41,11 +42,12 @@ tar -czvf /home/wenzexu/flare.tar.gz flare --absolute-names
 tar -czvf /home/wenzexu/pingvin-share.tar.gz pingvin-share --absolute-names
 tar -czvf /home/wenzexu/moments.tar.gz moments --absolute-names
 tar -czvf /home/wenzexu/freshrss.tar.gz freshrss --absolute-names
+cd /root
+aws s3 cp /root/backup-script.tar.gz s3://ricolxwz-backup/${timestamp}/
 cd /home/wenzexu
 aws s3 cp /home/wenzexu/env.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/man.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/app.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /home/wenzexu/backup-script.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/npm.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/memos.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/umami.tar.gz s3://ricolxwz-backup/${timestamp}/
@@ -60,6 +62,7 @@ aws s3 cp /home/wenzexu/pingvin-share.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/moments.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/freshrss.tar.gz s3://ricolxwz-backup/${timestamp}/
 rm /home/wenzexu/*.tar.gz
+rm /root/*.tar.gz
 ```
 
 ```
