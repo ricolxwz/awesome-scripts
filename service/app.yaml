@@ -19,6 +19,25 @@ services:
       - /etc/localtime:/etc/localtime:ro
     ports:
       - "5555:22"
+  gitea-runner:
+    image: gitea/act_runner:nightly
+    container_name: gitea-runner
+    hostname: gitea-runner
+    networks:
+      - app
+    restart: unless-stopped
+    environment:
+      - CONFIG_FILE=/config.yaml
+      - GITEA_INSTANCE_URL=git.ricolxwz.io
+      - GITEA_RUNNER_REGISTRATION_TOKEN=$GITEA_RUNNER_REGISTRATION_TOKEN
+      - GITEA_RUNNER_NAME=default
+      - GITEA_RUNNER_LABELS=default
+    volumes:
+      - /home/wenzexu/app/gitea-runner/config/config.yaml:/config.yaml
+      - /home/wenzexu/app/gitea-runner/data:/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
   minio: # 9001 UI 9000 S3, 记得修改权限为wenzexu:wenzexu, 否则无法启动; 记得NPM启用WebSocket支持
     image: bitnami/minio
     container_name: minio
