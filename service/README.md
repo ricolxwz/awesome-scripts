@@ -18,7 +18,6 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 ```bash
 # 请使用root备份, 因为使用普通用户备份有可能无法访问由容器创建的文件夹
-
 timestamp=$(TZ='Asia/Shanghai' date +%Y-%m-%d)
 cd /home/wenzexu
 tar -czvf /home/wenzexu/env.tar.gz .env --absolute-names
