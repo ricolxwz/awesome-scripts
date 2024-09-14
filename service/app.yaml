@@ -38,7 +38,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
       - type: bind
-        source: /home/wenzexu/app/gitea-runner/config.yaml
+        source: /home/wenzexu/app/gitea-runner/config/config.yaml
         target: /config.yaml
   minio: # 9001 UI 9000 S3, 记得修改权限为wenzexu:wenzexu, 否则无法启动; 记得NPM启用WebSocket支持
     image: bitnami/minio
