@@ -10,6 +10,7 @@ services:
     environment:
       - USER_UID=1001
       - USER_GID=1001
+      - DISABLE_REGISTRATION=true
     restart: unless-stopped
     networks:
       - app
@@ -18,7 +19,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
-      - "222:22"
+      - "5555:22"
   minio: # 9001 UI 9000 S3, 记得修改权限为wenzexu:wenzexu, 否则无法启动; 记得NPM启用WebSocket支持
     image: bitnami/minio
     container_name: minio
