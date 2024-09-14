@@ -44,6 +44,9 @@ services:
   #   image: portainer/portainer-ce:latest
   #   environment:
   #     - TZ=Asia/Shanghai
+  #     - PUID=1001
+  #     - PGID=1001
+  #     - UMASK=022
   #   volumes:
   #     - /home/wenzexu/man/portainer:/data
   #     - /var/run/docker.sock:/var/run/docker.sock:ro
