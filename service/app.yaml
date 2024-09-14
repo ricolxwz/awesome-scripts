@@ -27,11 +27,11 @@ services:
       - app
     restart: unless-stopped
     environment:
-      - CONFIG_FILE=/config.yaml
-      - GITEA_INSTANCE_URL=git.ricolxwz.io
-      - GITEA_RUNNER_REGISTRATION_TOKEN=$GITEA_RUNNER_REGISTRATION_TOKEN
-      - GITEA_RUNNER_NAME=default
-      - GITEA_RUNNER_LABELS=default
+      CONFIG_FILE: /config.yaml
+      GITEA_INSTANCE_URL: "https://git.ricolxwz.io"
+      GITEA_RUNNER_REGISTRATION_TOKEN: "${GITEA_RUNNER_REGISTRATION_TOKEN}"
+      GITEA_RUNNER_NAME: "default"
+      GITEA_RUNNER_LABELS: "default"
     volumes:
       - /home/wenzexu/app/gitea-runner/config/config.yaml:/config.yaml
       - /home/wenzexu/app/gitea-runner/data:/data
