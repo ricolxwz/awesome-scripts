@@ -31,7 +31,6 @@ cd /home/wenzexu/man
 tar -czvf /home/wenzexu/npm.tar.gz nginx --absolute-names
 cd /home/wenzexu/app
 tar -czvf /home/wenzexu/memos.tar.gz memos --absolute-names
-tar -czvf /home/wenzexu/umami.tar.gz umami --absolute-names
 tar -czvf /home/wenzexu/umami-db.tar.gz umami-db --absolute-names
 tar -czvf /home/wenzexu/uptime-kuma.tar.gz uptime-kuma --absolute-names
 tar -czvf /home/wenzexu/yourls.tar.gz yourls --absolute-names
@@ -50,7 +49,6 @@ aws s3 cp /home/wenzexu/man.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/app.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/npm.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/memos.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /home/wenzexu/umami.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/umami-db.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/uptime-kuma.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/yourls.tar.gz s3://ricolxwz-backup/${timestamp}/
