@@ -406,24 +406,24 @@ services:
       - /etc/localtime:/etc/localtime:ro
     networks:
       - app
-  flare: # 5005
-    image: soulteary/flare
-    container_name: flare
-    hostname: flare
-    restart: unless-stopped
-    command: flare --nologin=0
-    environment:
-      - FLARE_GUIDE=0
-      - FLARE_USER=wenzexu
-      - FLARE_PASS=$FLARE_PASS
-      - FLARE_EDITOR=false
-      - FLARE_GUIDE=false
-    volumes:
-      - /home/wenzexu/app/flare:/app
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
-    networks:
-      - app
+  # flare: # 5005
+  #   image: soulteary/flare
+  #   container_name: flare
+  #   hostname: flare
+  #   restart: unless-stopped
+  #   command: flare --nologin=0
+  #   environment:
+  #     - FLARE_GUIDE=0
+  #     - FLARE_USER=wenzexu
+  #     - FLARE_PASS=$FLARE_PASS
+  #     - FLARE_EDITOR=false
+  #     - FLARE_GUIDE=false
+  #   volumes:
+  #     - /home/wenzexu/app/flare:/app
+  #     - /etc/timezone:/etc/timezone:ro
+  #     - /etc/localtime:/etc/localtime:ro
+  #   networks:
+  #     - app
   pingvin-share: # 3000
     image: stonith404/pingvin-share
     container_name: pingvin-share
@@ -527,25 +527,25 @@ services:
     restart: unless-stopped
     networks:
       - app
-  transmission: # 9091
-    image: lscr.io/linuxserver/transmission:latest
-    container_name: transmission
-    hostname: transmission
-    environment:
-      - PUID=1001
-      - PGID=1001
-      - UMASK=022
-      - USER=wenzexu
-      - PASS=$TRANSMISSION_PASSWORD
-    volumes:
-      - /home/wenzexu/app/transmission/config:/config
-      - /home/wenzexu/app/transmission/downloads:/downloads
-      - /home/wenzexu/app/transmission/watch:/watch
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
-    restart: unless-stopped
-    networks:
-      - app
+  # transmission: # 9091
+  #   image: lscr.io/linuxserver/transmission:latest
+  #   container_name: transmission
+  #   hostname: transmission
+  #   environment:
+  #     - PUID=1001
+  #     - PGID=1001
+  #     - UMASK=022
+  #     - USER=wenzexu
+  #     - PASS=$TRANSMISSION_PASSWORD
+  #   volumes:
+  #     - /home/wenzexu/app/transmission/config:/config
+  #     - /home/wenzexu/app/transmission/downloads:/downloads
+  #     - /home/wenzexu/app/transmission/watch:/watch
+  #     - /etc/timezone:/etc/timezone:ro
+  #     - /etc/localtime:/etc/localtime:ro
+  #   restart: unless-stopped
+  #   networks:
+  #     - app
 
 networks:
   app:
