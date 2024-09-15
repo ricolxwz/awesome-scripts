@@ -9,10 +9,13 @@ passwd wenzexu
 
 ## 时区
 
-```
+```bash
 rm /etc/localtime
-ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-echo "Asia/Shanghai" > /etc/timezone
+ln -s /usr/share/zoneinfo/Australia/Sydney /etc/localtime
+echo "Australia/Sydney" > /etc/timezone
+# rm /etc/localtime
+# ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+# echo "Asia/Shanghai" > /etc/timezone
 ```
 
 ## 备份
