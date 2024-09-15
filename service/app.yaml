@@ -225,9 +225,9 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     environment:
-      - OPENAI_API_KEY=$OPENAI_API_KEY
-      - ACCESS_CODE=$ACCESS_CODE
-      - ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY
+      - OPENAI_API_KEY=$LOBECHAT_OPENAI_API_KEY
+      - ACCESS_CODE=$LOBECHAT_ACCESS_CODE
+      - ANTHROPIC_API_KEY=$LOBECHAT_ANTHROPIC_API_KEY
       - FEATURE_FLAGS=-welcome_suggest
     networks:
       - app
@@ -236,7 +236,7 @@ services:
     hostname: umami
     image: ghcr.io/umami-software/umami:postgresql-latest
     environment:
-      - DATABASE_URL=postgresql://umami:${POSTGRES_PASSWORD}@umami-db:5432/umami
+      - DATABASE_URL=postgresql://umami:${UMAMI_POSTGRES_PASSWORD}@umami-db:5432/umami
       - DATABASE_TYPE=postgresql
       - APP_SECRET=replace-me-with-a-random-string
     depends_on:
@@ -260,7 +260,7 @@ services:
     environment:
       - POSTGRES_DB=umami
       - POSTGRES_USER=umami
-      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+      - POSTGRES_PASSWORD=$UMAMI_POSTGRES_PASSWORD
     volumes:
       - /home/wenzexu/app/umami-db:/var/lib/postgresql/data
       - /etc/timezone:/etc/timezone:ro
@@ -303,7 +303,7 @@ services:
     environment:
       - YOURLS_DB_HOST=yourls-db
       - YOURLS_DB_USER=yourls
-      - YOURLS_DB_PASS=$MYSQL_PASSWORD
+      - YOURLS_DB_PASS=$YOURLS_MYSQL_PASSWORD
       - YOURLS_DB_NAME=yourls
       - YOURLS_USER=$YOURLS_USER
       - YOURLS_PASS=$YOURLS_PASS
@@ -320,10 +320,10 @@ services:
     hostname: yourls-db
     image: mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+      - MYSQL_ROOT_PASSWORD=$YOURLS_MYSQL_ROOT_PASSWORD
       - MYSQL_DATABASE=yourls
       - MYSQL_USER=yourls
-      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+      - MYSQL_PASSWORD=$YOURLS_MYSQL_PASSWORD
     volumes:
       - /home/wenzexu/app/yourls-db/db:/var/lib/mysql
       - /home/wenzexu/app/yourls-db/conf:/etc/mysql/conf.d
@@ -460,7 +460,7 @@ services:
     container_name: moments
     hostname: moments
     environment:
-      - JWT_KEY=$JWT_KEY
+      - JWT_KEY=$MOMENTS_JWT_KEY
     volumes:
       - /home/wenzexu/app/moments:/app/data
       - /etc/localtime:/etc/localtime:ro
@@ -476,7 +476,7 @@ services:
       - PUID=1001 # 可以换成普通用户
       - PGID=1001
       - UMASK_SET=022
-      - RPC_SECRET=$RPC_SECRET
+      - RPC_SECRET=$ARIA2_RPC_SECRET
       - RPC_PORT=6800
       - LISTEN_PORT=6888
       - DISK_CACHE=64M
