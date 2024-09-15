@@ -59,6 +59,7 @@ services:
       - app
     volumes:
       - /home/wenzexu/app/gitea:/data
+      - /home/wenzexu/app/gitea/ssh-config:/etc/ssh
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
