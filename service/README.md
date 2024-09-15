@@ -38,7 +38,7 @@ tar -czf /home/wenzexu/yourls.tar.gz yourls --absolute-names
 tar -czf /home/wenzexu/yourls-db.tar.gz yourls-db --absolute-names
 tar -czf /home/wenzexu/nav.tar.gz nav --absolute-names
 tar -czf /home/wenzexu/easyimage.tar.gz easyimage --absolute-names
-tar -czf /home/wenzexu/flare.tar.gz flare --absolute-names
+# tar -czf /home/wenzexu/flare.tar.gz flare --absolute-names
 tar -czf /home/wenzexu/pingvin-share.tar.gz pingvin-share --absolute-names
 tar -czf /home/wenzexu/moments.tar.gz moments --absolute-names
 tar -czf /home/wenzexu/freshrss.tar.gz freshrss --absolute-names
@@ -57,7 +57,7 @@ aws s3 cp /home/wenzexu/yourls.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/yourls-db.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/nav.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/easyimage.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /home/wenzexu/flare.tar.gz s3://ricolxwz-backup/${timestamp}/
+# aws s3 cp /home/wenzexu/flare.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/pingvin-share.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/moments.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/freshrss.tar.gz s3://ricolxwz-backup/${timestamp}/
