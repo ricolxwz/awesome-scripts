@@ -10,6 +10,8 @@ services:
     restart: unless-stopped
     volumes:
       - ./app/3x-ui/:/etc/x-ui/
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     environment:
       XRAY_VMESS_AEAD_FORCED: "false"
     tty: true
@@ -17,6 +19,5 @@ services:
       - app
       
 networks:
-
   app:
     external: true
