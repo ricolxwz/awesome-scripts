@@ -8,7 +8,7 @@ services:
     container_name: watchtower
     hostname: watchtower
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     restart: always
@@ -38,7 +38,7 @@ services:
   #   image: portainer/portainer-ce:latest
   #   volumes:
   #     - /home/wenzexu/man/portainer:/data
-  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro
   #     - /etc/timezone:/etc/timezone:ro
   #     - /etc/localtime:/etc/localtime:ro
   #   restart: always
