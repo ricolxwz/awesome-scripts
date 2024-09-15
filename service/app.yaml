@@ -35,7 +35,7 @@ services:
       POSTGRES_PASSWORD: ${CODER_POSTGRES_PASSWORD}
       POSTGRES_DB: coder
     volumes:
-      - /home/wenzexu/app/coder:/var/lib/postgresql/data
+      - /home/wenzexu/app/coder-db:/var/lib/postgresql/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     healthcheck:
