@@ -11,6 +11,7 @@ services:
     networks:
       - app
     environment:
+      CODER_POSTGRES_PASSWORD: $CODER_POSTGRES_PASSWORD
       CODER_PG_CONNECTION_URL: "postgresql://wenzexu:${CODER_POSTGRES_PASSWORD}@coder-db/coder?sslmode=disable"
       CODER_HTTP_ADDRESS: "0.0.0.0:7080"
       CODER_ACCESS_URL: "https://code.ricolxwz.io"
