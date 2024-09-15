@@ -3,6 +3,50 @@
 # 请确保将PUID, PGID改成wenzexu的
 
 services:
+  coder: # 7080
+    image: ghcr.io/coder/coder:${CODER_VERSION:-latest}
+    container_name: coder
+    hostname: coder
+    restart: unless-stopped
+    networks:
+      - app
+    environment:
+      CODER_PG_CONNECTION_URL: "postgresql://${CODER_POSTGRES_USER:-username}:${CODER_POSTGRES_PASSWORD:-password}@coder-db/${CODER_POSTGRES_DB:-coder}?sslmode=disable"
+      CODER_HTTP_ADDRESS: "0.0.0.0:7080"
+      CODER_ACCESS_URL: "code.ricolxwz.io"
+    group_add:
+     - "996" # 将容器内的用户加入到docker组中, 以便操控docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    depends_on:
+      coder-db:
+        condition: service_healthy
+  coder-db: # 5432
+    image: "postgres:16"
+    container_name: coder-db
+    hostname: coder-db
+    networks:
+      - app
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${CODER_POSTGRES_USER:-username}
+      POSTGRES_PASSWORD: ${CODER_POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: ${CODER_POSTGRES_DB:-coder}
+    volumes:
+      - /home/wenzexu/app/coder:/var/lib/postgresql/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${POSTGRES_USER:-username} -d ${POSTGRES_DB:-coder}",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
   gitea: # 3000
     image: gitea/gitea:1.22.2
     container_name: gitea
