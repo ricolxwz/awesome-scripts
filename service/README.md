@@ -7,6 +7,13 @@ useradd -mG docker -d /home/wenzexu -s /bin/bash wenzexu
 passwd wenzexu
 ```
 
+## 快捷
+
+```
+alias up="docker compose -f /home/wenzexu/app.yaml -f /home/wenzexu/man.yaml up -d --remove-orphans"
+alias restart="docker compose -f /home/wenzexu/app.yaml -f /home/wenzexu/man.yaml down && docker compose -f /home/wenzexu/app.yaml -f /home/wenzexu/man.yaml up -d --remove-orphans"
+```
+
 ## 时区
 
 ```bash
