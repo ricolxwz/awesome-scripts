@@ -54,6 +54,7 @@ tar -czf /home/wenzexu/pingvin-share.tar.gz pingvin-share --absolute-names
 tar -czf /home/wenzexu/moments.tar.gz moments --absolute-names
 tar -czf /home/wenzexu/freshrss.tar.gz freshrss --absolute-names
 tar -czf /home/wenzexu/gitea.tar.gz gitea --absolute-names
+aws s3 rm s3://ricolxwz-backup --recursive
 cd /root
 aws s3 cp /root/backup-script.tar.gz s3://ricolxwz-backup/${timestamp}/
 cd /home/wenzexu
