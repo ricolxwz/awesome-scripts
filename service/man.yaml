@@ -38,7 +38,7 @@ services:
   #   image: portainer/portainer-ce:latest
   #   volumes:
   #     - /home/wenzexu/man/portainer:/data
-  #     - /var/run/docker.sock:/var/run/docker.sock:ro
+  #     - /var/run/docker.sock:/var/run/docker.sock
   #     - /etc/timezone:/etc/timezone:ro
   #     - /etc/localtime:/etc/localtime:ro
   #   restart: always
