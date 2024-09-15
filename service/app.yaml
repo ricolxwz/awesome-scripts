@@ -416,6 +416,8 @@ services:
       - FLARE_GUIDE=0
       - FLARE_USER=wenzexu
       - FLARE_PASS=$FLARE_PASS
+      - FLARE_EDITOR=false
+      - FLARE_GUIDE=false
     volumes:
       - /home/wenzexu/app/flare:/app
       - /etc/timezone:/etc/timezone:ro
