@@ -32,7 +32,7 @@ docker compose -f /home/wenzexu/app.yaml -f /home/wenzexu/man.yaml down
 find /home/wenzexu -type d -exec chmod 755 {} \; && find /home/wenzexu -type f -exec chmod 644 {} \; && chmod 700 /home/wenzexu/.ssh && chmod 400 /home/wenzexu/.ssh/authorized_keys
 chown -R wenzexu:wenzexu /home/wenzexu/app && chown -R wenzexu:wenzexu /home/wenzexu/man && chown wenzexu:wenzexu /home/wenzexu/.env && chown wenzexu:wenzexu /home/wenzexu/app.yaml && chown wenzexu:wenzexu /home/wenzexu/man.yaml
 chmod -R 777 /home/wenzexu/app && chmod -R 777 /home/wenzexu/man && chmod 600 /home/wenzexu/.env && chmod 600 /home/wenzexu/app.yaml && chmod 600 /home/wenzexu/man.yaml && chmod 700 /home/wenzexu/app/gitea/git/.ssh && chmod 600 /home/wenzexu/app/gitea/git/.ssh/authorized_keys
-timestamp=$(TZ='Asia/Shanghai' date +%Y-%m-%d)
+# timestamp=$(TZ='Asia/Shanghai' date +%Y-%m-%d)
 cd /root
 tar -czf /root/backup-script.tar.gz backup.sh --absolute-names
 cd /home/wenzexu
@@ -54,26 +54,25 @@ tar -czf /home/wenzexu/pingvin-share.tar.gz pingvin-share --absolute-names
 tar -czf /home/wenzexu/moments.tar.gz moments --absolute-names
 tar -czf /home/wenzexu/freshrss.tar.gz freshrss --absolute-names
 tar -czf /home/wenzexu/gitea.tar.gz gitea --absolute-names
-aws s3 rm s3://ricolxwz-backup --recursive
 cd /root
-aws s3 cp /root/backup-script.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /root/backup-script.tar.gz s3://ricolxwz-backup/services/
 cd /home/wenzexu
-aws s3 cp /home/wenzexu/env.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /home/wenzexu/man.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /home/wenzexu/app.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /home/wenzexu/npm.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /home/wenzexu/memos.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /home/wenzexu/umami-db.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /home/wenzexu/uptime-kuma.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /home/wenzexu/yourls.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /home/wenzexu/yourls-db.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /home/wenzexu/nav.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /home/wenzexu/easyimage.tar.gz s3://ricolxwz-backup/${timestamp}/
-# aws s3 cp /home/wenzexu/flare.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /home/wenzexu/pingvin-share.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /home/wenzexu/moments.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /home/wenzexu/freshrss.tar.gz s3://ricolxwz-backup/${timestamp}/
-aws s3 cp /home/wenzexu/gitea.tar.gz s3://ricolxwz-backup/${timestamp}/
+aws s3 cp /home/wenzexu/env.tar.gz s3://ricolxwz-backup/services/
+aws s3 cp /home/wenzexu/man.tar.gz s3://ricolxwz-backup/services/
+aws s3 cp /home/wenzexu/app.tar.gz s3://ricolxwz-backup/services/
+aws s3 cp /home/wenzexu/npm.tar.gz s3://ricolxwz-backup/services/
+aws s3 cp /home/wenzexu/memos.tar.gz s3://ricolxwz-backup/services/
+aws s3 cp /home/wenzexu/umami-db.tar.gz s3://ricolxwz-backup/services/
+aws s3 cp /home/wenzexu/uptime-kuma.tar.gz s3://ricolxwz-backup/services/
+aws s3 cp /home/wenzexu/yourls.tar.gz s3://ricolxwz-backup/services/
+aws s3 cp /home/wenzexu/yourls-db.tar.gz s3://ricolxwz-backup/services/
+aws s3 cp /home/wenzexu/nav.tar.gz s3://ricolxwz-backup/services/
+aws s3 cp /home/wenzexu/easyimage.tar.gz s3://ricolxwz-backup/services/
+# aws s3 cp /home/wenzexu/flare.tar.gz s3://ricolxwz-backup/services/
+aws s3 cp /home/wenzexu/pingvin-share.tar.gz s3://ricolxwz-backup/services/
+aws s3 cp /home/wenzexu/moments.tar.gz s3://ricolxwz-backup/services/
+aws s3 cp /home/wenzexu/freshrss.tar.gz s3://ricolxwz-backup/services/
+aws s3 cp /home/wenzexu/gitea.tar.gz s3://ricolxwz-backup/services/
 rm /home/wenzexu/*.tar.gz
 rm /root/*.tar.gz
 docker compose -f /home/wenzexu/app.yaml -f /home/wenzexu/man.yaml up -d
