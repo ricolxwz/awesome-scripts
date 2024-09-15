@@ -18,6 +18,7 @@ echo "Asia/Shanghai" > /etc/timezone
 ## 备份
 
 ```bash
+docker compose -f /home/wenzexu/app.yaml -f /home/wenzexu/man.yaml down
 find /home/wenzexu -type d -exec chmod 755 {} \; && find /home/wenzexu -type f -exec chmod 644 {} \; && chmod 700 /home/wenzexu/.ssh && chmod 400 /home/wenzexu/.ssh/authorized_keys
 chown -R wenzexu:wenzexu /home/wenzexu/app && chown -R wenzexu:wenzexu /home/wenzexu/man && chown wenzexu:wenzexu /home/wenzexu/.env && chown wenzexu:wenzexu /home/wenzexu/app.yaml && chown wenzexu:wenzexu /home/wenzexu/man.yaml
 chmod -R 777 /home/wenzexu/app && chmod -R 777 /home/wenzexu/man && chmod 600 /home/wenzexu/.env && chmod 600 /home/wenzexu/app.yaml && chmod 600 /home/wenzexu/man.yaml && chmod 700 /home/wenzexu/app/gitea/git/.ssh && chmod 600 /home/wenzexu/app/gitea/git/.ssh/authorized_keys
@@ -64,6 +65,7 @@ aws s3 cp /home/wenzexu/freshrss.tar.gz s3://ricolxwz-backup/${timestamp}/
 aws s3 cp /home/wenzexu/gitea.tar.gz s3://ricolxwz-backup/${timestamp}/
 rm /home/wenzexu/*.tar.gz
 rm /root/*.tar.gz
+docker compose -f /home/wenzexu/app.yaml -f /home/wenzexu/man.yaml up -d
 ```
 
 ```
