@@ -11,7 +11,7 @@ services:
     networks:
       - app
     environment:
-      CODER_PG_CONNECTION_URL: "postgresql://${CODER_POSTGRES_USER:-username}:${CODER_POSTGRES_PASSWORD:-password}@coder-db/${CODER_POSTGRES_DB:-coder}?sslmode=disable"
+      CODER_PG_CONNECTION_URL: "postgresql://wenzexu:${CODER_POSTGRES_PASSWORD}@coder-db/coder?sslmode=disable"
       CODER_HTTP_ADDRESS: "0.0.0.0:7080"
       CODER_ACCESS_URL: "https://code.ricolxwz.io"
     group_add:
@@ -31,9 +31,9 @@ services:
       - app
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ${CODER_POSTGRES_USER:-username}
-      POSTGRES_PASSWORD: ${CODER_POSTGRES_PASSWORD:-password}
-      POSTGRES_DB: ${CODER_POSTGRES_DB:-coder}
+      POSTGRES_USER: wenzexu
+      POSTGRES_PASSWORD: ${CODER_POSTGRES_PASSWORD}
+      POSTGRES_DB: coder
     volumes:
       - /home/wenzexu/app/coder:/var/lib/postgresql/data
       - /etc/timezone:/etc/timezone:ro
