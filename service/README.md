@@ -20,7 +20,7 @@ echo "Asia/Shanghai" > /etc/timezone
 ```bash
 find /home/wenzexu -type d -exec chmod 755 {} \; && find /home/wenzexu -type f -exec chmod 644 {} \; && chmod 700 /home/wenzexu/.ssh && chmod 400 /home/wenzexu/.ssh/authorized_keys
 chown -R wenzexu:wenzexu /home/wenzexu/app && chown -R wenzexu:wenzexu /home/wenzexu/man && chown wenzexu:wenzexu /home/wenzexu/.env && chown wenzexu:wenzexu /home/wenzexu/app.yaml && chown wenzexu:wenzexu /home/wenzexu/man.yaml
-chmod -R 777 /home/wenzexu/app && chmod -R 777 /home/wenzexu/man && chmod 600 /home/wenzexu/.env && chmod 600 /home/wenzexu/app.yaml && chmod 600 /home/wenzexu/man.yaml
+chmod -R 777 /home/wenzexu/app && chmod -R 777 /home/wenzexu/man && chmod 600 /home/wenzexu/.env && chmod 600 /home/wenzexu/app.yaml && chmod 600 /home/wenzexu/man.yaml && chmod 700 /home/wenzexu/app/gitea/git/.ssh && chmod 600 /home/wenzexu/app/gitea/git/.ssh/authorized_keys
 timestamp=$(TZ='Asia/Shanghai' date +%Y-%m-%d)
 cd /root
 tar -czf /root/backup-script.tar.gz backup.sh --absolute-names
