@@ -17,7 +17,7 @@ services:
     group_add:
      - "996" # 将容器内的用户加入到docker组中, 以便操控docker
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     depends_on:
@@ -78,7 +78,7 @@ services:
       GITEA_RUNNER_LABELS: "default"
     volumes:
       - /home/wenzexu/app/gitea-runner/data:/data
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
       - type: bind # 1. download act runner binary https://dl.gitea.com/act_runner/; 2. ./act-runner generate-config > /home/wenzexu/app/gitea-runner/config/config.yaml
@@ -422,7 +422,7 @@ services:
   #     - gitlab
   #   volumes:
   #     - /home/wenzexu/app/gitlab-runner/config:/etc/gitlab-runner
-  #     - /var/run/docker.sock:/var/run/docker.sock:ro
+  #     - /var/run/docker.sock:/var/run/docker.sock
   #     - /etc/timezone:/etc/timezone:ro
   #     - /etc/localtime:/etc/localtime:ro
   #   networks:
