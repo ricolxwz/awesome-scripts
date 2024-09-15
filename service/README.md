@@ -72,7 +72,7 @@ docker compose -f /home/wenzexu/app.yaml -f /home/wenzexu/man.yaml up -d
 ```
 
 ```
-0 0 */5 * * /root/backup.sh
+0 5 */5 * * /root/backup.sh
 ```
 
 ## 网络
