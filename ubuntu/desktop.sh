@@ -1,7 +1,7 @@
 read -p "Install desktop env? (y/n, default n): " answer
 if [ "$answer" = "y" ]; then
     cd ~
-    sudo apt install unzip wget fonts-wqy-zenhei -y
+    sudo apt install unzip wget -y
     sudo apt remove fcitx* -y
     sudo apt remove fcitx-module* -y
     sudo apt remove fcitx-frontend* -y
@@ -9,6 +9,35 @@ if [ "$answer" = "y" ]; then
     sudo apt purge ibus -y
     sudo apt purge fcitx* -y
     sudo apt autoclean && sudo apt autoremove -y
+    sudo mkdir -p /etc/fonts
+    printf '%s\n' '<?xml version="1.0"?>' \
+    '<!DOCTYPE fontconfig SYSTEM "fonts.dtd">' \
+    '<fontconfig>' \
+    '  <alias>' \
+    '    <family>sans-serif</family>' \
+    '    <prefer>' \
+    '      <family>UbuntuMono Nerd Font Mono</family>' \
+    '      <family>HarmonyOS Sans SC</family>' \
+    '      <family>HarmonyOS Sans TC</family>' \
+    '    </prefer>' \
+    '  </alias>' \
+    '  <alias>' \
+    '    <family>serif</family>' \
+    '    <prefer>' \
+    '      <family>UbuntuMono Nerd Font Mono</family>' \
+    '      <family>HarmonyOS Sans SC</family>' \
+    '      <family>HarmonyOS Sans TC</family>' \
+    '    </prefer>' \
+    '  </alias>' \
+    '  <alias>' \
+    '    <family>monospace</family>' \
+    '    <prefer>' \
+    '      <family>UbuntuMono Nerd Font Mono</family>' \
+    '      <family>HarmonyOS Sans SC</family>' \
+    '      <family>HarmonyOS Sans TC</family>' \
+    '    </prefer>' \
+    '  </alias>' \
+    '</fontconfig>' | sudo tee /etc/fonts/local.conf > /dev/null
     read -p "Desktop distribution? (gnome/kde/xfce/cinnamon): " desktop_version
     read -p "GUI backend? (wayland/x11): " gui_backend
     if [ "$desktop_version" = "gnome" ]; then
@@ -149,7 +178,6 @@ if [ "$answer" = "y" ]; then
     mv code.deb software/
     sudo dpkg -i ~/software/code.deb
     sudo chown -R $(whoami) /usr/share/code
-    curl -f http://zed.dev/install.sh | sh
     echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc
     source ~/.bashrc
 else
